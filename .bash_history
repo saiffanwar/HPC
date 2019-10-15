@@ -552,3 +552,121 @@ git init
 ls
 git init
 git --version
+#1571167718
+ls
+#1571167722
+git --version
+#1571167725
+git commit
+#1571167822
+git push origin master
+#1571167829
+git push master
+#1571167860
+git config --get remote.origin.url
+#1571167868
+git remote show origin
+#1571167973
+cd .git
+#1571167976
+cd ..
+#1571167986
+rmdir -rf .git/
+#1571168022
+git add .
+#1571168046
+git commit -m "test commit"
+#1571168222
+git remote add origin https://github.com/saiffanwar/HPC.git
+#1571168227
+git remote -v
+#1571168240
+git push -u origin master
+#1571168349
+git pull
+#1571168642
+git remote add origin https://github.com/saiffanwar/HPC.git
+#1571168656
+git push origin
+#1571169100
+git git 
+#1571169102
+git 
+#1571170356
+git commit
+#1571170434
+git status
+#1571170446
+git commit origin master
+#1571170454
+git commit origin
+#1571170461
+git commit -u origin master
+#1571170479
+git commit
+#1571169119
+ls
+#1571169122
+git add .
+#1571169123
+ls
+#1571169132
+git push origin master
+#1571169159
+git push --help
+#1571169323
+git pull
+#1571169391
+rmdir -r .git/
+#1571169400
+rmdir --r .git/
+#1571169406
+rmdir --rf .git/
+#1571169414
+rmdir -rf .git/
+#1571169424
+rmdir --help
+#1571169437
+rm -r .git/
+#1571169482
+rm -rf .git/
+#1571169484
+ls
+#1571169487
+git init
+#1571169511
+git add .
+#1571169525
+git commit -m "First commit"
+#1571169554
+git remote add origin https://github.com/saiffanwar/HPC.git
+#1571169557
+git remote -v
+#1571169567
+git push -u origin master
+#1571169618
+git pull
+#1571169650
+git pull origin master
+#1571169664
+git push origin master
+#1571169855
+git pull
+#1571169869
+git push -u origin master
+#1571169913
+git remote add origin https://github.com/saiffanwar/HPC.git
+#1571169922
+git pull origin master
+#1571170004
+git rm README.md
+#1571170015
+git merge README.md
+#1571170031
+git commit origin master
+#1571170050
+git push
+#1571170127
+git status
+#1571170134
+git commit

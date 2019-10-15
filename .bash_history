@@ -670,3 +670,31 @@ git push
 git status
 #1571170134
 git commit
+#1571170566
+git status
+#1571170595
+git pull origin
+#1571170608
+git commit "Initial Commit"
+#1571170615
+git commit"1"
+#1571170621
+git commit "1"
+#1571170658
+git commit -i 
+#1571170680
+git commit -am 'Conflicts Resolved'
+#1571170685
+git status
+#1571170693
+git commit origin master
+#1571170701
+git add .
+#1571170704
+git status
+#1571170709
+git push origin master
+#1571170756
+git pull
+#1571170771
+git pull origin master

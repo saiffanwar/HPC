@@ -698,3 +698,147 @@ git push origin master
 git pull
 #1571170771
 git pull origin master
+#1571177409
+ls
+#1571177412
+git status
+#1571177426
+ls
+#1571177481
+git pull
+#1571177488
+git pull origin
+#1571177503
+git merge
+#1571177511
+git merge stencil.c
+#1571177547
+git add .
+#1571177555
+git stash
+#1571177566
+git push origin
+#1571177583
+git pull origin
+#1571177614
+nano stencil.c
+#1571177649
+git pull 15-10
+#1571177660
+git pull origin 15-10
+#1571177723
+git status
+#1571177748
+nano stencil
+#1571177866
+rm stencil
+#1571177876
+rm stencil.pgm
+#1571177880
+git status
+#1571177892
+git commit -m "test new branch"
+#1571177903
+git status
+#1571177950
+git add .
+#1571177960
+git status
+#1571177966
+git rm stencil
+#1571177972
+git status
+#1571177978
+git rm stencil.pgm
+#1571177981
+git status
+#1571177992
+git commit -m "test new branch"
+#1571178013
+git push origin 15-10
+#1571178270
+ls
+#1571178273
+git status
+#1571178300
+git pull origin 15-10
+#1571178469
+make
+#1571178478
+sbatch stencil
+#1571178482
+sbatch stencil.job
+#1571178492
+nano stencil.out
+#1571178535
+gcc -std=c99 -Wall -pg stencil.c -o stencil
+#1571178542
+./stencil
+#1571178549
+./stencil 1024 1024 100
+#1571178601
+gprof stencil.out gmon.out > profile.txt
+#1571178607
+gprof stencil gmon.out > profile.txt
+#1571178611
+ls
+#1571178619
+git pull origin 15-10
+#1571178657
+git commit -m "new profile"
+#1571178664
+git add .
+#1571178666
+git commit -m "new profile"
+#1571178672
+git pull origin 15-10
+#1571178692
+git push origin 15-10
+#1571178750
+nano Makefile
+#1571178769
+make -B
+#1571178785
+sbatch stencil.job
+#1571178789
+./stencil
+#1571178824
+gprof stencil gmon.out > profile.txt
+#1571178839
+nano profile.txt
+#1571178854
+less profile.txt
+#1571178862
+./stencil
+#1571178867
+./stencil 1024 1024 100
+#1571178872
+gprof stencil gmon.out > profile.txt
+#1571178875
+less profile.txt
+#1571179054
+less Makefile
+#1571179087
+make
+#1571179090
+make -B
+#1571179101
+./stencil 1024 1024 100
+#1571179118
+gprof stencil gmon.out > profile.txt
+#1571179124
+less profile.txt
+#1571179142
+./stencil 4096 4096 100
+#1571179225
+gprof stencil gmon.out > profile.txt
+#1571179229
+less profile.txt
+#1571179500
+git commit -m "profile of 4096"
+#1571179508
+git add .
+#1571179511
+git commit -m "profile of 4096"
+#1571179522
+git push origin 15-10

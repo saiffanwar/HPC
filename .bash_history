@@ -842,3 +842,195 @@ git add .
 git commit -m "profile of 4096"
 #1571179522
 git push origin 15-10
+#1571237505
+ls
+#1571237511
+less profile.txt
+#1571237558
+git status
+#1571237568
+git branch 16-10
+#1571237571
+git status
+#1571237577
+git checkout 16-10
+#1571237581
+git add .
+#1571237593
+git status
+#1571237610
+git commit -m "new day commit 16-10"
+#1571237618
+git push origin 16-10
+#1571238753
+sbatch stencil.job
+#1571238764
+squeue -u sa17826
+#1571238773
+less stencil.out
+#1571238805
+make -B
+#1571238814
+nano Makefile
+#1571238839
+make -B
+#1571238873
+sbatch stencil.job
+#1571238888
+nano Makefile
+#1571238934
+make -B
+#1571238940
+modules avail
+#1571238946
+module available
+#1571238976
+module load icc/2017.1.132-GCC-5.4.0-2.26 
+#1571238979
+make -B
+#1571238986
+sbatch stencil.job
+#1571238993
+less stencil.out
+#1571239268
+nano stencil.job
+#1571239604
+make -B
+#1571239610
+sbatch stencil.job
+#1571239616
+squeue -u sa17826
+#1571239652
+less stencil.out
+#1571239802
+gcc --versiob
+#1571239803
+gcc --version
+#1571239816
+less Makefile
+#1571239868
+nano stencil.job
+#1571239889
+make -B
+#1571239895
+sbatch stencil.job
+#1571239903
+squeue -u sa17826
+#1571240113
+less stencil.out
+#1571241576
+nano Makefile
+#1571241603
+make -B
+#1571241633
+nano Makefile
+#1571241655
+make -B
+#1571241691
+sbatch stencil.job
+#1571241699
+squeue -u sa17826
+#1571241733
+less stencil.out
+#1571241748
+nano Makefile
+#1571241783
+ls
+#1571241789
+less intel
+#1571241800
+cd intel
+#1571241803
+ls
+#1571241806
+cd ism
+#1571241808
+ls
+#1571241810
+cd rm
+#1571241812
+ls
+#1571241817
+cd ..
+#1571241821
+ls
+#1571243262
+nano Makefuke
+#1571243277
+nano Makefile
+#1571243461
+make -B
+#1571243478
+module list
+#1571243488
+module load icc/2017.1.132-GCC-5.4.0-2.26 
+#1571243497
+module list
+#1571243508
+make -B
+#1571243521
+./stencil 1024 1024 100
+#1571243597
+gprof stencil gmon.out > profile.txt
+#1571243617
+less profile.txt
+#1571243647
+./stencil 4096 4096 100
+#1571243658
+gprof stencil gmon.out > profile.txt
+#1571243668
+less profile.txt
+#1571243683
+nano stencil.job
+#1571246862
+nano Makefile
+#1571246889
+make -B
+#1571246896
+ls
+#1571246907
+less stencil.optrpt
+#1571247415
+nano Makefile
+#1571247433
+make 
+#1571247435
+make -B
+#1571247445
+nano Makefile
+#1571247463
+make -B
+#1571247488
+sbatch stencil.job
+#1571247494
+squeue -u sa17826
+#1571247501
+less stencil.out
+#1571247565
+nano Makefile
+#1571247588
+make -B
+#1571247606
+./stencil 1024 1024 100
+#1571247617
+sbatch stencil.job
+#1571247625
+less stencil.out
+#1571247668
+nano Makefile
+#1571247775
+make -B
+#1571247786
+nano Makefile
+#1571247813
+make -B
+#1571247827
+./stencil 1024 1024 100
+#1571247837
+sbatch stencil.job
+#1571247842
+less stencil.out
+#1571248210
+nano Makefile
+#1571248239
+less stencil.out

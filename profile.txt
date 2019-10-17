@@ -3,9 +3,7 @@ Flat profile:
 Each sample counts as 0.01 seconds.
   %   cumulative   self              self     total           
  time   seconds   seconds    calls  Ts/call  Ts/call  name    
- 99.12     33.29    33.29                             stencil
-  1.05     33.64     0.35                             init_image
-  0.33     33.76     0.11                             output_image
+100.08      5.68     5.68                             main
 
  %         the percentage of the total running time of the
 time       program used by this function.
@@ -19,13 +17,13 @@ seconds    function alone.  This is the major sort for this
 
 calls      the number of times this function was invoked, if
            this function is profiled, else blank.
- 
+
  self      the average number of milliseconds spent in this
 ms/call    function per call, if this function is profiled,
 	   else blank.
 
  total     the average number of milliseconds spent in this
-ms/call    function and its descendents per call, if this 
+ms/call    function and its descendents per call, if this
 	   function is profiled, else blank.
 
 name       the name of the function.  This is the minor sort
@@ -34,7 +32,7 @@ name       the name of the function.  This is the minor sort
 	   in parenthesis it shows where it would appear in
 	   the gprof listing if it were to be printed.
 
-Copyright (C) 2012-2014 Free Software Foundation, Inc.
+Copyright (C) 2012-2015 Free Software Foundation, Inc.
 
 Copying and distribution of this file, with or without modification,
 are permitted in any medium without royalty provided the copyright

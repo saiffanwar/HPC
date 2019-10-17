@@ -1,3 +1,3 @@
 stencil: stencil.c
-	gcc -std=c99 -Ofast -mtune=native -Wall -pg $^ -o $@
+	icc -std=c99 -fast -Wall -qopt-report=5 $^ -o $@
 

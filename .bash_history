@@ -1034,3 +1034,197 @@ less stencil.out
 nano Makefile
 #1571248239
 less stencil.out
+ls
+make -B
+module load icc/2017.1.132-GCC-5.4.0-2.26 
+make -B
+git status
+git --version
+#1571306636
+ls
+#1571306639
+make -B
+#1571306654
+module load icc/2017.1.132-GCC-5.4.0-2.26 
+#1571306655
+ls
+#1571306658
+make -B
+#1571306688
+./stencil 1024 1024 100
+#1571306698
+sbatch stencil.job
+#1571306704
+less stencil.out
+#1571306719
+less Makefile
+#1571306765
+nano Makefile
+#1571306784
+make -B
+#1571306823
+sbatch stencil.job
+#1571306829
+less stencil.out
+#1571306958
+nano stencil.job
+#1571306985
+make -B
+#1571306990
+sbatch stencil.job
+#1571306998
+squeue -u sa17826
+#1571307003
+less stencil.out
+#1571307030
+nano stencil.job
+#1571307047
+sbatch stencil.job
+#1571307052
+squeue -u sa17826
+#1571307087
+less stencil.out
+#1571307139
+git status
+#1571307148
+git branch 17-10
+#1571307152
+git checkout 17-10
+#1571307182
+git commit -m "using icc @0.19"
+#1571307189
+git add .
+#1571307192
+git commit -m "using icc @0.19"
+#1571307200
+git push origin 17-10
+#1571307793
+ls
+#1571307799
+less ipo_out.optrpt 
+#1571308987
+less Makefile
+#1571309019
+less ipo_out.optrpt 
+#1571310936
+ls
+#1571310948
+less Makefile
+#1571316534
+ls
+#1571316546
+sbatch stencil.job
+#1571316551
+squeue -u sa17826
+#1571316573
+ls
+#1571316581
+vim stencil.out
+#1571316670
+vim stencil.c
+#1571316699
+make -B
+#1571316709
+module load icc/2017.1.132-GCC-5.4.0-2.26 
+#1571316712
+module list
+#1571316714
+ls
+#1571316840
+less stencil.out
+#1571318182
+vim Makefile
+#1571318204
+nano Makefile
+#1571318227
+make -B
+#1571318239
+sbatch stencil.job
+#1571318246
+squeue -u sa17826
+#1571318248
+sa17826
+#1571318251
+squeue -u sa17826
+#1571318288
+less stencil.out
+#1571318301
+nano Makefile
+#1571318354
+nano stencil.job
+#1571318374
+make -B
+#1571318382
+sbatch stencil.job
+#1571318389
+squeue -u sa17826
+#1571318396
+less stencil.out
+#1571318406
+ls
+#1571318413
+less ipo_out.optrpt 
+#1571318495
+nano Makefile
+#1571318553
+make -B
+#1571318564
+sbatch stencil.job
+#1571318571
+less stencil.out
+#1571318582
+less ipo_out.optrpt 
+ls
+less ipo_out.optrpt 
+ls
+make -B
+module load ic
+module load icc/2017.1.132-GCC-5.4.0-2.26 module avail icc
+module lost
+module list
+module available
+module load icc/2017.1.132-GCC-5.4.0-2.26 
+module list
+make -B
+sbatch stencil.job
+squeue -u sa17826
+less stencil.out
+nano stencil.job
+vim stencil.job
+vim --version
+vim stencil.job
+less stencil.job
+vim stencil.job
+make -B
+sbatch stencil.job
+less stencil.out
+less ipo_out.optrpt 
+vim Makefile
+make -B
+sbatch stencil.job
+less stencil.out
+vim Makefile
+make -B
+sbatch stencil.job
+less stencil.out
+vim stencil.out
+vim stencil.c
+make -B
+sbatch stencil.job
+less stencil.out
+vim stencil.c
+make -B
+sbatch stencil.job
+less stencil.out
+vim Makefile
+make -B
+sbatch stencil.job
+gprof stencil gmon.out > profile.txt
+ls
+less profile.txt
+vim stencil.c
+make -B
+vim stencil.c
+make -B
+git status
+git --version

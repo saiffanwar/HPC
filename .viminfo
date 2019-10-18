@@ -25,20 +25,22 @@
 "x	CHAR	0
 	≈
 ""-	CHAR	0
-	d
+	>
 
 # File marks:
-'0  13  57  ~/stencil.c
-'1  60  31  ~/stencil.c
-'2  2  44  ~/Makefile
-'3  63  13  ~/stencil.c
-'4  8  0  ~/stencil.out
-'5  21  0  ~/stencil.job
-'6  28  23  ~/stencil.job
-'7  138  17  ~/stencil.c
+'0  1  0  ~/stencil.c
+'1  13  18  ~/stencil.c
+'2  60  31  ~/stencil.c
+'3  2  44  ~/Makefile
+'4  63  13  ~/stencil.c
+'5  8  0  ~/stencil.out
+'6  21  0  ~/stencil.job
+'7  28  23  ~/stencil.job
+'8  138  17  ~/stencil.c
 
 # Jumplist (newest first):
--'  13  57  ~/stencil.c
+-'  1  0  ~/stencil.c
+-'  13  18  ~/stencil.c
 -'  60  13  ~/stencil.c
 -'  63  4  ~/stencil.c
 -'  2  44  ~/Makefile
@@ -48,7 +50,6 @@
 -'  28  0  ~/stencil.job
 -'  1  0  ~/stencil.job
 -'  1  0  ~/Makefile
--'  1  0  ~/stencil.c
 -'  1  0  ~/stencil.out
 -'  27  19  ~/stencil.job
 -'  21  0  ~/stencil.job
@@ -137,9 +138,9 @@
 # History of marks within files (newest to oldest):
 
 > ~/stencil.c
-	"	13	57
+	"	1	0
 	^	13	58
-	.	13	57
+	.	1	16
 	+	138	18
 	+	62	32
 	+	63	21
@@ -149,6 +150,7 @@
 	+	9	31
 	+	11	34
 	+	13	57
+	+	1	16
 
 > ~/Makefile
 	"	2	44

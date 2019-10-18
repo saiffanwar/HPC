@@ -28,119 +28,112 @@
 	>
 
 # File marks:
-'0  1  0  ~/stencil.c
-'1  13  18  ~/stencil.c
-'2  60  31  ~/stencil.c
-'3  2  44  ~/Makefile
-'4  63  13  ~/stencil.c
-'5  8  0  ~/stencil.out
-'6  21  0  ~/stencil.job
-'7  28  23  ~/stencil.job
-'8  138  17  ~/stencil.c
+'0  138  0  ~/stencil.c
+'1  28  23  ~/stencil.job
+'2  1  0  ~/stencil.jo
+'3  14  5  ~/stencil.c
+'4  27  0  ~/stencil.c
+'5  1  0  ~/steencil.c
+'6  145  0  ~/stencil.c
+'7  1  0  ~/stencil.c
+'8  13  18  ~/stencil.c
+'9  60  31  ~/stencil.c
 
 # Jumplist (newest first):
+-'  138  0  ~/stencil.c
+-'  28  23  ~/stencil.job
+-'  1  0  ~/stencil.jo
+-'  14  0  ~/stencil.c
+-'  27  2  ~/stencil.c
+-'  145  0  ~/stencil.c
+-'  1  0  ~/steencil.c
+-'  21  0  ~/stencil.job
 -'  1  0  ~/stencil.c
 -'  13  18  ~/stencil.c
 -'  60  13  ~/stencil.c
 -'  63  4  ~/stencil.c
 -'  2  44  ~/Makefile
--'  138  0  ~/stencil.c
 -'  8  0  ~/stencil.out
--'  21  0  ~/stencil.job
--'  28  0  ~/stencil.job
 -'  1  0  ~/stencil.job
 -'  1  0  ~/Makefile
 -'  1  0  ~/stencil.out
 -'  27  19  ~/stencil.job
--'  21  0  ~/stencil.job
--'  28  0  ~/stencil.job
--'  21  0  ~/stencil.job
--'  28  0  ~/stencil.job
--'  1  0  ~/stencil.job
--'  21  0  ~/stencil.job
 -'  8  0  ~/stencil.out
--'  21  0  ~/stencil.job
--'  28  0  ~/stencil.job
--'  1  0  ~/stencil.job
 -'  1  0  ~/stencil.out
--'  27  19  ~/stencil.job
--'  21  0  ~/stencil.job
--'  28  0  ~/stencil.job
--'  21  0  ~/stencil.job
--'  28  0  ~/stencil.job
--'  1  0  ~/stencil.job
--'  21  0  ~/stencil.job
 -'  8  0  ~/stencil.out
--'  21  0  ~/stencil.job
--'  28  0  ~/stencil.job
--'  1  0  ~/stencil.job
 -'  1  0  ~/stencil.out
--'  27  19  ~/stencil.job
--'  21  0  ~/stencil.job
--'  28  0  ~/stencil.job
--'  21  0  ~/stencil.job
--'  28  0  ~/stencil.job
--'  1  0  ~/stencil.job
--'  21  0  ~/stencil.job
 -'  8  0  ~/stencil.out
--'  21  0  ~/stencil.job
--'  28  0  ~/stencil.job
--'  1  0  ~/stencil.job
 -'  1  0  ~/stencil.out
--'  27  19  ~/stencil.job
--'  21  0  ~/stencil.job
--'  28  0  ~/stencil.job
--'  21  0  ~/stencil.job
--'  28  0  ~/stencil.job
--'  1  0  ~/stencil.job
--'  21  0  ~/stencil.job
 -'  8  0  ~/stencil.out
--'  21  0  ~/stencil.job
--'  28  0  ~/stencil.job
--'  1  0  ~/stencil.job
 -'  1  0  ~/stencil.out
--'  27  19  ~/stencil.job
--'  21  0  ~/stencil.job
--'  28  0  ~/stencil.job
--'  21  0  ~/stencil.job
--'  28  0  ~/stencil.job
--'  1  0  ~/stencil.job
--'  21  0  ~/stencil.job
 -'  8  0  ~/stencil.out
--'  21  0  ~/stencil.job
--'  28  0  ~/stencil.job
--'  1  0  ~/stencil.job
 -'  1  0  ~/stencil.out
--'  27  19  ~/stencil.job
--'  21  0  ~/stencil.job
--'  28  0  ~/stencil.job
--'  21  0  ~/stencil.job
--'  28  0  ~/stencil.job
--'  1  0  ~/stencil.job
--'  21  0  ~/stencil.job
 -'  8  0  ~/stencil.out
 -'  8  0  ~/stencil.out
 -'  2  44  ~/Makefile
 -'  8  0  ~/stencil.out
--'  21  0  ~/stencil.job
--'  28  0  ~/stencil.job
--'  1  0  ~/stencil.job
 -'  1  0  ~/Makefile
 -'  1  0  ~/stencil.out
--'  27  19  ~/stencil.job
+-'  2  44  ~/Makefile
+-'  2  44  ~/Makefile
+-'  8  0  ~/stencil.out
+-'  1  0  ~/Makefile
+-'  1  0  ~/stencil.out
+-'  8  0  ~/stencil.out
+-'  1  0  ~/stencil.out
+-'  8  0  ~/stencil.out
+-'  1  0  ~/stencil.out
+-'  8  0  ~/stencil.out
+-'  1  0  ~/stencil.out
+-'  8  0  ~/stencil.out
+-'  1  0  ~/stencil.out
+-'  8  0  ~/stencil.out
+-'  1  0  ~/stencil.out
+-'  8  0  ~/stencil.out
+-'  8  0  ~/stencil.out
+-'  2  44  ~/Makefile
+-'  8  0  ~/stencil.out
+-'  1  0  ~/Makefile
+-'  1  0  ~/stencil.out
+-'  2  44  ~/Makefile
+-'  1  0  ~/steencil.c
+-'  2  44  ~/Makefile
+-'  8  0  ~/stencil.out
+-'  1  0  ~/Makefile
+-'  1  0  ~/stencil.out
+-'  8  0  ~/stencil.out
+-'  1  0  ~/stencil.out
+-'  8  0  ~/stencil.out
+-'  1  0  ~/stencil.out
+-'  8  0  ~/stencil.out
+-'  1  0  ~/stencil.out
+-'  8  0  ~/stencil.out
+-'  1  0  ~/stencil.out
+-'  8  0  ~/stencil.out
+-'  1  0  ~/stencil.out
+-'  8  0  ~/stencil.out
+-'  8  0  ~/stencil.out
+-'  2  44  ~/Makefile
+-'  8  0  ~/stencil.out
+-'  1  0  ~/Makefile
+-'  1  0  ~/stencil.out
+-'  2  44  ~/Makefile
+-'  1  0  ~/steencil.c
+-'  2  44  ~/Makefile
+-'  8  0  ~/stencil.out
+-'  1  0  ~/steencil.c
+-'  28  23  ~/stencil.job
+-'  1  0  ~/stencil.jo
+-'  1  0  ~/steencil.c
 -'  21  0  ~/stencil.job
--'  28  0  ~/stencil.job
--'  21  0  ~/stencil.job
--'  28  0  ~/stencil.job
--'  1  0  ~/stencil.job
 -'  2  44  ~/Makefile
 
 # History of marks within files (newest to oldest):
 
 > ~/stencil.c
-	"	1	0
-	^	13	58
-	.	1	16
+	"	138	0
+	^	138	6
+	.	138	5
 	+	138	18
 	+	62	32
 	+	63	21
@@ -151,6 +144,23 @@
 	+	11	34
 	+	13	57
 	+	1	16
+	+	14	6
+	+	138	5
+
+> ~/stencil.job
+	"	28	23
+	^	28	24
+	.	28	23
+	+	27	0
+	+	28	0
+	+	21	0
+	+	28	23
+
+> ~/stencil.jo
+	"	1	0
+
+> ~/steencil.c
+	"	1	0
 
 > ~/Makefile
 	"	2	44
@@ -162,11 +172,3 @@
 	"	8	0
 	.	2	16
 	+	2	16
-
-> ~/stencil.job
-	"	21	0
-	^	21	1
-	.	21	0
-	+	27	0
-	+	28	0
-	+	21	0

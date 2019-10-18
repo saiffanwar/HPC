@@ -11,7 +11,7 @@ void init_image(const int nx, const int ny, const int width, const int height,
                 float* image, float* tmp_image);
 void output_image(const char* file_name, const int nx, const int ny,
                   const int width, const int height, float* image);
-float wtime(void);
+double wtime(void);
 
 int main(int argc, char* argv[])
 {
@@ -39,12 +39,12 @@ int main(int argc, char* argv[])
   init_image(nx, ny, width, height, image, tmp_image);
 
   // Call the stencil kernel
-  float tic = wtime();
+  double tic = wtime();
   for (int t = 0; t < niters; ++t) {
     stencil(nx, ny, width, height, image, tmp_image);
     stencil(nx, ny, width, height, tmp_image, image);
   }
-  float toc = wtime();
+  double toc = wtime();
 
   // Output
   printf("------------------------------------\n");
@@ -135,7 +135,7 @@ void output_image(const char* file_name, const int nx, const int ny,
 }
 
 // Get the current time in seconds since the Epoch
-float wtime(void)
+double wtime(void)
 {
   struct timeval tv;
   gettimeofday(&tv, NULL);

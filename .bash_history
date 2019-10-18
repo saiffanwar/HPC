@@ -1228,3 +1228,150 @@ vim stencil.c
 make -B
 git status
 git --version
+#1571421435
+git status
+#1571421443
+git branch 18-10
+#1571421447
+git checkout 18-10
+#1571421452
+git status 
+#1571421456
+git add .
+#1571421474
+git commit -m "New day commit"
+#1571421484
+git push origin 18-10
+#1571421672
+git status
+#1571421689
+git pull origin 18-10
+#1571421701
+vim stencil.c
+#1571421711
+make -B
+#1571421721
+module load icc/2017.1.132-GCC-5.4.0-2.26 
+#1571421724
+make -B
+#1571421748
+vim stencil.c
+#1571421902
+git pull origin 18-10
+#1571421914
+vim stencil.c
+#1571421947
+git pull origin 17-10
+#1571421981
+git push origin 16-10
+#1571422011
+git commit -m "commit"
+#1571422018
+git add .
+#1571422020
+git commit -m "commit"
+#1571422027
+git pull origin 17-10
+#1571422044
+git push origin 16-10
+#1571422126
+git pull origin 18-10
+#1571422128
+saiffanwar
+#1571422144
+git rm stencil.c
+#1571422151
+git merge stencil.c
+#1571422161
+git add .
+#1571422169
+git commit -m "merge"
+#1571422185
+git pull origin 18-10
+#1571422220
+vim stencil.c
+#1571422249
+make -B
+#1571422257
+sbatch stencil.job
+#1571422262
+less stencil.c
+#1571422266
+less stencil.out
+#1571423545
+vim stencil.job
+#1571423571
+make -B
+#1571423578
+sbatch stencil.job
+#1571423583
+less stencil.out
+#1571423654
+git pull origin 18-10
+#1571423668
+git commit -a
+#1571423686
+git add .
+#1571423700
+git commit -m "change:[A
+
+
+
+
+igt 
+:
+ls
+ls
+;
+#1571423757
+git status
+#1571423767
+module load icc/2017.1.132-GCC-5.4.0-2.26 
+#1571423770
+module list
+#1571423776
+git pull origin 18-10
+#1571423797
+git merge
+#1571423867
+git add stencil.c && git commit -m "removed merge conflicts"
+#1571423878
+git pull origin 18-10
+#1571423932
+vim steencil.c
+#1571423941
+vim stencil.c
+#1571423973
+make -B
+#1571423981
+sbatch stencil.job
+#1571423986
+squeue -u sa17826
+#1571424001
+less stencil.out
+#1571424012
+vim stencil.c
+#1571424124
+make -B
+#1571424136
+vim stencil.c
+#1571424180
+make -B
+#1571424186
+sbatch stencil.job
+#1571424190
+squeue -u sa17826
+#1571424206
+less stencil.out
+#1571424218
+vim stencil.jo
+#1571424223
+vim stencil.job
+#1571424239
+make -B
+#1571424244
+sbatch stencil.job
+#1571424251
+squeue -u sa17826
+#1571424259
+less stencil.out

@@ -39,12 +39,12 @@ int main(int argc, char* argv[])
   init_image(nx, ny, width, height, image, tmp_image);
 
   // Call the stencil kernel
-  float tic = wtime();
+  double tic = wtime();
   for (int t = 0; t < niters; ++t) {
     stencil(nx, ny, width, height, image, tmp_image);
     stencil(nx, ny, width, height, tmp_image, image);
   }
-  float toc = wtime();
+  double toc = wtime();
 
   // Output
   printf("------------------------------------\n");

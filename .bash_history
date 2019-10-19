@@ -1375,3 +1375,29 @@ sbatch stencil.job
 squeue -u sa17826
 #1571424259
 less stencil.out
+#1571425388
+module load icc/2017.1.132-GCC-5.4.0-2.26 
+#1571425485
+make -B
+#1571425492
+sbatch stencil.job
+#1571425498
+less stencil.out
+#1571425505
+vim stencil.c
+#1571425523
+git status
+#1571425525
+git add .
+#1571425547
+git commit -m "changing all to float didnt work"
+#1571425553
+git push origin 18-10
+#1571425573
+git status
+#1571425586
+git pull origin 18-10
+#1571425635
+git push origin 18-10
+#1571426385
+vim stencil.c

@@ -28,18 +28,19 @@
 	>
 
 # File marks:
-'0  138  0  ~/stencil.c
-'1  28  23  ~/stencil.job
-'2  1  0  ~/stencil.jo
-'3  14  5  ~/stencil.c
-'4  27  0  ~/stencil.c
-'5  1  0  ~/steencil.c
-'6  145  0  ~/stencil.c
-'7  1  0  ~/stencil.c
-'8  13  18  ~/stencil.c
-'9  60  31  ~/stencil.c
+'0  60  0  ~/stencil.c
+'1  138  0  ~/stencil.c
+'2  28  23  ~/stencil.job
+'3  1  0  ~/stencil.jo
+'4  14  5  ~/stencil.c
+'5  27  0  ~/stencil.c
+'6  1  0  ~/steencil.c
+'7  145  0  ~/stencil.c
+'8  1  0  ~/stencil.c
+'9  13  18  ~/stencil.c
 
 # Jumplist (newest first):
+-'  60  0  ~/stencil.c
 -'  138  0  ~/stencil.c
 -'  28  23  ~/stencil.job
 -'  1  0  ~/stencil.jo
@@ -50,7 +51,6 @@
 -'  21  0  ~/stencil.job
 -'  1  0  ~/stencil.c
 -'  13  18  ~/stencil.c
--'  60  13  ~/stencil.c
 -'  63  4  ~/stencil.c
 -'  2  44  ~/Makefile
 -'  8  0  ~/stencil.out
@@ -127,11 +127,15 @@
 -'  1  0  ~/steencil.c
 -'  21  0  ~/stencil.job
 -'  2  44  ~/Makefile
+-'  28  23  ~/stencil.job
+-'  1  0  ~/stencil.jo
+-'  1  0  ~/steencil.c
+-'  21  0  ~/stencil.job
 
 # History of marks within files (newest to oldest):
 
 > ~/stencil.c
-	"	138	0
+	"	60	0
 	^	138	6
 	.	138	5
 	+	138	18

@@ -10,7 +10,7 @@ void stencil(const int nx, const int ny, const int width, const int height,
 void init_image(const int nx, const int ny, const int width, const int height,
                 double* image, double* tmp_image);
 void output_image(const char* file_name, const int nx, const int ny,
-                  const int width, const int height, float* image);
+                  const int width, const int height, double* image);
 double wtime(void);
 
 int main(int argc, char* argv[])
@@ -59,14 +59,17 @@ int main(int argc, char* argv[])
 
 void stencil(const int nx, const int ny, const int width, const int height,
              double* image, double* tmp_image)
+
 {
-  for (int j = 1; j < ny + 1; ++j) {
-    for (int i = 1; i < nx + 1; ++i) {
-      tmp_image[j + i * height] =  image[j     + i       * height] * 3.0 / 5.0;
-      tmp_image[j + i * height] += image[j     + (i - 1) * height] * 0.5 / 5.0;
-      tmp_image[j + i * height] += image[j     + (i + 1) * height] * 0.5 / 5.0;
-      tmp_image[j + i * height] += image[j - 1 + i       * height] * 0.5 / 5.0;
-      tmp_image[j + i * height] += image[j + 1 + i       * height] * 0.5 / 5.0;
+//	#pragma omp parallel for
+  for (int i = 1; i < nx + 1; ++i) {
+//	#pragma simd
+    for (int j = 1; j < ny + 1; ++j) {
+      tmp_image[i + j * height] =  image[i     + j       * height] * 3.0 / 5.0;
+      tmp_image[i + j * height] += image[i     + (j - 1) * height] * 0.5 / 5.0;
+      tmp_image[i + j * height] += image[i     + (j + 1) * height] * 0.5 / 5.0;
+      tmp_image[i + j * height] += image[i - 1 + j       * height] * 0.5 / 5.0;
+      tmp_image[i + j * height] += image[i + 1 + j       * height] * 0.5 / 5.0;
     }
   }
 }
@@ -117,7 +120,7 @@ void output_image(const char* file_name, const int nx, const int ny,
   // Calculate maximum value of image
   // This is used to rescale the values
   // to a range of 0-255 for output
-  float maximum = 0.0;
+  double maximum = 0.0;
   for (int j = 1; j < ny + 1; ++j) {
     for (int i = 1; i < nx + 1; ++i) {
       if (image[j + i * height] > maximum) maximum = image[j + i * height];

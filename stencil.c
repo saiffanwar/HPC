@@ -6,7 +6,7 @@
 #define OUTPUT_FILE "stencil.pgm"
 
 void stencil(const int nx, const int ny, const int width, const int height,
-             float* __restrict__ image, float* __restrict__ tmp_image);
+             float* image, float* tmp_image);
 void init_image(const int nx, const int ny, const int width, const int height,
                 float* image, float* tmp_image);
 void output_image(const char* file_name, const int nx, const int ny,
@@ -58,7 +58,7 @@ int main(int argc, char* argv[])
 }
 
 void stencil(const int nx, const int ny, const int width, const int height,
-             float* __restrict__ image, float* __restrict__ tmp_image)
+             float* image, float* tmp_image)
 //with floating points
 {
   for (int j = 1; j < ny + 1; ++j) {

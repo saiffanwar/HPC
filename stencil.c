@@ -82,7 +82,7 @@ void stencil(const int nx, const int ny, const int width, const int height,
 //      tmp_image[j + i * height] += image[j + 1 + i       * height] * 0.5 / 5.0;
 //    }
 //  }
-//}
+}
 
 // Create the input image
 void init_image(const int nx, const int ny, const int width, const int height,

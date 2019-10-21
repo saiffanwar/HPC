@@ -6,7 +6,7 @@
 #define OUTPUT_FILE "stencil.pgm"
 
 void stencil(const int nx, const int ny, const int width, const int height,
-             float* image, float* tmp_image);
+             float* __restrict__ image, float* __restrict__ tmp_image);
 void init_image(const int nx, const int ny, const int width, const int height,
                 float* image, float* tmp_image);
 void output_image(const char* file_name, const int nx, const int ny,
@@ -58,15 +58,28 @@ int main(int argc, char* argv[])
 }
 
 void stencil(const int nx, const int ny, const int width, const int height,
-             float* image, float* tmp_image)
+             float* __restrict__ image, float* __restrict__ tmp_image)
+//with floating points
+//{
+//  for (int j = 1; j < ny + 1; ++j) {
+//    for (int i = 1; i < nx + 1; ++i) {
+//      tmp_image[j + i * height] =  image[j     + i       * height] * 3.0f / 5.0f;
+//      tmp_image[j + i * height] += image[j     + (i - 1) * height] * 0.5f / 5.0f;
+//      tmp_image[j + i * height] += image[j     + (i + 1) * height] * 0.5f / 5.0f;
+//      tmp_image[j + i * height] += image[j - 1 + i       * height] * 0.5f / 5.0f;
+//      tmp_image[j + i * height] += image[j + 1 + i       * height] * 0.5f / 5.0f;
+//    }
+//  }
+//}
+//without floating points
 {
   for (int j = 1; j < ny + 1; ++j) {
     for (int i = 1; i < nx + 1; ++i) {
-      tmp_image[j + i * height] =  image[j     + i       * height] * 3.0f / 5.0f;
-      tmp_image[j + i * height] += image[j     + (i - 1) * height] * 0.5f / 5.0f;
-      tmp_image[j + i * height] += image[j     + (i + 1) * height] * 0.5f / 5.0f;
-      tmp_image[j + i * height] += image[j - 1 + i       * height] * 0.5f / 5.0f;
-      tmp_image[j + i * height] += image[j + 1 + i       * height] * 0.5f / 5.0f;
+      tmp_image[j + i * height] =  image[j     + i       * height] * 3.0 / 5.0;
+      tmp_image[j + i * height] += image[j     + (i - 1) * height] * 0.5 / 5.0;
+      tmp_image[j + i * height] += image[j     + (i + 1) * height] * 0.5 / 5.0;
+      tmp_image[j + i * height] += image[j - 1 + i       * height] * 0.5 / 5.0;
+      tmp_image[j + i * height] += image[j + 1 + i       * height] * 0.5 / 5.0;
     }
   }
 }

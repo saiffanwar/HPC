@@ -142,4 +142,3 @@ double wtime(void)
   gettimeofday(&tv, NULL);
   return tv.tv_sec + tv.tv_usec * 1e-6;
 }
-//test

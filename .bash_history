@@ -1,14 +1,3 @@
-xeyes
-passwd
-ssh -X sa17826@bc4login.acrc.bris.ac.uk
-echo hello
-xeyes
-ssh -x sa17826@bc4login.acrc.bris.ac.uk
-ls
-cd
-ls
-cd onecrive
-cd onedrive
 ls
 mkdir .ssh
 touch .ssh/authorized_keys
@@ -1400,4 +1389,231 @@ git pull origin 18-10
 #1571425635
 git push origin 18-10
 #1571426385
+vim stencil.c
+git status
+module av git
+module load tools/git/2.18.0
+git --version
+git status
+git pull origin 18-10
+git branch 19-10
+git checkout 19-10
+git add .
+git commit -m 'new day commit 19-10'
+git push origin 19-10
+git status
+git open
+git --help
+ls
+vim stencil.c
+make -B
+module load icc/2017.1.132-GCC-5.4.0-2.26 
+make -b
+make -B
+sbatch stencil.job
+squeue- u sa17826
+squeue -u sa17826
+less stencil.out
+vim stencil.c
+git add .
+git commit -m 'change float back to double'
+git push origin 19-10
+make -b
+vim stencil.c
+make -b
+sbatch stencil.job
+less stencil.out
+nano Makefile
+make -b
+make -B
+sbatch stencil.job
+less stencil.out
+vim Makefile
+make -B
+sbatch stencil.job
+less stencil.out
+vim stencil.c
+ls
+less ipo_out.optrpt 
+vim stencil.c
+make -B
+sbatch stencil.job
+less stencil.out
+less ipo_out.optrpt 
+vim stencil.c
+make -b
+make -B
+module av omp
+module av openmp
+module load OpenMPI/3.0.0-GCC-7.2.0-2.29 
+module list
+make -B
+vim stencil.c
+make -B
+sbatch stencil.job
+less stencil.out
+vim stencil.c
+make -B
+sbatch stencil.job
+less stencil.out
+git commit -m 'fd it'
+git add .
+git commit -m 'fd it'
+git pull origin 19-10
+git pull origin 18-10
+vim stencil.c
+make -B
+sbatch stencil.job
+less stencil.out
+vim stencil.c
+make -B
+vim stencil.c
+make -B
+sbatch stencil.job
+less stencil.out
+vim stencil.out
+vim stencil.c
+make -b
+make -B
+sbatch stencil.job
+less stencil.out
+vim stencilc
+less stencil.out
+vim stencil.c
+nano stencil.out
+y
+vim stencil.c
+make -B
+sbatch stencil.job
+less stencil.out
+nano Makefile
+make -B
+sbatch stencil.job
+less stencil.out
+nano Makefile
+make -b
+make -B
+sbatch stencil.job
+less stencil.out
+nano Makefile
+make -B
+nano Makefile
+make -B
+vim Makefile
+vim stencil.c
+git pull origin 19-10
+git add .
+git commit -m 'random changes'
+git pull origin 19-10
+git merge
+git rm stencil.c
+git merge stencil.c
+git commit -m 'rdm'
+git pull origin 19-10
+vim stencil.c
+ls
+git pull origin 19-10
+ls
+git status
+git pull origin master 
+ls
+git add .
+git pull
+ls
+git checkout 19-10
+git checkout 18-10
+commit -m 'mess'
+git commit -m 'mess'
+ls
+git checkout 18-10
+ls
+vim stencil.c
+git pull 19-10
+git pull origin 19-10
+git commit -m 'vimfo'
+git add .
+git commit -m 'vimfo'
+git push origin 19-10
+git pull origin 19-10
+ls
+vim stencil.c
+make -B
+nano Makefile
+make -B
+vim stencil.c
+make -B
+sbatch stencil.job
+less stencil.out
+vim stencil.job
+make -B
+sbatch stencil.job
+squeue -u sa17826
+less stencil.out
+vim stencil.job
+make -B
+sbatch stencil.job
+less stencil.out
+squeue -u sa17826
+less stencil.out
+git add .
+git status
+git checkout 19-10
+git commit -m 'sped up a lot'
+git checkout 19-10
+git add .
+git commit -m 'sped up a lot 0.10'
+git push origin 19-10
+git checkout 18-10
+git push origin 19-10
+git push origin 18-10
+less README
+less README.txt
+less README.md
+ls
+python check.py --ref-stencil-file stencil_1024_1024_100.pgm --stencil-file stencil.pgm
+vim stencil.job
+python check.py --ref-stencil-file stencil_1024_1024_100.pgm --stencil-file stencil.pgm
+make -B
+sbatch stencil.job
+python check.py --ref-stencil-file stencil_1024_1024_100.pgm --stencil-file stencil.pgm
+nano stencil.c
+git checkout 19-10
+git merge
+git merge 19-10
+git merge 18-10
+#1571646476
+ls
+#1571646484
+vim stencil.c
+#1571646570
+nano ~/.viminfo
+#1571646618
+vim stencil.c
+#1571646634
+nano ~/.viminfo
+#1571646704
+vim stencil.c
+#1571646729
+rm ~/.viminfo
+#1571646730
+ls
+#1571646732
+rm ~/.viminfo
+#1571646738
+vim stencil.c
+#1571647615
+make -B
+#1571647624
+module load icc/2017.1.132-GCC-5.4.0-2.26 
+#1571647629
+make -B
+#1571647690
+less ipo_out.optrpt 
+#1571647739
+sbatch stencil.job
+#1571647751
+less stencil.out
+#1571647945
+less ipo_out.optrpt 
+#1571648055
 vim stencil.c

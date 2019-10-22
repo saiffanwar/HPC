@@ -95,6 +95,7 @@ else
 //    }
 //  }
 }
+}
 
 // Create the input image
 void init_image(const int nx, const int ny, const int width, const int height,

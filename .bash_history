@@ -1,12 +1,4 @@
 ls
-mkdir .ssh
-touch .ssh/authorized_keys
-chmod 644 .ssh/authorized_keys
-cat .ssh/sa17826.pub >> .ssh/authorized_keys
-ls
-cd ~/.ssh/config
-mkdir ~/.ssh/config
-ls
 cd ~/.ssh/config
 Host bcp4
 ls
@@ -1617,3 +1609,19 @@ less stencil.out
 less ipo_out.optrpt 
 #1571648055
 vim stencil.c
+#1571771302
+module load icc/2017.1.132-GCC-5.4.0-2.26 
+#1571771316
+git statu
+#1571771318
+git status
+#1571771324
+git checkout -- .
+#1571771329
+make -B
+#1571771335
+sbatch stencil.job
+#1571771340
+less stencil.out
+#1571771450
+less ipo_out.optrpt 

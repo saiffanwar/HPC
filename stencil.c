@@ -33,8 +33,8 @@ int main(int argc, char* argv[])
 
   // Allocate the image
   // at
-  float* image = _mm_malloc(sizeof(float) * width * height,64);
-  float* tmp_image = _mm_malloc(sizeof(float) * width * height,64);
+  float* image =_mm_malloc(sizeof(float) * width * height,64);
+  float* tmp_image =_mm_malloc(sizeof(float) * width * height,64);
 
   // Set the input image
   init_image(nx, ny, width, height, image, tmp_image);
@@ -65,6 +65,8 @@ void stencil(const int nx, const int ny, const int width, const int height,
 //with floating points
 {
 #pragma vector aligned
+#pragma ivdep
+#pragma simd
 //  __assume_aligned(image, 16);
 //  __assume_aligned(tmp_image,16);
 //  __assume(height%16==0);

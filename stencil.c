@@ -57,9 +57,6 @@ int main(int argc, char* argv[])
  // free(tmp_image);
 }
 
-float image[1000];
-float tmp_image[1000] __attribute__ ((aligned(64)));
-
 void stencil(const int nx, const int ny, const int width, const int height,
              float* image, float* tmp_image)
 //with floating points

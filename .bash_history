@@ -1,127 +1,3 @@
-nano hello.out
-#1570187203
-squeue -u sa17826]
-#1570187206
-squeue -u sa17826
-#1570187211
-squeue
-#1570187500
-squeue -R COMS30005
-#1570187747
-ls
-#1570187754
-nano hello.out
-#1570187780
-sbatch hello.c
-#1570188025
-nano hello.sh
-#1570197548
-ls
-#1570197564
-nano hello.sh
-#1570462533
-sbatch hello.job
-#1570462536
-ls
-#1570462543
-sbatch hello.sh
-#1570462550
-nano hello.out
-#1570462562
-nano hello.sh
-#1570462586
-sbatch hello.sh
-#1570462590
-nano hello.out
-#1570462600
-nano hello.sh
-#1570462618
-sbatch hello.sh
-#1570462621
-nano hello.out
-#1570703835
-ls
-#1570703837
-cd cw1
-#1570703839
-ls
-#1570703842
-cd introhpc
-#1570703843
-ls
-#1570703848
-nano makefile
-#1570703855
-nano Makefile
-#1570703863
-./stencil
-#1570703874
-make
-#1570703877
-ls
-#1570703882
-./stencil
-#1570704681
-ls
-#1570704684
-cd cw1
-#1570704687
-cd introhpc
-#1570704689
-ls
-#1570704709
-./stencil 8000 8000 100
-#1570703184
-ls
-#1570703211
-mkdir cw1
-#1570703213
-ls
-#1570703215
-cd cw1
-#1570703216
-ls
-#1570703715
-cd ..
-#1570703716
-ls
-#1570703719
-cd cw1
-#1570703721
-ls
-#1570703724
-cd introhpc
-#1570703726
-ls
-#1570704059
-sbatch stencil.job
-#1570704104
-squeue
-#1570704123
-ls
-#1570704135
-make
-#1570704146
-./stencil 1024 1024 100
-#1570704164
-./stencil 4096 4096 100
-#1570705063
-nano Makefile
-#1570705132
-make
-#1570705144
-./stencil 1024 1024 100
-#1570705165
-make -B
-#1570705172
-./stencil 1024 1024 100
-#1570705195
-nano Makefile
-#1570705210
-./stencil 4096 4096 100
-#1570705381
-nano stencil.job
-#1570705403
 sbatch stencil.job
 #1570705405
 squeue
@@ -1658,3 +1534,127 @@ git pull origin 22-10
 git commit -m 'vectorization'
 #1571778947
 git push origin 22-10
+#1571830344
+make -B
+#1571830351
+module load icc/2017.1.132-GCC-5.4.0-2.26 
+#1571830355
+make -B
+#1571830361
+sbatch stencil.job
+#1571830365
+less stencil.out
+#1571830384
+vim stencil.c
+#1571830438
+less ipo_out.optrpt 
+#1571830581
+vim stencil.c
+#1571830669
+less ipo_out.optrpt 
+#1571832134
+source env.sh
+#1571833234
+vim stencil.c
+#1571833309
+make -B
+#1571833317
+sbatch stencil.job
+#1571833321
+less stencil.out
+#1571833884
+git status
+#1571833888
+git add .
+#1571833913
+git commit -m 'vectorization almost complete'
+#1571833923
+git branch 23-10
+#1571833928
+git checkout 23-10
+#1571833933
+git push origin 23-10
+#1571835355
+module list
+#1571838389
+less ipo_out.optrpt 
+#1571839149
+git pull origin 23-10
+#1571839162
+make -B
+#1571839246
+git pull origin 23-10
+#1571839256
+make -B
+#1571839262
+sbatch stencil.job
+#1571839266
+less stencil.out
+#1571839273
+less ipo_out.optrpt 
+#1571839669
+less stencil.out
+#1571839723
+vim stencil.c
+#1571839734
+make -B
+#1571839751
+module av openmp
+#1571840462
+vim Makefile
+#1571840501
+make -B
+#1571840510
+module load icc/2017.1.132-GCC-5.4.0-2.26 
+#1571840514
+make -B
+#1571840559
+make -V
+#1571840566
+vim Makefile
+#1571840582
+make -B
+#1571840594
+vim Makefile
+#1571840617
+make -B
+#1571840640
+vim Makefile
+#1571840653
+make -B
+#1571840664
+sbatch stencil.job
+#1571840668
+less stencil.out
+#1571840693
+less ipo_out.optrpt
+#1571840760
+less Makefile 
+#1571840790
+less ipo_out.optrpt 
+#1571840812
+vim stencil.c
+#1571840829
+make -B
+#1571840893
+sbatch stencil.job
+#1571840897
+less stencil.out
+#1571840901
+less i[
+#1571840904
+less ipo_out.optrpt 
+#1571841299
+vim stencil.
+#1571841303
+vim stencil.c
+#1571841334
+less ipo_out.optrpt 
+#1571841359
+vim stencil.c
+#1571841428
+make -B
+#1571841473
+sbatch stencil.job
+#1571841477
+less stencil.out

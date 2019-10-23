@@ -134,7 +134,7 @@ void output_image(const char* file_name, const int nx, const int ny,
   // Calculate maximum value of image
   // This is used to rescale the values
   // to a range of 0-255 for output
-  float maximum = 0.0f;
+  double maximum = 0.0;
   for (int j = 1; j < ny + 1; ++j) {
     for (int i = 1; i < nx + 1; ++i) {
       if (image[j + i * height] > maximum) maximum = image[j + i * height];

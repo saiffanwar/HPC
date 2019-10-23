@@ -33,8 +33,8 @@ int main(int argc, char* argv[])
 
   // Allocate the image
   // at
-  float* image = _mm_malloc(sizeof(float) * width * height,16);
-  float* tmp_image = _mm_malloc(sizeof(float) * width * height,16);
+  float* image = _mm_malloc(sizeof(float) * width * height,64);
+  float* tmp_image = _mm_malloc(sizeof(float) * width * height,64);
 
   // Set the input image
   init_image(nx, ny, width, height, image, tmp_image);
@@ -53,16 +53,19 @@ int main(int argc, char* argv[])
   printf("------------------------------------\n");
 
   output_image(OUTPUT_FILE, nx, ny, width, height, image);
- // free(image);
- // free(tmp_image);
+  _mm_free(image);
+  _mm_free(tmp_image);
 }
 
 void stencil(const int nx, const int ny, const int width, const int height,
              float* image, float* tmp_image)
 //with floating points
 {
-__assume_aligned(image, 16);
-__assume_aligned(tmp_image,16);
+  #pragma vector aligned
+  #pragma ivdep
+  #pragma simd
+//__assume_aligned(image, 16);
+//__assume_aligned(tmp_image,16);
   for (int j = 1; j < ny + 1; ++j) {
     for (int i = 1; i < ny + 1; ++i) {
       tmp_image[j + i * height] =  image[j     + i       * height] * 3.0f / 5.0f;

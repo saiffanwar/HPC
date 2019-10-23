@@ -21,30 +21,34 @@
 # Registers:
 
 # File marks:
-'0  65  28  ~/stencil.c
-'1  64  26  ~/stencil.c
-'2  37  63  ~/stencil.c
-'3  56  2  ~/stencil.c
-'4  36  60  ~/stencil.c
-'5  135  21  ~/stencil.c
-'6  2  24  ~/Makefile
-'7  146  0  ~/stencil.c
-'8  35  2  ~/stencil.c
-'9  123  0  ~/stencil.c
+'0  65  2  ~/stencil.c
+'1  57  0  ~/stencil.c
+'2  1  2  ~/stencil.c
+'3  66  13  ~/stencil.c
+'4  69  88  ~/stencil.c
+'5  56  5  ~/stencil.c
+'6  37  64  ~/stencil.c
+'7  68  28  ~/stencil.c
+'8  67  26  ~/stencil.c
+'9  36  60  ~/stencil.c
 
 # Jumplist (newest first):
--'  65  28  ~/stencil.c
--'  64  0  ~/stencil.c
+-'  65  2  ~/stencil.c
+-'  57  2  ~/stencil.c
+-'  1  0  ~/stencil.c
+-'  66  2  ~/stencil.c
+-'  69  77  ~/stencil.c
+-'  56  2  ~/stencil.c
 -'  37  2  ~/stencil.c
--'  56  1  ~/stencil.c
+-'  68  0  ~/stencil.c
+-'  67  0  ~/stencil.c
 -'  36  2  ~/stencil.c
--'  135  2  ~/stencil.c
--'  146  4  ~/stencil.c
+-'  138  2  ~/stencil.c
+-'  149  4  ~/stencil.c
 -'  2  24  ~/Makefile
 -'  1  0  ~/Makefile
 -'  35  2  ~/stencil.c
--'  123  2  ~/stencil.c
--'  1  0  ~/stencil.c
+-'  126  2  ~/stencil.c
 -'  2  24  ~/Makefile
 -'  1  0  ~/Makefile
 -'  2  24  ~/Makefile
@@ -124,36 +128,46 @@
 -'  2  24  ~/Makefile
 -'  1  0  ~/Makefile
 -'  2  24  ~/Makefile
--'  133  2  ~/stencil.c
--'  144  4  ~/stencil.c
+-'  136  2  ~/stencil.c
+-'  147  4  ~/stencil.c
 -'  2  24  ~/Makefile
--'  1  0  ~/Makefile
 
 # History of marks within files (newest to oldest):
 
 > ~/stencil.c
-	"	65	28
-	^	65	29
-	.	65	28
-	+	146	0
+	"	65	2
+	^	66	14
+	.	66	14
+	+	149	0
 	+	36	20
 	+	37	24
 	+	36	60
 	+	37	64
 	+	36	60
-	+	135	21
+	+	138	21
 	+	37	64
 	+	36	60
 	+	57	2
 	+	56	2
 	+	36	59
 	+	37	63
-	+	65	29
-	+	64	26
+	+	68	29
+	+	67	26
 	+	37	64
 	+	36	60
-	+	64	25
-	+	65	28
+	+	67	25
+	+	68	1
+	+	67	1
+	+	71	0
+	+	69	59
+	+	36	60
+	+	37	64
+	+	56	5
+	+	57	5
+	+	56	6
+	+	69	75
+	+	70	0
+	+	66	14
 
 > ~/Makefile
 	"	2	24

@@ -53,8 +53,8 @@ int main(int argc, char* argv[])
   printf("------------------------------------\n");
 
   output_image(OUTPUT_FILE, nx, ny, width, height, image);
- // free(image);
- // free(tmp_image);
+  _mm_free(image);
+  _mm_free(tmp_image);
 }
 
 void stencil(const int nx, const int ny, const int width, const int height,

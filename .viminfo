@@ -25,177 +25,179 @@
 	p
 
 # File marks:
-'0  2  24  ~/Makefile
-'1  70  0  ~/stencil.c
-'2  1  17  ~/stencil.c
-'3  60  74  ~/stencil.c
-'4  1  0  ~/stencil.
-'5  70  13  ~/stencil.c
-'6  57  1  ~/stencil.c
-'7  164  0  ~/stencil.c
-'8  78  45  ~/stencil.c
-'9  79  46  ~/stencil.c
+'0  2  62  ~/Makefile
+'1  66  7  ~/stencil.c
+'2  71  0  ~/stencil.c
+'3  1  17  ~/stencil.c
+'4  60  74  ~/stencil.c
+'5  1  0  ~/stencil.
+'6  71  13  ~/stencil.c
+'7  57  1  ~/stencil.c
+'8  165  0  ~/stencil.c
+'9  79  45  ~/stencil.c
 
 # Jumplist (newest first):
--'  2  24  ~/Makefile
--'  70  0  ~/stencil.c
+-'  2  62  ~/Makefile
+-'  66  7  ~/stencil.c
+-'  71  2  ~/stencil.c
 -'  1  0  ~/stencil.c
 -'  60  0  ~/stencil.c
 -'  1  0  ~/stencil.
 -'  57  2  ~/stencil.c
--'  164  0  ~/stencil.c
--'  78  0  ~/stencil.c
--'  79  6  ~/stencil.c
+-'  165  0  ~/stencil.c
+-'  79  0  ~/stencil.c
+-'  80  6  ~/stencil.c
 -'  61  0  ~/stencil.c
 -'  36  2  ~/stencil.c
 -'  1  0  ~/stencil.out
--'  74  4  ~/stencil.c
--'  69  0  ~/stencil.c
--'  67  0  ~/stencil.c
+-'  75  4  ~/stencil.c
+-'  70  0  ~/stencil.c
+-'  68  0  ~/stencil.c
 -'  64  13  ~/stencil.c
+-'  74  2  ~/stencil.c
+-'  99  0  ~/stencil.c
+-'  1  0  ~/stencol.c
+-'  96  0  ~/stencil.c
+-'  67  0  ~/stencil.c
+-'  97  0  ~/stencil.c
+-'  37  2  ~/stencil.c
+-'  56  1  ~/stencil.c
+-'  141  2  ~/stencil.c
+-'  152  4  ~/stencil.c
+-'  1  0  ~/Makefile
+-'  35  2  ~/stencil.c
+-'  129  2  ~/stencil.c
 -'  73  2  ~/stencil.c
 -'  98  0  ~/stencil.c
 -'  1  0  ~/stencol.c
 -'  95  0  ~/stencil.c
--'  66  0  ~/stencil.c
--'  96  0  ~/stencil.c
--'  37  2  ~/stencil.c
--'  56  1  ~/stencil.c
 -'  140  2  ~/stencil.c
 -'  151  4  ~/stencil.c
--'  1  0  ~/Makefile
--'  35  2  ~/stencil.c
 -'  128  2  ~/stencil.c
+-'  1  0  ~/stencol.c
+-'  1  0  ~/stencol.c
+-'  1  0  ~/stencol.c
 -'  72  2  ~/stencil.c
--'  97  0  ~/stencil.c
 -'  1  0  ~/stencol.c
 -'  94  0  ~/stencil.c
 -'  139  2  ~/stencil.c
 -'  150  4  ~/stencil.c
 -'  127  2  ~/stencil.c
 -'  1  0  ~/stencol.c
+-'  76  4  ~/stencil.c
+-'  100  0  ~/stencil.c
+-'  1  0  ~/stencol.c
+-'  142  2  ~/stencil.c
+-'  153  4  ~/stencil.c
+-'  130  2  ~/stencil.c
 -'  1  0  ~/stencol.c
 -'  1  0  ~/stencol.c
+-'  1  0  ~/stencol.c
+-'  1  0  ~/stencol.c
+-'  1  0  ~/stencol.c
+-'  1  0  ~/stencol.c
+-'  1  0  ~/stencol.c
+-'  1  0  ~/stencol.c
+-'  1  0  ~/stencol.c
+-'  1  0  ~/stencol.c
+-'  1  0  ~/stencol.c
+-'  1  0  ~/stencol.c
+-'  1  0  ~/stencol.c
+-'  1  0  ~/stencol.c
+-'  1  0  ~/stencol.c
+-'  1  0  ~/stencol.c
+-'  1  0  ~/stencol.c
+-'  1  0  ~/stencol.c
+-'  1  0  ~/stencol.c
+-'  69  0  ~/stencil.c
+-'  1  0  ~/stencol.c
+-'  1  0  ~/stencol.c
+-'  1  0  ~/stencol.c
+-'  1  0  ~/stencol.c
+-'  1  0  ~/stencol.c
+-'  1  0  ~/stencil.out
+-'  1  0  ~/stencol.c
+-'  1  0  ~/stencil.out
+-'  1  0  ~/stencol.c
+-'  1  0  ~/stencil.out
+-'  1  0  ~/stencol.c
+-'  1  0  ~/stencil.out
+-'  1  0  ~/stencil.out
+-'  1  0  ~/stencil.
+-'  1  0  ~/stencil.
+-'  1  0  ~/stencil.
+-'  1  0  ~/stencil.
+-'  1  0  ~/stencil.
+-'  66  7  ~/stencil.c
 -'  71  2  ~/stencil.c
--'  1  0  ~/stencol.c
--'  93  0  ~/stencil.c
--'  138  2  ~/stencil.c
--'  149  4  ~/stencil.c
--'  126  2  ~/stencil.c
--'  1  0  ~/stencol.c
--'  75  4  ~/stencil.c
--'  99  0  ~/stencil.c
--'  1  0  ~/stencol.c
--'  141  2  ~/stencil.c
--'  152  4  ~/stencil.c
--'  129  2  ~/stencil.c
--'  1  0  ~/stencol.c
--'  1  0  ~/stencol.c
--'  1  0  ~/stencol.c
--'  1  0  ~/stencol.c
--'  1  0  ~/stencol.c
--'  1  0  ~/stencol.c
--'  1  0  ~/stencol.c
--'  1  0  ~/stencol.c
--'  1  0  ~/stencol.c
--'  1  0  ~/stencol.c
--'  1  0  ~/stencol.c
--'  1  0  ~/stencol.c
--'  1  0  ~/stencol.c
--'  1  0  ~/stencol.c
--'  1  0  ~/stencol.c
--'  1  0  ~/stencol.c
--'  1  0  ~/stencol.c
--'  1  0  ~/stencol.c
--'  1  0  ~/stencol.c
--'  68  0  ~/stencil.c
--'  1  0  ~/stencol.c
--'  1  0  ~/stencol.c
--'  1  0  ~/stencol.c
--'  1  0  ~/stencol.c
--'  1  0  ~/stencol.c
--'  1  0  ~/stencil.out
--'  1  0  ~/stencol.c
--'  1  0  ~/stencil.out
--'  1  0  ~/stencol.c
--'  1  0  ~/stencil.out
--'  1  0  ~/stencol.c
--'  1  0  ~/stencil.out
--'  1  0  ~/stencil.out
--'  1  0  ~/stencil.
--'  1  0  ~/stencil.
--'  70  0  ~/stencil.c
 -'  1  0  ~/stencil.c
--'  60  0  ~/stencil.c
--'  1  0  ~/stencil.
--'  57  2  ~/stencil.c
 
 # History of marks within files (newest to oldest):
 
 > ~/Makefile
-	"	2	24
-	^	2	25
-	.	2	24
+	"	2	62
+	^	2	63
+	.	2	63
 	+	2	29
-	+	2	24
+	+	2	63
 	p	2	66
 
 > ~/stencil.c
-	"	70	0
-	^	70	0
-	.	71	0
-	+	151	0
+	"	66	7
+	^	66	8
+	.	66	8
+	+	152	0
 	+	36	20
 	+	37	24
 	+	36	60
 	+	37	64
 	+	36	60
-	+	140	21
+	+	141	21
 	+	37	64
 	+	36	60
 	+	57	2
 	+	56	2
 	+	36	59
 	+	37	63
-	+	70	29
-	+	67	48
+	+	71	29
+	+	68	48
 	+	37	64
 	+	36	60
-	+	67	47
-	+	70	28
-	+	95	22
-	+	96	17
+	+	68	47
+	+	71	28
+	+	96	22
+	+	97	17
 	+	59	0
 	+	60	18
 	+	61	0
 	+	37	64
 	+	36	60
-	+	98	29
-	+	97	27
-	+	98	29
-	+	73	27
-	+	74	26
-	+	73	27
-	+	74	29
+	+	99	29
+	+	98	27
+	+	99	29
+	+	74	27
+	+	75	26
+	+	74	27
+	+	75	29
 	+	64	33
-	+	67	23
-	+	70	1
+	+	68	23
 	+	71	1
 	+	72	1
-	+	67	21
-	+	67	22
-	+	67	24
+	+	73	1
+	+	68	21
+	+	68	22
+	+	68	24
 	+	60	1
 	+	61	1
-	+	67	1
-	+	67	35
-	+	67	34
-	+	67	24
-	+	67	22
-	+	67	0
-	+	67	22
-	+	68	13
-	+	69	11
+	+	68	1
+	+	68	35
+	+	68	34
+	+	68	24
+	+	68	22
+	+	68	0
+	+	68	22
+	+	69	13
+	+	70	11
 	+	36	24
 	+	37	66
 	+	36	16
@@ -207,23 +209,27 @@
 	+	36	17
 	+	60	0
 	+	61	0
-	+	76	55
 	+	77	55
-	+	78	46
+	+	78	55
 	+	79	46
-	+	76	55
+	+	80	46
 	+	77	55
+	+	78	55
+	+	80	46
 	+	79	46
-	+	78	46
 	+	57	3
 	+	56	5
 	+	57	1
-	+	70	13
 	+	71	13
-	+	70	11
+	+	72	13
+	+	71	11
 	+	60	74
 	+	8	74
-	+	71	0
+	+	72	0
+	+	68	2
+	+	69	2
+	+	67	2
+	+	66	8
 
 > ~/stencil.
 	"	1	0

@@ -63,9 +63,10 @@ void stencil(const short nx, const short ny, const short width, const short heig
 {
 #pragma vector aligned
 #pragma ivdep
-  __assume_aligned(image, 32);
-  __assume_aligned(tmp_image,32);
-  __assume(height%16==0);
+#pragma simd
+ // __assume_aligned(image, 32);
+ // __assume_aligned(tmp_image,32);
+ // __assume(height%16==0);
   //__assume(1%32==0);
   for (short j = 1; j < ny + 1; ++j) {
     for (short i = 1; i < nx + 1; ++i) {

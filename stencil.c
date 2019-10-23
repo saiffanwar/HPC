@@ -63,11 +63,11 @@ void stencil(const int nx, const int ny, const int width, const int height,
 {
   #pragma vector aligned
   #pragma ivdep
-  #pragma simd
+//  #pragma simd
 //__assume_aligned(image, 16);
 //__assume_aligned(tmp_image,16);
-  for (int j = 1; j < ny + 1; ++j) {
-    for (int i = 1; i < ny + 1; ++i) {
+  for (int i = 1; i < nx + 1; ++i) {
+    for (int j = 1; j < ny + 1; ++j) {
       tmp_image[j + i * height] =  image[j     + i       * height] * 3.0f / 5.0f;
       tmp_image[j + i * height] += image[j     + (i - 1) * height] * 0.5f / 5.0f;
       tmp_image[j + i * height] += image[j     + (i + 1) * height] * 0.5f / 5.0f;
@@ -96,8 +96,8 @@ void init_image(const int nx, const int ny, const int width, const int height,
   // Zero everything
   for (int j = 0; j < ny + 2; ++j) {
     for (int i = 0; i < nx + 2; ++i) {
-      image[j + i * height] = 0.0;
-      tmp_image[j + i * height] = 0.0;
+      image[j + i * height] = 0.0f;
+      tmp_image[j + i * height] = 0.0f;
     }
   }
 
@@ -110,7 +110,7 @@ void init_image(const int nx, const int ny, const int width, const int height,
         const int ilim = (ib + tile_size > nx) ? nx : ib + tile_size;
         for (int j = jb + 1; j < jlim + 1; ++j) {
           for (int i = ib + 1; i < ilim + 1; ++i) {
-            image[j + i * height] = 100.0;
+            image[j + i * height] = 100.0f;
           }
         }
       }
@@ -145,7 +145,7 @@ void output_image(const char* file_name, const int nx, const int ny,
   // Output image, converting to numbers 0-255
   for (int j = 1; j < ny + 1; ++j) {
     for (int i = 1; i < nx + 1; ++i) {
-      fputc((char)(255.0 * image[j + i * height] / maximum), fp);
+      fputc((char)(255.0f * image[j + i * height] / maximum), fp);
     }
   }
 

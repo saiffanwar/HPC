@@ -86,28 +86,28 @@ LOOP BEGIN at stencil.c(44,3)
    remark #15542: loop was not vectorized: inner loop was already vectorized
 
    LOOP BEGIN at stencil.c(69,3) inlined into stencil.c(45,3)
-      remark #15388: vectorization support: reference tmp_image[j+i*(ny+2)] has aligned access   [ stencil.c(71,7) ]
-      remark #15388: vectorization support: reference image[j+i*(ny+2)] has aligned access   [ stencil.c(71,36) ]
-      remark #15388: vectorization support: reference tmp_image[j+i*(ny+2)] has aligned access   [ stencil.c(72,7) ]
-      remark #15388: vectorization support: reference tmp_image[j+i*(ny+2)] has aligned access   [ stencil.c(72,7) ]
-      remark #15388: vectorization support: reference image[j+(i-1)*(ny+2)] has aligned access   [ stencil.c(72,36) ]
-      remark #15388: vectorization support: reference tmp_image[j+i*(ny+2)] has aligned access   [ stencil.c(73,7) ]
-      remark #15388: vectorization support: reference tmp_image[j+i*(ny+2)] has aligned access   [ stencil.c(73,7) ]
-      remark #15388: vectorization support: reference image[j+(i+1)*(ny+2)] has aligned access   [ stencil.c(73,36) ]
-      remark #15388: vectorization support: reference tmp_image[j+i*(ny+2)] has aligned access   [ stencil.c(74,7) ]
-      remark #15388: vectorization support: reference tmp_image[j+i*(ny+2)] has aligned access   [ stencil.c(74,7) ]
-      remark #15388: vectorization support: reference image[j-1+i*(ny+2)] has aligned access   [ stencil.c(74,36) ]
-      remark #15388: vectorization support: reference tmp_image[j+i*(ny+2)] has aligned access   [ stencil.c(75,7) ]
-      remark #15388: vectorization support: reference tmp_image[j+i*(ny+2)] has aligned access   [ stencil.c(75,7) ]
-      remark #15388: vectorization support: reference image[j+1+i*(ny+2)] has aligned access   [ stencil.c(75,36) ]
+      remark #15329: vectorization support: non-unit strided store was emulated for the variable <tmp_image[j+i*(ny+2)]>, stride is unknown to compiler   [ stencil.c(71,7) ]
+      remark #15415: vectorization support: non-unit strided load was generated for the variable <image[j+i*(ny+2)]>, stride is unknown to compiler   [ stencil.c(71,36) ]
+      remark #15329: vectorization support: non-unit strided store was emulated for the variable <tmp_image[j+i*(ny+2)]>, stride is unknown to compiler   [ stencil.c(72,7) ]
+      remark #15415: vectorization support: non-unit strided load was generated for the variable <tmp_image[j+i*(ny+2)]>, stride is unknown to compiler   [ stencil.c(72,7) ]
+      remark #15415: vectorization support: non-unit strided load was generated for the variable <image[j+(i-1)*(ny+2)]>, stride is unknown to compiler   [ stencil.c(72,36) ]
+      remark #15329: vectorization support: non-unit strided store was emulated for the variable <tmp_image[j+i*(ny+2)]>, stride is unknown to compiler   [ stencil.c(73,7) ]
+      remark #15415: vectorization support: non-unit strided load was generated for the variable <tmp_image[j+i*(ny+2)]>, stride is unknown to compiler   [ stencil.c(73,7) ]
+      remark #15415: vectorization support: non-unit strided load was generated for the variable <image[j+(i+1)*(ny+2)]>, stride is unknown to compiler   [ stencil.c(73,36) ]
+      remark #15329: vectorization support: non-unit strided store was emulated for the variable <tmp_image[j+i*(ny+2)]>, stride is unknown to compiler   [ stencil.c(74,7) ]
+      remark #15415: vectorization support: non-unit strided load was generated for the variable <tmp_image[j+i*(ny+2)]>, stride is unknown to compiler   [ stencil.c(74,7) ]
+      remark #15415: vectorization support: non-unit strided load was generated for the variable <image[j-1+i*(ny+2)]>, stride is unknown to compiler   [ stencil.c(74,36) ]
+      remark #15329: vectorization support: non-unit strided store was emulated for the variable <tmp_image[j+i*(ny+2)]>, stride is unknown to compiler   [ stencil.c(75,7) ]
+      remark #15415: vectorization support: non-unit strided load was generated for the variable <tmp_image[j+i*(ny+2)]>, stride is unknown to compiler   [ stencil.c(75,7) ]
+      remark #15415: vectorization support: non-unit strided load was generated for the variable <image[j+1+i*(ny+2)]>, stride is unknown to compiler   [ stencil.c(75,36) ]
       remark #15305: vectorization support: vector length 8
       remark #15301: SIMD LOOP WAS VECTORIZED
-      remark #15448: unmasked aligned unit stride loads: 9 
-      remark #15449: unmasked aligned unit stride stores: 5 
+      remark #15452: unmasked strided loads: 9 
+      remark #15453: unmasked strided stores: 5 
       remark #15475: --- begin vector cost summary ---
       remark #15476: scalar cost: 175 
-      remark #15477: vector cost: 24.250 
-      remark #15478: estimated potential speedup: 6.660 
+      remark #15477: vector cost: 77.000 
+      remark #15478: estimated potential speedup: 2.230 
       remark #15486: divides: 5 
       remark #15488: --- end vector cost summary ---
 
@@ -125,28 +125,28 @@ LOOP BEGIN at stencil.c(44,3)
    LOOP END
 
    LOOP BEGIN at stencil.c(69,3) inlined into stencil.c(46,3)
-      remark #15388: vectorization support: reference image[j+i*(ny+2)] has aligned access   [ stencil.c(71,7) ]
-      remark #15388: vectorization support: reference tmp_image[j+i*(ny+2)] has aligned access   [ stencil.c(71,36) ]
-      remark #15388: vectorization support: reference image[j+i*(ny+2)] has aligned access   [ stencil.c(72,7) ]
-      remark #15388: vectorization support: reference image[j+i*(ny+2)] has aligned access   [ stencil.c(72,7) ]
-      remark #15388: vectorization support: reference tmp_image[j+(i-1)*(ny+2)] has aligned access   [ stencil.c(72,36) ]
-      remark #15388: vectorization support: reference image[j+i*(ny+2)] has aligned access   [ stencil.c(73,7) ]
-      remark #15388: vectorization support: reference image[j+i*(ny+2)] has aligned access   [ stencil.c(73,7) ]
-      remark #15388: vectorization support: reference tmp_image[j+(i+1)*(ny+2)] has aligned access   [ stencil.c(73,36) ]
-      remark #15388: vectorization support: reference image[j+i*(ny+2)] has aligned access   [ stencil.c(74,7) ]
-      remark #15388: vectorization support: reference image[j+i*(ny+2)] has aligned access   [ stencil.c(74,7) ]
-      remark #15388: vectorization support: reference tmp_image[j-1+i*(ny+2)] has aligned access   [ stencil.c(74,36) ]
-      remark #15388: vectorization support: reference image[j+i*(ny+2)] has aligned access   [ stencil.c(75,7) ]
-      remark #15388: vectorization support: reference image[j+i*(ny+2)] has aligned access   [ stencil.c(75,7) ]
-      remark #15388: vectorization support: reference tmp_image[j+1+i*(ny+2)] has aligned access   [ stencil.c(75,36) ]
+      remark #15329: vectorization support: non-unit strided store was emulated for the variable <image[j+i*(ny+2)]>, stride is unknown to compiler   [ stencil.c(71,7) ]
+      remark #15415: vectorization support: non-unit strided load was generated for the variable <tmp_image[j+i*(ny+2)]>, stride is unknown to compiler   [ stencil.c(71,36) ]
+      remark #15329: vectorization support: non-unit strided store was emulated for the variable <image[j+i*(ny+2)]>, stride is unknown to compiler   [ stencil.c(72,7) ]
+      remark #15415: vectorization support: non-unit strided load was generated for the variable <image[j+i*(ny+2)]>, stride is unknown to compiler   [ stencil.c(72,7) ]
+      remark #15415: vectorization support: non-unit strided load was generated for the variable <tmp_image[j+(i-1)*(ny+2)]>, stride is unknown to compiler   [ stencil.c(72,36) ]
+      remark #15329: vectorization support: non-unit strided store was emulated for the variable <image[j+i*(ny+2)]>, stride is unknown to compiler   [ stencil.c(73,7) ]
+      remark #15415: vectorization support: non-unit strided load was generated for the variable <image[j+i*(ny+2)]>, stride is unknown to compiler   [ stencil.c(73,7) ]
+      remark #15415: vectorization support: non-unit strided load was generated for the variable <tmp_image[j+(i+1)*(ny+2)]>, stride is unknown to compiler   [ stencil.c(73,36) ]
+      remark #15329: vectorization support: non-unit strided store was emulated for the variable <image[j+i*(ny+2)]>, stride is unknown to compiler   [ stencil.c(74,7) ]
+      remark #15415: vectorization support: non-unit strided load was generated for the variable <image[j+i*(ny+2)]>, stride is unknown to compiler   [ stencil.c(74,7) ]
+      remark #15415: vectorization support: non-unit strided load was generated for the variable <tmp_image[j-1+i*(ny+2)]>, stride is unknown to compiler   [ stencil.c(74,36) ]
+      remark #15329: vectorization support: non-unit strided store was emulated for the variable <image[j+i*(ny+2)]>, stride is unknown to compiler   [ stencil.c(75,7) ]
+      remark #15415: vectorization support: non-unit strided load was generated for the variable <image[j+i*(ny+2)]>, stride is unknown to compiler   [ stencil.c(75,7) ]
+      remark #15415: vectorization support: non-unit strided load was generated for the variable <tmp_image[j+1+i*(ny+2)]>, stride is unknown to compiler   [ stencil.c(75,36) ]
       remark #15305: vectorization support: vector length 8
       remark #15301: SIMD LOOP WAS VECTORIZED
-      remark #15448: unmasked aligned unit stride loads: 9 
-      remark #15449: unmasked aligned unit stride stores: 5 
+      remark #15452: unmasked strided loads: 9 
+      remark #15453: unmasked strided stores: 5 
       remark #15475: --- begin vector cost summary ---
       remark #15476: scalar cost: 175 
-      remark #15477: vector cost: 24.250 
-      remark #15478: estimated potential speedup: 6.660 
+      remark #15477: vector cost: 77.000 
+      remark #15478: estimated potential speedup: 2.230 
       remark #15486: divides: 5 
       remark #15488: --- end vector cost summary ---
 
@@ -218,28 +218,28 @@ Begin optimization report for: stencil(const int, const int, const int, const in
 
 
 LOOP BEGIN at stencil.c(69,3)
-   remark #15388: vectorization support: reference tmp_image[j+i*height] has aligned access   [ stencil.c(71,7) ]
-   remark #15388: vectorization support: reference image[j+i*height] has aligned access   [ stencil.c(71,36) ]
-   remark #15388: vectorization support: reference tmp_image[j+i*height] has aligned access   [ stencil.c(72,7) ]
-   remark #15388: vectorization support: reference tmp_image[j+i*height] has aligned access   [ stencil.c(72,7) ]
-   remark #15388: vectorization support: reference image[j+(i-1)*height] has aligned access   [ stencil.c(72,36) ]
-   remark #15388: vectorization support: reference tmp_image[j+i*height] has aligned access   [ stencil.c(73,7) ]
-   remark #15388: vectorization support: reference tmp_image[j+i*height] has aligned access   [ stencil.c(73,7) ]
-   remark #15388: vectorization support: reference image[j+(i+1)*height] has aligned access   [ stencil.c(73,36) ]
-   remark #15388: vectorization support: reference tmp_image[j+i*height] has aligned access   [ stencil.c(74,7) ]
-   remark #15388: vectorization support: reference tmp_image[j+i*height] has aligned access   [ stencil.c(74,7) ]
-   remark #15388: vectorization support: reference image[j-1+i*height] has aligned access   [ stencil.c(74,36) ]
-   remark #15388: vectorization support: reference tmp_image[j+i*height] has aligned access   [ stencil.c(75,7) ]
-   remark #15388: vectorization support: reference tmp_image[j+i*height] has aligned access   [ stencil.c(75,7) ]
-   remark #15388: vectorization support: reference image[j+1+i*height] has aligned access   [ stencil.c(75,36) ]
+   remark #15329: vectorization support: non-unit strided store was emulated for the variable <tmp_image[j+i*height]>, stride is unknown to compiler   [ stencil.c(71,7) ]
+   remark #15415: vectorization support: non-unit strided load was generated for the variable <image[j+i*height]>, stride is unknown to compiler   [ stencil.c(71,36) ]
+   remark #15329: vectorization support: non-unit strided store was emulated for the variable <tmp_image[j+i*height]>, stride is unknown to compiler   [ stencil.c(72,7) ]
+   remark #15415: vectorization support: non-unit strided load was generated for the variable <tmp_image[j+i*height]>, stride is unknown to compiler   [ stencil.c(72,7) ]
+   remark #15415: vectorization support: non-unit strided load was generated for the variable <image[j+(i-1)*height]>, stride is unknown to compiler   [ stencil.c(72,36) ]
+   remark #15329: vectorization support: non-unit strided store was emulated for the variable <tmp_image[j+i*height]>, stride is unknown to compiler   [ stencil.c(73,7) ]
+   remark #15415: vectorization support: non-unit strided load was generated for the variable <tmp_image[j+i*height]>, stride is unknown to compiler   [ stencil.c(73,7) ]
+   remark #15415: vectorization support: non-unit strided load was generated for the variable <image[j+(i+1)*height]>, stride is unknown to compiler   [ stencil.c(73,36) ]
+   remark #15329: vectorization support: non-unit strided store was emulated for the variable <tmp_image[j+i*height]>, stride is unknown to compiler   [ stencil.c(74,7) ]
+   remark #15415: vectorization support: non-unit strided load was generated for the variable <tmp_image[j+i*height]>, stride is unknown to compiler   [ stencil.c(74,7) ]
+   remark #15415: vectorization support: non-unit strided load was generated for the variable <image[j-1+i*height]>, stride is unknown to compiler   [ stencil.c(74,36) ]
+   remark #15329: vectorization support: non-unit strided store was emulated for the variable <tmp_image[j+i*height]>, stride is unknown to compiler   [ stencil.c(75,7) ]
+   remark #15415: vectorization support: non-unit strided load was generated for the variable <tmp_image[j+i*height]>, stride is unknown to compiler   [ stencil.c(75,7) ]
+   remark #15415: vectorization support: non-unit strided load was generated for the variable <image[j+1+i*height]>, stride is unknown to compiler   [ stencil.c(75,36) ]
    remark #15305: vectorization support: vector length 8
    remark #15301: SIMD LOOP WAS VECTORIZED
-   remark #15448: unmasked aligned unit stride loads: 9 
-   remark #15449: unmasked aligned unit stride stores: 5 
+   remark #15452: unmasked strided loads: 9 
+   remark #15453: unmasked strided stores: 5 
    remark #15475: --- begin vector cost summary ---
    remark #15476: scalar cost: 175 
-   remark #15477: vector cost: 24.250 
-   remark #15478: estimated potential speedup: 6.660 
+   remark #15477: vector cost: 77.000 
+   remark #15478: estimated potential speedup: 2.230 
    remark #15486: divides: 5 
    remark #15488: --- end vector cost summary ---
 

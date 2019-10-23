@@ -62,7 +62,7 @@ void stencil(const int nx, const int ny, const int width, const int height,
 //with floating points
 {
    #pragma vector aligned
-   #pragma ivdep
+  // #pragma ivdep
    #pragma simd
   for (int i = 1; i < nx + 1; ++i) {
     for (int j = 1; j < ny + 1; ++j) {

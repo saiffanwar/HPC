@@ -1,11 +1,11 @@
-Running on host compute088.bc4.acrc.priv
-Time is Wed Oct 23 16:28:56 BST 2019
+Running on host compute085.bc4.acrc.priv
+Time is Wed Oct 23 16:55:54 BST 2019
 Directory is /mnt/storage/home/sa17826
-Slurm job ID is 2599930
+Slurm job ID is 2600224
 
 This job runs on the following machines:
-compute088
+compute085
 
 ------------------------------------
- runtime: 0.277501 s
+ runtime: 2.418945 s
 ------------------------------------

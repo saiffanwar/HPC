@@ -25,8 +25,8 @@
 	d
 
 # File marks:
-'0  66  14  ~/stencil.c
-'1  65  15  ~/stencil.c
+'0  65  3  ~/stencil.c
+'1  66  14  ~/stencil.c
 '2  64  0  ~/stencil.c
 '3  75  0  ~/stencil.c
 '4  2  62  ~/Makefile
@@ -37,8 +37,8 @@
 '9  1  0  ~/stencil.
 
 # Jumplist (newest first):
--'  66  14  ~/stencil.c
 -'  65  3  ~/stencil.c
+-'  66  3  ~/stencil.c
 -'  64  3  ~/stencil.c
 -'  75  6  ~/stencil.c
 -'  69  1  ~/stencil.c
@@ -135,9 +135,9 @@
 # History of marks within files (newest to oldest):
 
 > ~/stencil.c
-	"	66	14
-	^	66	15
-	.	66	15
+	"	65	3
+	^	65	4
+	.	65	3
 	+	151	0
 	+	36	20
 	+	37	24
@@ -231,6 +231,7 @@
 	+	71	36
 	+	72	0
 	+	66	15
+	+	65	3
 
 > ~/Makefile
 	"	2	62

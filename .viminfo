@@ -19,21 +19,29 @@
 # Input Line History (newest to oldest):
 
 # Registers:
+"o	CHAR	0
+	penmp
+""-	CHAR	0
+	d
 
 # File marks:
-'0  66  1  ~/stencil.c
-'1  65  0  ~/stencil.c
-'2  70  13  ~/stencil.c
-'3  113  41  ~/stencil.c
-'4  162  0  ~/stencil.c
-'5  57  0  ~/stencil.c
-'6  1  2  ~/stencil.c
-'7  69  88  ~/stencil.c
-'8  56  5  ~/stencil.c
-'9  37  64  ~/stencil.c
+'0  75  72  ~/stencil.c
+'1  149  24  ~/stencil.c
+'2  85  32  ~/stencil.c
+'3  40  0  ~/stencil.c
+'4  66  1  ~/stencil.c
+'5  65  0  ~/stencil.c
+'6  70  13  ~/stencil.c
+'7  113  41  ~/stencil.c
+'8  162  0  ~/stencil.c
+'9  57  0  ~/stencil.c
 
 # Jumplist (newest first):
--'  66  1  ~/stencil.c
+-'  75  72  ~/stencil.c
+-'  149  6  ~/stencil.c
+-'  85  0  ~/stencil.c
+-'  40  2  ~/stencil.c
+-'  66  0  ~/stencil.c
 -'  65  2  ~/stencil.c
 -'  70  4  ~/stencil.c
 -'  113  12  ~/stencil.c
@@ -47,7 +55,6 @@
 -'  67  0  ~/stencil.c
 -'  36  2  ~/stencil.c
 -'  138  2  ~/stencil.c
--'  149  4  ~/stencil.c
 -'  2  24  ~/Makefile
 -'  1  0  ~/Makefile
 -'  35  2  ~/stencil.c
@@ -128,15 +135,13 @@
 -'  1  0  ~/Makefile
 -'  2  24  ~/Makefile
 -'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
 
 # History of marks within files (newest to oldest):
 
 > ~/stencil.c
-	"	66	1
-	^	66	2
-	.	66	1
+	"	75	72
+	^	75	73
+	.	75	72
 	+	149	0
 	+	36	20
 	+	37	24
@@ -178,10 +183,34 @@
 	+	70	13
 	+	65	0
 	+	66	1
+	+	149	24
+	+	114	41
+	+	101	37
+	+	100	33
+	+	114	41
+	+	100	33
+	+	101	37
+	+	149	24
+	+	71	72
+	+	72	72
+	+	73	71
+	+	74	72
+	+	73	72
+	+	75	72
 
 > ~/Makefile
-	"	2	24
-	^	2	25
-	.	2	25
+	"	2	14
+	^	2	15
+	.	2	15
 	+	2	29
-	+	2	25
+	+	2	15
+	p	2	66
+
+> ~/stencil.
+	"	1	0
+
+> ~/stencil.out
+	"	1	0
+
+> ~/stencol.c
+	"	1	0

@@ -25,11 +25,11 @@ LOOP BEGIN at stencil.c(98,5) inlined into stencil.c(40,3)
       remark #15399: vectorization support: unroll factor set to 2
       remark #15309: vectorization support: normalized vectorization overhead 0.833
       remark #15301: PERMUTED LOOP WAS VECTORIZED
-      remark #15449: unmasked aligned unit stride stores: 2 
+      remark #15449: unmasked aligned unit stride stores: 2
       remark #15475: --- begin vector cost summary ---
-      remark #15476: scalar cost: 7 
-      remark #15477: vector cost: 0.750 
-      remark #15478: estimated potential speedup: 6.770 
+      remark #15476: scalar cost: 7
+      remark #15477: vector cost: 0.750
+      remark #15478: estimated potential speedup: 6.770
       remark #15488: --- end vector cost summary ---
    LOOP END
 
@@ -63,15 +63,15 @@ LOOP BEGIN at stencil.c(106,3) inlined into stencil.c(40,3)
          remark #15346: vector dependence: assumed OUTPUT dependence between image[j+i*(ny+2)] (113:13) and image[j+i*(ny+2)] (113:13)
 
          LOOP BEGIN at stencil.c(112,11) inlined into stencil.c(40,3)
-            remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+            remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override
             remark #15329: vectorization support: non-unit strided store was emulated for the variable <image[j+i*(ny+2)]>, stride is unknown to compiler   [ stencil.c(113,13) ]
             remark #15305: vectorization support: vector length 4
             remark #15399: vectorization support: unroll factor set to 2
-            remark #15453: unmasked strided stores: 1 
+            remark #15453: unmasked strided stores: 1
             remark #15475: --- begin vector cost summary ---
-            remark #15476: scalar cost: 4 
-            remark #15477: vector cost: 5.500 
-            remark #15478: estimated potential speedup: 0.720 
+            remark #15476: scalar cost: 4
+            remark #15477: vector cost: 5.500
+            remark #15478: estimated potential speedup: 0.720
             remark #15488: --- end vector cost summary ---
          LOOP END
 
@@ -83,6 +83,7 @@ LOOP BEGIN at stencil.c(106,3) inlined into stencil.c(40,3)
 LOOP END
 
 LOOP BEGIN at stencil.c(44,3)
+<Distributed chunk1>
    remark #15542: loop was not vectorized: inner loop was already vectorized
 
    LOOP BEGIN at stencil.c(69,3) inlined into stencil.c(45,3)
@@ -102,12 +103,12 @@ LOOP BEGIN at stencil.c(44,3)
       remark #15388: vectorization support: reference image[j+1+i*(ny+2)] has aligned access   [ stencil.c(75,36) ]
       remark #15305: vectorization support: vector length 8
       remark #15301: SIMD LOOP WAS VECTORIZED
-      remark #15448: unmasked aligned unit stride loads: 9 
-      remark #15449: unmasked aligned unit stride stores: 5 
+      remark #15448: unmasked aligned unit stride loads: 9
+      remark #15449: unmasked aligned unit stride stores: 5
       remark #15475: --- begin vector cost summary ---
-      remark #15476: scalar cost: 45 
-      remark #15477: vector cost: 4.250 
-      remark #15478: estimated potential speedup: 9.380 
+      remark #15476: scalar cost: 45
+      remark #15477: vector cost: 4.250
+      remark #15478: estimated potential speedup: 9.380
       remark #15488: --- end vector cost summary ---
 
       LOOP BEGIN at stencil.c(70,5) inlined into stencil.c(45,3)
@@ -123,6 +124,7 @@ LOOP BEGIN at stencil.c(44,3)
          remark #25460: No loop optimizations reported
       LOOP END
    LOOP END
+LOOP END
 
    LOOP BEGIN at stencil.c(69,3) inlined into stencil.c(46,3)
       remark #15388: vectorization support: reference image[j+i*(ny+2)] has aligned access   [ stencil.c(71,7) ]
@@ -141,12 +143,12 @@ LOOP BEGIN at stencil.c(44,3)
       remark #15388: vectorization support: reference tmp_image[j+1+i*(ny+2)] has aligned access   [ stencil.c(75,36) ]
       remark #15305: vectorization support: vector length 8
       remark #15301: SIMD LOOP WAS VECTORIZED
-      remark #15448: unmasked aligned unit stride loads: 9 
-      remark #15449: unmasked aligned unit stride stores: 5 
+      remark #15448: unmasked aligned unit stride loads: 9
+      remark #15449: unmasked aligned unit stride stores: 5
       remark #15475: --- begin vector cost summary ---
-      remark #15476: scalar cost: 45 
-      remark #15477: vector cost: 4.250 
-      remark #15478: estimated potential speedup: 9.380 
+      remark #15476: scalar cost: 45
+      remark #15477: vector cost: 4.250
+      remark #15478: estimated potential speedup: 9.380
       remark #15488: --- end vector cost summary ---
 
       LOOP BEGIN at stencil.c(70,5) inlined into stencil.c(46,3)
@@ -174,15 +176,17 @@ LOOP BEGIN at stencil.c(140,5) inlined into stencil.c(55,3)
    LOOP BEGIN at stencil.c(139,3) inlined into stencil.c(55,3)
       remark #15389: vectorization support: reference image[j+i*(ny+2)] has unaligned access   [ stencil.c(141,11) ]
       remark #15381: vectorization support: unaligned access used inside loop body
-      remark #15305: vectorization support: vector length 8
-      remark #15399: vectorization support: unroll factor set to 2
-      remark #15309: vectorization support: normalized vectorization overhead 3.500
+      remark #15305: vectorization support: vector length 4
+      remark #15399: vectorization support: unroll factor set to 4
+      remark #15309: vectorization support: normalized vectorization overhead 1.208
+      remark #15417: vectorization support: number of FP up converts: single precision to double precision 1   [ stencil.c(137,18) ]
       remark #15301: PERMUTED LOOP WAS VECTORIZED
-      remark #15450: unmasked unaligned unit stride loads: 1 
+      remark #15450: unmasked unaligned unit stride loads: 1
       remark #15475: --- begin vector cost summary ---
-      remark #15476: scalar cost: 8 
-      remark #15477: vector cost: 0.620 
-      remark #15478: estimated potential speedup: 7.710 
+      remark #15476: scalar cost: 9
+      remark #15477: vector cost: 1.500
+      remark #15478: estimated potential speedup: 4.740
+      remark #15487: type converts: 1
       remark #15488: --- end vector cost summary ---
    LOOP END
 
@@ -190,8 +194,9 @@ LOOP BEGIN at stencil.c(140,5) inlined into stencil.c(55,3)
    <Remainder loop for vectorization>
       remark #15389: vectorization support: reference image[j+i*(ny+2)] has unaligned access   [ stencil.c(141,11) ]
       remark #15381: vectorization support: unaligned access used inside loop body
-      remark #15305: vectorization support: vector length 8
-      remark #15309: vectorization support: normalized vectorization overhead 6.333
+      remark #15305: vectorization support: vector length 4
+      remark #15309: vectorization support: normalized vectorization overhead 4.000
+      remark #15417: vectorization support: number of FP up converts: single precision to double precision 1   [ stencil.c(137,18) ]
       remark #15301: REMAINDER LOOP WAS VECTORIZED
    LOOP END
 

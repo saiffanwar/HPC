@@ -1,136 +1,3 @@
-nano sbatch.job
-#1570705776
-nano stencil.job
-#1570705797
-ls
-#1570705804
-module gcc -v
-#1570705814
-ls
-#1570705818
-nano stencil.out
-#1570705841
-./stencil.out
-#1570705845
-nano stencil.oout
-#1570705850
-nano stencil.out
-#1570706036
-sbatch stencil.job
-#1570706044
-squeue -u sa17826
-#1570706319
-nano stencil.job
-#1570706336
-sbatch stencil.job
-#1570706341
-make -B
-#1570706343
-sbatch stencil.job
-#1570706349
-nano stencil.out
-#1570706357
-y
-#1570706910
-s
-#1570706911
-ls
-#1570706925
-nano stencil_1024_1024_100.pgm
-ls
-ls cw1
-ls
-cd cw1
-cd introhpc
-#1571041938
-ls
-#1571041948
-cd cw1/introhpc
-#1571041950
-ls
-#1571041952
-make
-#1571041960
-make -B
-#1571041963
-ls
-#1571041965
-make
-#1571041978
-./stencil 1024 1024 100
-#1571041985
-nano make
-#1571041994
-nano Makefile
-#1571042015
-make -B
-#1571042028
-./stencil 1024 1024 100
-#1571042718
-nano make
-#1571042725
-nano Makefile
-#1571042785
-make -B
-#1571042798
-./stencil 1024 1024 100
-#1571042812
-nano Makefile
-#1571042832
-make -B
-#1571042836
-./stencil 1024 1024 100
-#1571042310
-cd cw1/introhpc
-#1571042311
-ls
-#1571042314
-make
-#1571042322
-make -B
-#1571042334
-./stencil 4096 4096 100
-#1571042549
-./stencil 8000 8000 100
-cd cw1/introhpc
-ls
-nano stencil.c
-ls
-cd cw1/introhpc
-ls
-make -B
-./stencil 1024 1024 100
-./stencil 4096 4096 100
-./stencil 8000 8000 100
-nano Makefile
-make -B
-sbatch stencil.job
-./stencil.out
-nano Makefile
-make -B
-nano Makefile
-make -B
-nano Makefile
-make -B
-./stencil 1024 1024 100
-sbatch stencil.job
-nano stencil.out
-gprof stencil.out gmon.out > profile.txt
-ls
-less profile.txt
-nano profile.txt
-cd cw1/introhpc
-ls
-make -B
-gcc -pg stencil.c
-make -B
-gcc -std=c99 -pg -Ofast -mtune=native -Wall stencil.c -o stencil
-./a.out
-ls
-./stencil.out
-./stencil
-gcc -std=c99 -pg -Ofast -mtune=native -Wall stencil.c -o stencil
-./stencil 1024 1024 100
 gprof stencil.out gmon.out > profile.txt
 nano stencil.out
 nano stencil.job
@@ -287,9 +154,9 @@ git remote add origin https://github.com/saiffanwar/HPC.git
 #1571168656
 git push origin
 #1571169100
-git git 
+git git
 #1571169102
-git 
+git
 #1571170356
 git commit
 #1571170434
@@ -379,7 +246,7 @@ git commit"1"
 #1571170621
 git commit "1"
 #1571170658
-git commit -i 
+git commit -i
 #1571170680
 git commit -am 'Conflicts Resolved'
 #1571170685
@@ -583,7 +450,7 @@ modules avail
 #1571238946
 module available
 #1571238976
-module load icc/2017.1.132-GCC-5.4.0-2.26 
+module load icc/2017.1.132-GCC-5.4.0-2.26
 #1571238979
 make -B
 #1571238986
@@ -661,7 +528,7 @@ make -B
 #1571243478
 module list
 #1571243488
-module load icc/2017.1.132-GCC-5.4.0-2.26 
+module load icc/2017.1.132-GCC-5.4.0-2.26
 #1571243497
 module list
 #1571243508
@@ -691,7 +558,7 @@ less stencil.optrpt
 #1571247415
 nano Makefile
 #1571247433
-make 
+make
 #1571247435
 make -B
 #1571247445
@@ -734,7 +601,7 @@ nano Makefile
 less stencil.out
 ls
 make -B
-module load icc/2017.1.132-GCC-5.4.0-2.26 
+module load icc/2017.1.132-GCC-5.4.0-2.26
 make -B
 git status
 git --version
@@ -743,7 +610,7 @@ ls
 #1571306639
 make -B
 #1571306654
-module load icc/2017.1.132-GCC-5.4.0-2.26 
+module load icc/2017.1.132-GCC-5.4.0-2.26
 #1571306655
 ls
 #1571306658
@@ -799,11 +666,11 @@ git push origin 17-10
 #1571307793
 ls
 #1571307799
-less ipo_out.optrpt 
+less ipo_out.optrpt
 #1571308987
 less Makefile
 #1571309019
-less ipo_out.optrpt 
+less ipo_out.optrpt
 #1571310936
 ls
 #1571310948
@@ -823,7 +690,7 @@ vim stencil.c
 #1571316699
 make -B
 #1571316709
-module load icc/2017.1.132-GCC-5.4.0-2.26 
+module load icc/2017.1.132-GCC-5.4.0-2.26
 #1571316712
 module list
 #1571316714
@@ -861,7 +728,7 @@ less stencil.out
 #1571318406
 ls
 #1571318413
-less ipo_out.optrpt 
+less ipo_out.optrpt
 #1571318495
 nano Makefile
 #1571318553
@@ -871,9 +738,9 @@ sbatch stencil.job
 #1571318571
 less stencil.out
 #1571318582
-less ipo_out.optrpt 
+less ipo_out.optrpt
 ls
-less ipo_out.optrpt 
+less ipo_out.optrpt
 ls
 make -B
 module load ic
@@ -881,7 +748,7 @@ module load icc/2017.1.132-GCC-5.4.0-2.26 module avail icc
 module lost
 module list
 module available
-module load icc/2017.1.132-GCC-5.4.0-2.26 
+module load icc/2017.1.132-GCC-5.4.0-2.26
 module list
 make -B
 sbatch stencil.job
@@ -896,7 +763,7 @@ vim stencil.job
 make -B
 sbatch stencil.job
 less stencil.out
-less ipo_out.optrpt 
+less ipo_out.optrpt
 vim Makefile
 make -B
 sbatch stencil.job
@@ -933,7 +800,7 @@ git branch 18-10
 #1571421447
 git checkout 18-10
 #1571421452
-git status 
+git status
 #1571421456
 git add .
 #1571421474
@@ -949,7 +816,7 @@ vim stencil.c
 #1571421711
 make -B
 #1571421721
-module load icc/2017.1.132-GCC-5.4.0-2.26 
+module load icc/2017.1.132-GCC-5.4.0-2.26
 #1571421724
 make -B
 #1571421748
@@ -1016,7 +883,7 @@ git commit -m "change:[A
 
 
 
-igt 
+igt
 :
 ls
 ls
@@ -1024,7 +891,7 @@ ls
 #1571423757
 git status
 #1571423767
-module load icc/2017.1.132-GCC-5.4.0-2.26 
+module load icc/2017.1.132-GCC-5.4.0-2.26
 #1571423770
 module list
 #1571423776
@@ -1074,7 +941,7 @@ squeue -u sa17826
 #1571424259
 less stencil.out
 #1571425388
-module load icc/2017.1.132-GCC-5.4.0-2.26 
+module load icc/2017.1.132-GCC-5.4.0-2.26
 #1571425485
 make -B
 #1571425492
@@ -1116,7 +983,7 @@ git --help
 ls
 vim stencil.c
 make -B
-module load icc/2017.1.132-GCC-5.4.0-2.26 
+module load icc/2017.1.132-GCC-5.4.0-2.26
 make -b
 make -B
 sbatch stencil.job
@@ -1143,18 +1010,18 @@ sbatch stencil.job
 less stencil.out
 vim stencil.c
 ls
-less ipo_out.optrpt 
+less ipo_out.optrpt
 vim stencil.c
 make -B
 sbatch stencil.job
 less stencil.out
-less ipo_out.optrpt 
+less ipo_out.optrpt
 vim stencil.c
 make -b
 make -B
 module av omp
 module av openmp
-module load OpenMPI/3.0.0-GCC-7.2.0-2.29 
+module load OpenMPI/3.0.0-GCC-7.2.0-2.29
 module list
 make -B
 vim stencil.c
@@ -1224,7 +1091,7 @@ ls
 git pull origin 19-10
 ls
 git status
-git pull origin master 
+git pull origin master
 ls
 git add .
 git pull
@@ -1313,23 +1180,23 @@ vim stencil.c
 #1571647615
 make -B
 #1571647624
-module load icc/2017.1.132-GCC-5.4.0-2.26 
+module load icc/2017.1.132-GCC-5.4.0-2.26
 #1571647629
 make -B
 #1571647690
-less ipo_out.optrpt 
+less ipo_out.optrpt
 #1571647739
 sbatch stencil.job
 #1571647751
 less stencil.out
 #1571647945
-less ipo_out.optrpt 
+less ipo_out.optrpt
 #1571648055
 vim stencil.c
 #1571843466
-module load icc/2017.1.132-GCC-5.4.0-2.26 
+module load icc/2017.1.132-GCC-5.4.0-2.26
 #1571843471
-less Makefile 
+less Makefile
 #1571843533
 make -B
 #1571843541
@@ -1337,7 +1204,7 @@ sbatch stencil.job
 #1571843546
 less stencil.out
 #1571843556
-less ipo_out.optrpt 
+less ipo_out.optrpt
 #1571843615
 vim
 #1571843629
@@ -1349,7 +1216,7 @@ sbatch stencil.job
 #1571843653
 less stencil.out
 #1571843677
-vim Makefile 
+vim Makefile
 #1571843689
 make -B
 #1571843692
@@ -1367,7 +1234,7 @@ vim stencil.c
 #1571843838
 make -B
 #1571843846
-nano Makefile 
+nano Makefile
 #1571843866
 make -B
 #1571843871
@@ -1383,7 +1250,7 @@ sbatch stencil.job
 #1571843906
 less stencil.out
 #1571843929
-vim Makefile 
+vim Makefile
 #1571843949
 make -B
 #1571843954
@@ -1397,7 +1264,7 @@ git commit -m 'back to faster'
 #1571843976
 git push origin 23-10
 #1571844018
-less ipo_out.optrpt 
+less ipo_out.optrpt
 #1571844246
 git pull origin 23-10
 #1571844254
@@ -1411,7 +1278,7 @@ sbatch stencil.job
 #1571844288
 less stencil.out
 #1571844303
-less ipo_out.optrpt 
+less ipo_out.optrpt
 #1571844347
 vim stencil.c
 #1571844396
@@ -1423,7 +1290,7 @@ sbatch stencil.job
 #1571844411
 less stencil.out
 #1571844428
-less ipo_out.optrpt 
+less ipo_out.optrpt
 #1571844447
 vim stencil.c
 #1571844475
@@ -1457,7 +1324,7 @@ sbatch stencil.job
 #1571844980
 less stencil.out
 #1571844991
-less ipo_out.optrpt 
+less ipo_out.optrpt
 #1571845070
 vim stencil.c
 #1571845078
@@ -1467,7 +1334,7 @@ sbatch stencil.job
 #1571845085
 less stencil.out
 #1571845093
-less ipo_out.optrpt 
+less ipo_out.optrpt
 #1571846148
 make -B
 #1571846153
@@ -1491,7 +1358,7 @@ git pull origin 23-10
 #1571846656
 make -B
 #1571846681
-nano Makefile 
+nano Makefile
 #1571846706
 make -B
 #1571846710
@@ -1499,7 +1366,7 @@ sbatch stencil.job
 #1571846714
 less stencil.out
 #1571846767
-less ipo_out.optrpt 
+less ipo_out.optrpt
 #1571846837
 vim stencil.c
 #1571846846
@@ -1509,9 +1376,9 @@ sbatch stencil.job
 #1571846852
 less stencil.out
 #1571846857
-less ipo_out.optrpt 
+less ipo_out.optrpt
 #1571846917
-vim Makefile 
+vim Makefile
 #1571847086
 make -B
 #1571847091
@@ -1543,7 +1410,7 @@ sbatch stencil.job
 #1571847300
 less stencil.out
 #1571847316
-less ipo_out.optrpt 
+less ipo_out.optrpt
 #1571847345
 vim stencil.c
 #1571847367
@@ -1553,11 +1420,11 @@ sbatch stencil.job
 #1571847374
 less stencil.out
 #1571847378
-less ipo_out.optrpt 
+less ipo_out.optrpt
 #1571847404
 vim stencil.c
 #1571848309
-less ipo_out.optrpt 
+less ipo_out.optrpt
 #1571848348
 vim stencil.c
 #1571848504
@@ -1609,7 +1476,7 @@ sbatch stencil.job
 #1571848734
 less stencil.out
 #1571848775
-less ipo_out.optrpt 
+less ipo_out.optrpt
 #1571848794
 vim stencil.c
 #1571848863
@@ -1619,7 +1486,7 @@ sbatch stencil.job
 #1571848876
 less stencil.out
 #1571848885
-less ipo_out.optrpt 
+less ipo_out.optrpt
 #1571848949
 vim stencil.c
 #1571849007
@@ -1629,7 +1496,7 @@ sbatch stencil.job
 #1571849014
 less stencil.out
 #1571849021
-less ipo_out.optrpt 
+less ipo_out.optrpt
 #1571849171
 vim stencil.c
 #1571849319
@@ -1639,7 +1506,7 @@ sbatch stencil.job
 #1571849333
 less stencil.out
 #1571849356
-less ipo_out.optrpt 
+less ipo_out.optrpt
 #1571849749
 less stencil.out
 #1571849754
@@ -1653,8 +1520,183 @@ less stencil.c
 #1571849848
 less stencil.out
 #1571849869
-less Makefile 
+less Makefile
 #1571849921
-nano Makefile 
+nano Makefile
 #1571849938
 make -B
+#1571849984
+module load languages/intel/2018-u3 
+#1571849992
+icc --version
+#1571850008
+make -B
+#1571850013
+ls
+#1571850017
+vim stencil.c
+#1571850068
+make -B
+#1571850180
+ls
+#1571850419
+make -B
+#1571850426
+sbatch stencil.out
+#1571850430
+sbatch stencil.job
+#1571850434
+less stencil.out
+#1571850512
+vim stencil.c
+#1571850577
+less stencil.out
+#1571850598
+git status
+#1571850605
+git add .
+#1571850615
+git commit -m 'no unsupport'
+#1571850621
+git push origin 23-10
+#1571850644
+git status
+#1571850657
+vim stencil.c
+#1571850757
+git push origin 21-10
+#1571851006
+ls
+#1571851009
+vim stencil.c
+#1571851044
+make -B
+#1571851050
+sbatch stencil.job
+#1571851054
+less stencil.iut
+#1571851061
+less stencil.out
+#1571851114
+vim stencil.c
+#1571851193
+less Makefile 
+#1571851204
+make -B
+#1571851209
+sbatch stencil.job
+#1571851212
+less stencil.out
+#1571851241
+vim stencil.c
+#1571851293
+make -B
+#1571851303
+sbatch stencil.job
+#1571851306
+less stencil.out
+#1571851321
+less ipo_out.optrpt 
+#1571851376
+vim stencil.c
+#1571851479
+make -B
+#1571851482
+sbatch stencil.job
+#1571851484
+less stencil.out
+#1571851492
+vim stencil.c
+#1571851505
+make -B
+#1571851508
+sbatch stencil.job
+#1571851510
+less stencil.out
+#1571851531
+less ipo_out.optrpt 
+#1571851574
+vim stencil.c
+#1571851662
+git status
+#1571851670
+git add .
+#1571851680
+git commit -m 'working'
+#1571851695
+git push origin 23-10
+#1571851713
+git pull origin 23-10
+#1571851727
+git merge
+#1571851731
+git commit -a
+#1571851753
+git pull origin 23-10
+#1571851772
+git checkout 23-10
+#1571851777
+git add .
+#1571851790
+git status
+#1571851801
+git add .
+#1571851867
+git commit -a
+#1571851885
+git rm index.lock
+#1571851894
+vim stencil.c
+#1571852052
+less stencil.out
+#1571852057
+make -B
+#1571852062
+sbatch stencil.job
+#1571852065
+less stencil.out
+#1571852070
+less ipo_out.optrpt 
+#1571852305
+vim stencil.c
+#1571852344
+make -B
+#1571852384
+sbatch stencil.job
+#1571852391
+less stencil.out
+#1571852403
+sbatch stencil.job
+#1571852405
+less stencil.out
+#1571852413
+less ipo_out.optrpt 
+#1571852447
+vim stencil.c
+#1571852531
+make -B
+#1571852659
+sbatch stencil.job
+#1571852666
+less stencil.out
+#1571852671
+less ipo_out.optrpt 
+#1571852704
+nano Makefile 
+#1571852718
+less ipo_out.optrpt 
+#1571852747
+vim stencil.c
+#1571852851
+make -B
+#1571852865
+sbatch stencil.job
+#1571852871
+less stencil.out
+#1571852881
+less io
+#1571852884
+less ipo_out.optrpt 
+ls
+git status
+git --version

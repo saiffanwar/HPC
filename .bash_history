@@ -670,3 +670,299 @@ git push
 git status
 #1571170134
 git commit
+vim sbatch stencil.job
+vim stencil.job
+make -B
+vim env.sh
+. env.sh
+module av languages/intel
+modules load languages/intel/2018-u3
+module load languages/intel/2018-u3
+rm env.sh
+git status
+module load tools/git
+git --version
+git status
+vim stencil.job
+make -B
+sbatch stencil.job
+less stencil.out
+sbatch stencil.job
+less stencil.out
+vim stencil.out
+vim stencil.job
+make -B
+sbatch stencil.job
+less stencil.out
+vim stencil.job
+make -B
+sbatch stencil.job
+less stencil.out
+git checkout -- .
+git status
+git pull origin 24-10
+make -B
+sbatch stencil.job
+less stencil.out
+nano stencil.job
+make -B
+sbatch stencil.job
+less stencil.out
+less stencil.job
+vim stencil.job
+make -B
+sbatch stencil.job
+less stencil.out
+vim stencil.job
+sbatch stencil.job
+less stencil.out
+sbatch stencil.job
+less stencil.out
+sbatch stencil.job
+less stencil.out
+sbatch stencil.job
+less stencil.out
+git status
+git checkout -- 
+git checkout -- .
+git status
+git add .
+git commit -m 'starting report first final'
+git push origin 24-10
+git pull origin 24-10
+git branch 24-10-gcc
+git checkout branch 24-10-gcc
+git checkout 24-10-gcc
+python check.py --ref-stencil-file stencil_1024_1024_100.pgm --stencil-file stencil.pgm
+python check.py --ref-stencil-file stencil_4096_4096_100.pgm --stencil-file stencil.pgm
+nano stencil.job
+make -B
+sbatch stencil.job
+less stencil.out
+squeue -u sa17826
+less stencil.out
+python check.py --ref-stencil-file stencil_4096_4096_100.pgm --stencil-file stencil.pgm
+nano Makefile
+less Makefile 
+make -B
+vim stencil.c
+git status
+git add .
+git commit -m 'change to gcc next'
+git push origin 24-10-gcc
+git status
+git checkout master
+vim stencil.c
+nano Makefile 
+make -B
+less stencil.job
+sbatch stencil.job
+less stencil.out
+squeue -u sa17826
+less stencil.out
+nano Makefile 
+sbatch stencil.job
+squeue -u sa17826
+less stencil.out
+sbatch stencil.job
+squeue -u sa17826
+less stencil.out
+sbatch stencil.job
+squeue -u sa17826
+less stencil.out
+nano Makefile 
+sbatch stencil.job
+squeue -u sa17826
+less stencil.out
+less MAk
+less Makefile 
+sbatch stencil.job
+less stencil.out
+squeue -u sa17826
+less stencil.out
+vim Makefile 
+sbatch stencil.job
+less s
+make -B
+sbatch stencil.job
+squeue -u sa17826
+less stencil.out
+sbatch stencil.job
+squeue -u sa17826
+less stencil.out
+sbatch stencil.job
+squeue -u sa17826
+less stencil.out
+make -B
+nano Makefile
+make -B
+sbatch stencil.job
+sq -u sa17862
+squeue -u sa17826
+less stencil.out
+sbatch stencil.job
+less stencil.out
+nano Makefile 
+less Makefile 
+sbatch stencil.job
+less stencil.out
+squeue -u sa17826
+less stencil.out
+vim Makefile
+make -B
+sbatch stencil.job
+less stencil.out
+module av gcc
+gcc -v
+gcc --version
+make -B
+nano Makefile 
+sbatch stencil.job
+squeue -u sa17826
+less stencil.out
+sbatch stencil.job
+squeue -u sa17826
+less stencil.out
+sbatch stencil.job
+squeue -u sa17826
+less stencil.out
+make -B
+nano Makefile 
+sbatch stencil.job
+less stencil.out
+sbatch stencil.job
+less stencil.out
+nano Makefile 
+sbatch stencil.job
+squeue -u sa17826
+less stencil.out
+sbatch stencil.job
+squeue -u sa17826
+less stencil.out
+nano Makefile 
+sbatch stencil.job
+less stencil.out
+less MAke
+less Makefile 
+make -B
+sbatch stencil.job
+less stencil.out
+squeue -u sa17826
+less stencil.out
+nano Makefile 
+sbatch stencil.job
+less stencil.out
+squeue -u sa17826
+less stencil.out
+make -B
+sbatch stencil.job
+squeue -u sa17826
+less stencil.out
+nano Makefile 
+ls
+git --version
+module load tools/git/2018-u3
+module av tools/git
+module tools/git/2.18.0
+module av git
+module load tools/git
+git --version
+module load languages/intel/2018-u3 
+make -B
+sbatch stencil.job
+less stencil.out
+squeue -u sa17826
+less stencil.out
+nano Makefile
+sbatch stencil.job
+squeue -u sa1786
+squeue -u sa17826
+less stencil.out
+nano ma
+y]
+nano Makefile 
+make -B
+sbatch stencil.job
+less stencil.out
+nano Makefile 
+sbatch stencil.job
+less stencil.out
+squeue -u sa17862
+squeue -u sa17826
+less stencil.out
+make -B
+sbatch stencil.job
+less stencil.out
+squeue -u sa17826
+less stencil.out
+squeue -u sa17826
+less stencil.out
+nano Makefile 
+make -B
+sbatch stencil.job
+squeue -u sa17826
+less stencil.out
+nano Makefile 
+make -B
+sbatch stencil.job
+squeue 0u sa17826
+squeue -u sa17826
+less stencil.out
+nano Makefile 
+make -B
+nano Makefile
+make -B
+sbatch stencil.job
+less stencil.out
+nano Makefile 
+make -B
+sbatch stencil.job
+squeue -us a17862
+less stencil.out
+make -B
+nano Makefile 
+nano stencil.job
+make -B
+sbatch stencil.job
+squeue -u sa17826
+less ip
+#1571929060
+nano Makefile 
+#1571929071
+nano stencil.job
+#1571929088
+make -B
+#1571929093
+sbatch stencil.job
+#1571929098
+squeue -u sa17826
+#1571929185
+less stencil.out
+#1571929221
+sbatch stencil.job
+#1571929226
+less stencil.out
+#1571929231
+nano stencil.out
+#1571929240
+nano stencil.job
+#1571929256
+make -B
+#1571929260
+sbatch stencil.job
+#1571929268
+less stencil.c
+#1571929400
+squeue -u sa17826
+#1571929801
+less stencil.out
+#1571929820
+nano stencil.job
+#1571929844
+make -B
+#1571929848
+sbatch stencil.job
+#1571930147
+squeue -u sa17826
+#1571930847
+less stencil.out

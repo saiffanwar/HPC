@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include <sys/time.h>
 
@@ -42,51 +41,65 @@ int main(int argc, char* argv[])
   // Call the stencil kernel
   double tic = wtime();
   for (int t = 0; t < niters; ++t) {
-  stencil(nx, ny, width, height, image, tmp_image);
-  stencil(nx, ny, width, height, tmp_image, image);
-  }
-  double toc = wtime();
-
-  // Output
-  printf("------------------------------------\n");
-  printf(" runtime: %lf s\n", toc - tic);
-  printf("------------------------------------\n");
-
-  output_image(OUTPUT_FILE, nx, ny, width, height, image);
-  _mm_free(image);
-  _mm_free(tmp_image);
-}
-
-void stencil(const int nx, const int ny, const int width, const int height,
-             float* image, float* tmp_image)
-//with floating points
-{
-  #pragma vector aligned
-  #pragma ivdep
-//  #pragma simd
-  for (int i = 1; i < nx + 1; ++i) {
-    for (int j = 1; j < ny + 1; ++j) {
-      tmp_image[j + i * height] =  image[j     + i       * height] * 3.0f / 5.0f;
-      tmp_image[j + i * height] += image[j     + (i - 1) * height] * 0.5f / 5.0f;
-      tmp_image[j + i * height] += image[j     + (i + 1) * height] * 0.5f / 5.0f;
-      tmp_image[j + i * height] += image[j - 1 + i       * height] * 0.5f / 5.0f;
-      tmp_image[j + i * height] += image[j + 1 + i       * height] * 0.5f / 5.0f;
+    stencil(nx, ny, width, height, image, tmp_image);
+    stencil(nx, ny, width, height, tmp_image, image);
     }
-}
-}
+    double toc = wtime();
 
+    // Output
+    printf("------------------------------------\n");
+    printf(" runtime: %lf s\n", toc - tic);
+    printf("------------------------------------\n");
 
-// Create the input image
-void init_image(const int nx, const int ny, const int width, const int height,
-                float* image, float* tmp_image)
-{
-  // Zero everything
-  for (int j = 0; j < ny + 2; ++j) {
-    for (int i = 0; i < nx + 2; ++i) {
-      image[j + i * height] = 0.0f;
-      tmp_image[j + i * height] = 0.0f;
-    }
+    output_image(OUTPUT_FILE, nx, ny, width, height, image);
+    _mm_free(image);
+    _mm_free(tmp_image);
   }
+
+  void stencil(const int nx, const int ny, const int width, const int height,
+               float* restrict image, float* restrict tmp_image)
+  //with floating points
+  {
+    #pragma vector aligned
+    #pragma ivdep
+  //  #pragma simd
+  //__assume_aligned(image, 16);
+  //__assume_aligned(tmp_image,16);
+    for (int i = 1; i < nx + 1; ++i) {
+      for (int j = 1; j < ny + 1; ++j) {
+        tmp_image[j + i * height] =  image[j     + i       * height] * 0.6f;
+        tmp_image[j + i * height] += image[j     + (i - 1) * height] * 0.1f;
+        tmp_image[j + i * height] += image[j     + (i + 1) * height] * 0.1f;
+        tmp_image[j + i * height] += image[j - 1 + i       * height] * 0.1f;
+        tmp_image[j + i * height] += image[j + 1 + i       * height] * 0.1f;
+      }
+  }
+  //without floating points
+  //{
+  //  for (int j = 1; j < ny + 1; ++j) {
+  //    for (int i = 1; i < nx + 1; ++i) {
+  //      tmp_image[j + i * height] =  image[j     + i       * height] * 3.0 / 5.0;
+  //      tmp_image[j + i * height] += image[j     + (i - 1) * height] * 0.5 / 5.0;
+  //      tmp_image[j + i * height] += image[j     + (i + 1) * height] * 0.5 / 5.0;
+  //      tmp_image[j + i * height] += image[j - 1 + i       * height] * 0.5 / 5.0;
+  //      tmp_image[j + i * height] += image[j + 1 + i       * height] * 0.5 / 5.0;
+  //    }
+  //  }
+
+  }
+
+
+  // Create the input image
+  void init_image(const int nx, const int ny, const int width, const int height,
+                  float* image, float* tmp_image)
+  {
+    // Zero everything
+    for (int j = 0; j < ny + 2; ++j) {
+      for (int i = 0; i < nx + 2; ++i) {
+        image[j + i * height] = 0.0f;
+        tmp_image[j + i * height] = 0.0f;
+      }
+    }
 
   const int tile_size = 64;
   // checkerboard pattern
@@ -122,7 +135,7 @@ void output_image(const char* file_name, const int nx, const int ny,
   // Calculate maximum value of image
   // This is used to rescale the values
   // to a range of 0-255 for output
-  float maximum = 0.0f;
+  double maximum = 0.0;
   for (int j = 1; j < ny + 1; ++j) {
     for (int i = 1; i < nx + 1; ++i) {
       if (image[j + i * height] > maximum) maximum = image[j + i * height];

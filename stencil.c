@@ -6,11 +6,11 @@
 #define OUTPUT_FILE "stencil.pgm"
 
 void stencil(const int nx, const int ny, const int width, const int height,
-             double* image, double* tmp_image);
+             float* image, float* tmp_image);
 void init_image(const int nx, const int ny, const int width, const int height,
-                double* image, double* tmp_image);
+                float* image, float* tmp_image);
 void output_image(const char* file_name, const int nx, const int ny,
-                  const int width, const int height, double* image);
+                  const int width, const int height, float* image);
 double wtime(void);
 
 int main(int argc, char* argv[])
@@ -32,8 +32,8 @@ int main(int argc, char* argv[])
   int height = ny + 2;
 
   // Allocate the image
-  double* image = malloc(sizeof(double) * width * height);
-  double* tmp_image = malloc(sizeof(double) * width * height);
+  float* image = malloc(sizeof(float) * width * height);
+  float* tmp_image = malloc(sizeof(float) * width * height);
 
   // Set the input image
   init_image(nx, ny, width, height, image, tmp_image);
@@ -57,28 +57,28 @@ int main(int argc, char* argv[])
 }
 
 void stencil(const int nx, const int ny, const int width, const int height,
-             double* image, double* tmp_image)
+             float* image, float* tmp_image)
 {
   for (int j = 1; j < ny + 1; ++j) {
     for (int i = 1; i < nx + 1; ++i) {
-      tmp_image[j + i * height] =  image[j     + i       * height] * 3.0 / 5.0;
-      tmp_image[j + i * height] += image[j     + (i - 1) * height] * 0.5 / 5.0;
-      tmp_image[j + i * height] += image[j     + (i + 1) * height] * 0.5 / 5.0;
-      tmp_image[j + i * height] += image[j - 1 + i       * height] * 0.5 / 5.0;
-      tmp_image[j + i * height] += image[j + 1 + i       * height] * 0.5 / 5.0;
+      tmp_image[j + i * height] =  image[j     + i       * height] * 3.0f / 5.0f;
+      tmp_image[j + i * height] += image[j     + (i - 1) * height] * 0.5f / 5.0f;
+      tmp_image[j + i * height] += image[j     + (i + 1) * height] * 0.5f / 5.0f;
+      tmp_image[j + i * height] += image[j - 1 + i       * height] * 0.5f / 5.0f;
+      tmp_image[j + i * height] += image[j + 1 + i       * height] * 0.5f / 5.0f;
     }
   }
 }
 
 // Create the input image
 void init_image(const int nx, const int ny, const int width, const int height,
-                double* image, double* tmp_image)
+                float* image, float* tmp_image)
 {
   // Zero everything
   for (int j = 0; j < ny + 2; ++j) {
     for (int i = 0; i < nx + 2; ++i) {
-      image[j + i * height] = 0.0;
-      tmp_image[j + i * height] = 0.0;
+      image[j + i * height] = 0.0f;
+      tmp_image[j + i * height] = 0.0f;
     }
   }
 
@@ -91,7 +91,7 @@ void init_image(const int nx, const int ny, const int width, const int height,
         const int ilim = (ib + tile_size > nx) ? nx : ib + tile_size;
         for (int j = jb + 1; j < jlim + 1; ++j) {
           for (int i = ib + 1; i < ilim + 1; ++i) {
-            image[j + i * height] = 100.0;
+            image[j + i * height] = 100.0f;
           }
         }
       }
@@ -101,7 +101,7 @@ void init_image(const int nx, const int ny, const int width, const int height,
 
 // Routine to output the image in Netpbm grayscale binary image format
 void output_image(const char* file_name, const int nx, const int ny,
-                  const int width, const int height, double* image)
+                  const int width, const int height, float* image)
 {
   // Open output file
   FILE* fp = fopen(file_name, "w");
@@ -141,5 +141,3 @@ double wtime(void)
   gettimeofday(&tv, NULL);
   return tv.tv_sec + tv.tv_usec * 1e-6;
 }
-
-//git commit test

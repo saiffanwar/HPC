@@ -11,16 +11,16 @@ Begin optimization report for: main(int, char **)
     Report from: Vector optimizations [vec]
 
 
-LOOP BEGIN at stencil.c(85,5) inlined into stencil.c(40,3)
+LOOP BEGIN at stencil.c(98,7) inlined into stencil.c(39,3)
    remark #15542: loop was not vectorized: inner loop was already vectorized
 
-   LOOP BEGIN at stencil.c(84,3) inlined into stencil.c(40,3)
+   LOOP BEGIN at stencil.c(97,5) inlined into stencil.c(39,3)
    <Peeled loop for vectorization>
    LOOP END
 
-   LOOP BEGIN at stencil.c(84,3) inlined into stencil.c(40,3)
-      remark #15388: vectorization support: reference image[j+i*(ny+2)] has aligned access   [ stencil.c(86,7) ]
-      remark #15388: vectorization support: reference tmp_image[j+i*(ny+2)] has aligned access   [ stencil.c(87,7) ]
+   LOOP BEGIN at stencil.c(97,5) inlined into stencil.c(39,3)
+      remark #15388: vectorization support: reference image[j+i*(ny+2)] has aligned access   [ stencil.c(99,9) ]
+      remark #15388: vectorization support: reference tmp_image[j+i*(ny+2)] has aligned access   [ stencil.c(100,9) ]
       remark #15305: vectorization support: vector length 8
       remark #15399: vectorization support: unroll factor set to 2
       remark #15309: vectorization support: normalized vectorization overhead 0.833
@@ -33,38 +33,38 @@ LOOP BEGIN at stencil.c(85,5) inlined into stencil.c(40,3)
       remark #15488: --- end vector cost summary ---
    LOOP END
 
-   LOOP BEGIN at stencil.c(84,3) inlined into stencil.c(40,3)
+   LOOP BEGIN at stencil.c(97,5) inlined into stencil.c(39,3)
    <Remainder loop for vectorization>
-      remark #15388: vectorization support: reference image[j+i*(ny+2)] has aligned access   [ stencil.c(86,7) ]
-      remark #15388: vectorization support: reference tmp_image[j+i*(ny+2)] has aligned access   [ stencil.c(87,7) ]
+      remark #15388: vectorization support: reference image[j+i*(ny+2)] has aligned access   [ stencil.c(99,9) ]
+      remark #15388: vectorization support: reference tmp_image[j+i*(ny+2)] has aligned access   [ stencil.c(100,9) ]
       remark #15305: vectorization support: vector length 4
       remark #15309: vectorization support: normalized vectorization overhead 1.667
       remark #15301: REMAINDER LOOP WAS VECTORIZED
    LOOP END
 
-   LOOP BEGIN at stencil.c(84,3) inlined into stencil.c(40,3)
+   LOOP BEGIN at stencil.c(97,5) inlined into stencil.c(39,3)
    <Remainder loop for vectorization>
    LOOP END
 LOOP END
 
-LOOP BEGIN at stencil.c(93,3) inlined into stencil.c(40,3)
+LOOP BEGIN at stencil.c(106,3) inlined into stencil.c(39,3)
    remark #15344: loop was not vectorized: vector dependence prevents vectorization
-   remark #15346: vector dependence: assumed OUTPUT dependence between image[j+i*(ny+2)] (100:13) and image[j+i*(ny+2)] (100:13)
-   remark #15346: vector dependence: assumed OUTPUT dependence between image[j+i*(ny+2)] (100:13) and image[j+i*(ny+2)] (100:13)
+   remark #15346: vector dependence: assumed OUTPUT dependence between image[j+i*(ny+2)] (113:13) and image[j+i*(ny+2)] (113:13)
+   remark #15346: vector dependence: assumed OUTPUT dependence between image[j+i*(ny+2)] (113:13) and image[j+i*(ny+2)] (113:13)
 
-   LOOP BEGIN at stencil.c(94,5) inlined into stencil.c(40,3)
+   LOOP BEGIN at stencil.c(107,5) inlined into stencil.c(39,3)
       remark #15344: loop was not vectorized: vector dependence prevents vectorization
-      remark #15346: vector dependence: assumed OUTPUT dependence between image[j+i*(ny+2)] (100:13) and image[j+i*(ny+2)] (100:13)
-      remark #15346: vector dependence: assumed OUTPUT dependence between image[j+i*(ny+2)] (100:13) and image[j+i*(ny+2)] (100:13)
+      remark #15346: vector dependence: assumed OUTPUT dependence between image[j+i*(ny+2)] (113:13) and image[j+i*(ny+2)] (113:13)
+      remark #15346: vector dependence: assumed OUTPUT dependence between image[j+i*(ny+2)] (113:13) and image[j+i*(ny+2)] (113:13)
 
-      LOOP BEGIN at stencil.c(98,9) inlined into stencil.c(40,3)
+      LOOP BEGIN at stencil.c(111,9) inlined into stencil.c(39,3)
          remark #15344: loop was not vectorized: vector dependence prevents vectorization
-         remark #15346: vector dependence: assumed OUTPUT dependence between image[j+i*(ny+2)] (100:13) and image[j+i*(ny+2)] (100:13)
-         remark #15346: vector dependence: assumed OUTPUT dependence between image[j+i*(ny+2)] (100:13) and image[j+i*(ny+2)] (100:13)
+         remark #15346: vector dependence: assumed OUTPUT dependence between image[j+i*(ny+2)] (113:13) and image[j+i*(ny+2)] (113:13)
+         remark #15346: vector dependence: assumed OUTPUT dependence between image[j+i*(ny+2)] (113:13) and image[j+i*(ny+2)] (113:13)
 
-         LOOP BEGIN at stencil.c(99,11) inlined into stencil.c(40,3)
+         LOOP BEGIN at stencil.c(112,11) inlined into stencil.c(39,3)
             remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
-            remark #15329: vectorization support: non-unit strided store was emulated for the variable <image[j+i*(ny+2)]>, stride is unknown to compiler   [ stencil.c(100,13) ]
+            remark #15329: vectorization support: non-unit strided store was emulated for the variable <image[j+i*(ny+2)]>, stride is unknown to compiler   [ stencil.c(113,13) ]
             remark #15305: vectorization support: vector length 4
             remark #15399: vectorization support: unroll factor set to 2
             remark #15453: unmasked strided stores: 1 
@@ -75,143 +75,144 @@ LOOP BEGIN at stencil.c(93,3) inlined into stencil.c(40,3)
             remark #15488: --- end vector cost summary ---
          LOOP END
 
-         LOOP BEGIN at stencil.c(99,11) inlined into stencil.c(40,3)
+         LOOP BEGIN at stencil.c(112,11) inlined into stencil.c(39,3)
          <Remainder>
          LOOP END
       LOOP END
    LOOP END
 LOOP END
 
-LOOP BEGIN at stencil.c(44,3)
+LOOP BEGIN at stencil.c(43,3)
    remark #15542: loop was not vectorized: inner loop was already vectorized
 
-   LOOP BEGIN at stencil.c(67,3) inlined into stencil.c(45,3)
+   LOOP BEGIN at stencil.c(68,5) inlined into stencil.c(44,5)
       remark #15542: loop was not vectorized: inner loop was already vectorized
 
-      LOOP BEGIN at stencil.c(68,5) inlined into stencil.c(45,3)
+      LOOP BEGIN at stencil.c(69,7) inlined into stencil.c(44,5)
       <Peeled loop for vectorization>
       LOOP END
 
-      LOOP BEGIN at stencil.c(68,5) inlined into stencil.c(45,3)
-         remark #15389: vectorization support: reference tmp_image[j+i*(ny+2)] has unaligned access   [ stencil.c(69,7) ]
-         remark #15389: vectorization support: reference image[j+i*(ny+2)] has unaligned access   [ stencil.c(69,36) ]
-         remark #15389: vectorization support: reference tmp_image[j+i*(ny+2)] has unaligned access   [ stencil.c(70,7) ]
-         remark #15389: vectorization support: reference tmp_image[j+i*(ny+2)] has unaligned access   [ stencil.c(70,7) ]
-         remark #15389: vectorization support: reference image[j+(i-1)*(ny+2)] has unaligned access   [ stencil.c(70,36) ]
-         remark #15389: vectorization support: reference tmp_image[j+i*(ny+2)] has unaligned access   [ stencil.c(71,7) ]
-         remark #15389: vectorization support: reference tmp_image[j+i*(ny+2)] has unaligned access   [ stencil.c(71,7) ]
-         remark #15389: vectorization support: reference image[j+(i+1)*(ny+2)] has unaligned access   [ stencil.c(71,36) ]
-         remark #15389: vectorization support: reference tmp_image[j+i*(ny+2)] has unaligned access   [ stencil.c(72,7) ]
-         remark #15389: vectorization support: reference tmp_image[j+i*(ny+2)] has unaligned access   [ stencil.c(72,7) ]
-         remark #15389: vectorization support: reference image[j-1+i*(ny+2)] has unaligned access   [ stencil.c(72,36) ]
-         remark #15389: vectorization support: reference tmp_image[j+i*(ny+2)] has unaligned access   [ stencil.c(73,7) ]
-         remark #15389: vectorization support: reference tmp_image[j+i*(ny+2)] has unaligned access   [ stencil.c(73,7) ]
-         remark #15389: vectorization support: reference image[j+1+i*(ny+2)] has unaligned access   [ stencil.c(73,36) ]
+      LOOP BEGIN at stencil.c(69,7) inlined into stencil.c(44,5)
+         remark #15389: vectorization support: reference tmp_image[j+i*(ny+2)] has unaligned access   [ stencil.c(70,9) ]
+         remark #15389: vectorization support: reference image[j+i*(ny+2)] has unaligned access   [ stencil.c(70,38) ]
+         remark #15389: vectorization support: reference tmp_image[j+i*(ny+2)] has unaligned access   [ stencil.c(71,9) ]
+         remark #15389: vectorization support: reference tmp_image[j+i*(ny+2)] has unaligned access   [ stencil.c(71,9) ]
+         remark #15389: vectorization support: reference image[j+(i-1)*(ny+2)] has unaligned access   [ stencil.c(71,38) ]
+         remark #15389: vectorization support: reference tmp_image[j+i*(ny+2)] has unaligned access   [ stencil.c(72,9) ]
+         remark #15389: vectorization support: reference tmp_image[j+i*(ny+2)] has unaligned access   [ stencil.c(72,9) ]
+         remark #15389: vectorization support: reference image[j+(i+1)*(ny+2)] has unaligned access   [ stencil.c(72,38) ]
+         remark #15389: vectorization support: reference tmp_image[j+i*(ny+2)] has unaligned access   [ stencil.c(73,9) ]
+         remark #15389: vectorization support: reference tmp_image[j+i*(ny+2)] has unaligned access   [ stencil.c(73,9) ]
+         remark #15389: vectorization support: reference image[j-1+i*(ny+2)] has unaligned access   [ stencil.c(73,38) ]
+         remark #15389: vectorization support: reference tmp_image[j+i*(ny+2)] has unaligned access   [ stencil.c(74,9) ]
+         remark #15389: vectorization support: reference tmp_image[j+i*(ny+2)] has unaligned access   [ stencil.c(74,9) ]
+         remark #15389: vectorization support: reference image[j+1+i*(ny+2)] has unaligned access   [ stencil.c(74,38) ]
          remark #15381: vectorization support: unaligned access used inside loop body
          remark #15305: vectorization support: vector length 8
-         remark #15309: vectorization support: normalized vectorization overhead 0.081
+         remark #15309: vectorization support: normalized vectorization overhead 0.432
          remark #15300: LOOP WAS VECTORIZED
          remark #15450: unmasked unaligned unit stride loads: 6 
          remark #15451: unmasked unaligned unit stride stores: 5 
          remark #15475: --- begin vector cost summary ---
-         remark #15476: scalar cost: 175 
-         remark #15477: vector cost: 24.620 
-         remark #15478: estimated potential speedup: 5.700 
-         remark #15486: divides: 5 
+         remark #15476: scalar cost: 45 
+         remark #15477: vector cost: 4.620 
+         remark #15478: estimated potential speedup: 7.150 
          remark #15488: --- end vector cost summary ---
       LOOP END
 
-      LOOP BEGIN at stencil.c(68,5) inlined into stencil.c(45,3)
+      LOOP BEGIN at stencil.c(69,7) inlined into stencil.c(44,5)
       <Remainder loop for vectorization>
       LOOP END
    LOOP END
 
-   LOOP BEGIN at stencil.c(67,3) inlined into stencil.c(46,3)
+   LOOP BEGIN at stencil.c(68,5) inlined into stencil.c(45,5)
       remark #15542: loop was not vectorized: inner loop was already vectorized
 
-      LOOP BEGIN at stencil.c(68,5) inlined into stencil.c(46,3)
+      LOOP BEGIN at stencil.c(69,7) inlined into stencil.c(45,5)
       <Peeled loop for vectorization>
       LOOP END
 
-      LOOP BEGIN at stencil.c(68,5) inlined into stencil.c(46,3)
-         remark #15389: vectorization support: reference image[j+i*(ny+2)] has unaligned access   [ stencil.c(69,7) ]
-         remark #15389: vectorization support: reference tmp_image[j+i*(ny+2)] has unaligned access   [ stencil.c(69,36) ]
-         remark #15389: vectorization support: reference image[j+i*(ny+2)] has unaligned access   [ stencil.c(70,7) ]
-         remark #15389: vectorization support: reference image[j+i*(ny+2)] has unaligned access   [ stencil.c(70,7) ]
-         remark #15389: vectorization support: reference tmp_image[j+(i-1)*(ny+2)] has unaligned access   [ stencil.c(70,36) ]
-         remark #15389: vectorization support: reference image[j+i*(ny+2)] has unaligned access   [ stencil.c(71,7) ]
-         remark #15389: vectorization support: reference image[j+i*(ny+2)] has unaligned access   [ stencil.c(71,7) ]
-         remark #15389: vectorization support: reference tmp_image[j+(i+1)*(ny+2)] has unaligned access   [ stencil.c(71,36) ]
-         remark #15389: vectorization support: reference image[j+i*(ny+2)] has unaligned access   [ stencil.c(72,7) ]
-         remark #15389: vectorization support: reference image[j+i*(ny+2)] has unaligned access   [ stencil.c(72,7) ]
-         remark #15389: vectorization support: reference tmp_image[j-1+i*(ny+2)] has unaligned access   [ stencil.c(72,36) ]
-         remark #15389: vectorization support: reference image[j+i*(ny+2)] has unaligned access   [ stencil.c(73,7) ]
-         remark #15389: vectorization support: reference image[j+i*(ny+2)] has unaligned access   [ stencil.c(73,7) ]
-         remark #15389: vectorization support: reference tmp_image[j+1+i*(ny+2)] has unaligned access   [ stencil.c(73,36) ]
+      LOOP BEGIN at stencil.c(69,7) inlined into stencil.c(45,5)
+         remark #15389: vectorization support: reference image[j+i*(ny+2)] has unaligned access   [ stencil.c(70,9) ]
+         remark #15389: vectorization support: reference tmp_image[j+i*(ny+2)] has unaligned access   [ stencil.c(70,38) ]
+         remark #15389: vectorization support: reference image[j+i*(ny+2)] has unaligned access   [ stencil.c(71,9) ]
+         remark #15389: vectorization support: reference image[j+i*(ny+2)] has unaligned access   [ stencil.c(71,9) ]
+         remark #15389: vectorization support: reference tmp_image[j+(i-1)*(ny+2)] has unaligned access   [ stencil.c(71,38) ]
+         remark #15389: vectorization support: reference image[j+i*(ny+2)] has unaligned access   [ stencil.c(72,9) ]
+         remark #15389: vectorization support: reference image[j+i*(ny+2)] has unaligned access   [ stencil.c(72,9) ]
+         remark #15389: vectorization support: reference tmp_image[j+(i+1)*(ny+2)] has unaligned access   [ stencil.c(72,38) ]
+         remark #15389: vectorization support: reference image[j+i*(ny+2)] has unaligned access   [ stencil.c(73,9) ]
+         remark #15389: vectorization support: reference image[j+i*(ny+2)] has unaligned access   [ stencil.c(73,9) ]
+         remark #15389: vectorization support: reference tmp_image[j-1+i*(ny+2)] has unaligned access   [ stencil.c(73,38) ]
+         remark #15389: vectorization support: reference image[j+i*(ny+2)] has unaligned access   [ stencil.c(74,9) ]
+         remark #15389: vectorization support: reference image[j+i*(ny+2)] has unaligned access   [ stencil.c(74,9) ]
+         remark #15389: vectorization support: reference tmp_image[j+1+i*(ny+2)] has unaligned access   [ stencil.c(74,38) ]
          remark #15381: vectorization support: unaligned access used inside loop body
          remark #15305: vectorization support: vector length 8
-         remark #15309: vectorization support: normalized vectorization overhead 0.081
+         remark #15309: vectorization support: normalized vectorization overhead 0.432
          remark #15300: LOOP WAS VECTORIZED
          remark #15450: unmasked unaligned unit stride loads: 6 
          remark #15451: unmasked unaligned unit stride stores: 5 
          remark #15475: --- begin vector cost summary ---
-         remark #15476: scalar cost: 175 
-         remark #15477: vector cost: 24.620 
-         remark #15478: estimated potential speedup: 5.700 
-         remark #15486: divides: 5 
+         remark #15476: scalar cost: 45 
+         remark #15477: vector cost: 4.620 
+         remark #15478: estimated potential speedup: 7.150 
          remark #15488: --- end vector cost summary ---
       LOOP END
 
-      LOOP BEGIN at stencil.c(68,5) inlined into stencil.c(46,3)
+      LOOP BEGIN at stencil.c(69,7) inlined into stencil.c(45,5)
       <Remainder loop for vectorization>
       LOOP END
    LOOP END
 LOOP END
 
-LOOP BEGIN at stencil.c(127,5) inlined into stencil.c(55,3)
+LOOP BEGIN at stencil.c(140,5) inlined into stencil.c(54,5)
    remark #15542: loop was not vectorized: inner loop was already vectorized
 
-   LOOP BEGIN at stencil.c(126,3) inlined into stencil.c(55,3)
+   LOOP BEGIN at stencil.c(139,3) inlined into stencil.c(54,5)
    <Peeled loop for vectorization>
    LOOP END
 
-   LOOP BEGIN at stencil.c(126,3) inlined into stencil.c(55,3)
-      remark #15389: vectorization support: reference image[j+i*(ny+2)] has unaligned access   [ stencil.c(128,11) ]
+   LOOP BEGIN at stencil.c(139,3) inlined into stencil.c(54,5)
+      remark #15389: vectorization support: reference image[j+i*(ny+2)] has unaligned access   [ stencil.c(141,11) ]
       remark #15381: vectorization support: unaligned access used inside loop body
-      remark #15305: vectorization support: vector length 8
-      remark #15399: vectorization support: unroll factor set to 2
-      remark #15309: vectorization support: normalized vectorization overhead 3.500
+      remark #15305: vectorization support: vector length 4
+      remark #15399: vectorization support: unroll factor set to 4
+      remark #15309: vectorization support: normalized vectorization overhead 1.208
+      remark #15417: vectorization support: number of FP up converts: single precision to double precision 1   [ stencil.c(138,18) ]
       remark #15301: PERMUTED LOOP WAS VECTORIZED
       remark #15450: unmasked unaligned unit stride loads: 1 
       remark #15475: --- begin vector cost summary ---
-      remark #15476: scalar cost: 8 
-      remark #15477: vector cost: 0.620 
-      remark #15478: estimated potential speedup: 7.710 
+      remark #15476: scalar cost: 9 
+      remark #15477: vector cost: 1.500 
+      remark #15478: estimated potential speedup: 4.740 
+      remark #15487: type converts: 1 
       remark #15488: --- end vector cost summary ---
    LOOP END
 
-   LOOP BEGIN at stencil.c(126,3) inlined into stencil.c(55,3)
+   LOOP BEGIN at stencil.c(139,3) inlined into stencil.c(54,5)
    <Remainder loop for vectorization>
-      remark #15389: vectorization support: reference image[j+i*(ny+2)] has unaligned access   [ stencil.c(128,11) ]
+      remark #15389: vectorization support: reference image[j+i*(ny+2)] has unaligned access   [ stencil.c(141,11) ]
       remark #15381: vectorization support: unaligned access used inside loop body
-      remark #15305: vectorization support: vector length 8
-      remark #15309: vectorization support: normalized vectorization overhead 6.333
+      remark #15305: vectorization support: vector length 4
+      remark #15309: vectorization support: normalized vectorization overhead 4.000
+      remark #15417: vectorization support: number of FP up converts: single precision to double precision 1   [ stencil.c(138,18) ]
       remark #15301: REMAINDER LOOP WAS VECTORIZED
    LOOP END
 
-   LOOP BEGIN at stencil.c(126,3) inlined into stencil.c(55,3)
+   LOOP BEGIN at stencil.c(139,3) inlined into stencil.c(54,5)
    <Remainder loop for vectorization>
    LOOP END
 LOOP END
 
-LOOP BEGIN at stencil.c(133,3) inlined into stencil.c(55,3)
-   remark #15382: vectorization support: call to function fputc(int, FILE *) cannot be vectorized   [ stencil.c(135,7) ]
+LOOP BEGIN at stencil.c(146,3) inlined into stencil.c(54,5)
+   remark #15382: vectorization support: call to function fputc(int, FILE *) cannot be vectorized   [ stencil.c(148,7) ]
    remark #15344: loop was not vectorized: vector dependence prevents vectorization
-   remark #15346: vector dependence: assumed OUTPUT dependence between call:fputc(int, FILE *) (135:7) and call:fputc(int, FILE *) (135:7)
-   remark #15346: vector dependence: assumed OUTPUT dependence between call:fputc(int, FILE *) (135:7) and call:fputc(int, FILE *) (135:7)
+   remark #15346: vector dependence: assumed OUTPUT dependence between call:fputc(int, FILE *) (148:7) and call:fputc(int, FILE *) (148:7)
+   remark #15346: vector dependence: assumed OUTPUT dependence between call:fputc(int, FILE *) (148:7) and call:fputc(int, FILE *) (148:7)
 
-   LOOP BEGIN at stencil.c(134,5) inlined into stencil.c(55,3)
-      remark #15527: loop was not vectorized: function call to fputc(int, FILE *) cannot be vectorized   [ stencil.c(135,7) ]
+   LOOP BEGIN at stencil.c(147,5) inlined into stencil.c(54,5)
+      remark #15527: loop was not vectorized: function call to fputc(int, FILE *) cannot be vectorized   [ stencil.c(148,7) ]
    LOOP END
 LOOP END
 ===========================================================================
@@ -221,15 +222,44 @@ Begin optimization report for: stencil(const int, const int, const int, const in
     Report from: Vector optimizations [vec]
 
 
-LOOP BEGIN at stencil.c(67,3)
-   remark #15344: loop was not vectorized: vector dependence prevents vectorization
-   remark #15346: vector dependence: assumed OUTPUT dependence between tmp_image[j+i*height] (69:7) and tmp_image[j+i*height] (73:7)
-   remark #15346: vector dependence: assumed OUTPUT dependence between tmp_image[j+i*height] (73:7) and tmp_image[j+i*height] (69:7)
+LOOP BEGIN at stencil.c(68,5)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
 
-   LOOP BEGIN at stencil.c(68,5)
-      remark #15344: loop was not vectorized: vector dependence prevents vectorization
-      remark #15346: vector dependence: assumed FLOW dependence between tmp_image[j+i*height] (69:7) and image[j+1+i*height] (73:7)
-      remark #15346: vector dependence: assumed ANTI dependence between image[j+1+i*height] (73:7) and tmp_image[j+i*height] (69:7)
+   LOOP BEGIN at stencil.c(69,7)
+   <Peeled loop for vectorization>
+   LOOP END
+
+   LOOP BEGIN at stencil.c(69,7)
+      remark #15389: vectorization support: reference tmp_image[j+i*height] has unaligned access   [ stencil.c(70,9) ]
+      remark #15389: vectorization support: reference image[j+i*height] has unaligned access   [ stencil.c(70,38) ]
+      remark #15389: vectorization support: reference tmp_image[j+i*height] has unaligned access   [ stencil.c(71,9) ]
+      remark #15389: vectorization support: reference tmp_image[j+i*height] has unaligned access   [ stencil.c(71,9) ]
+      remark #15389: vectorization support: reference image[j+(i-1)*height] has unaligned access   [ stencil.c(71,38) ]
+      remark #15389: vectorization support: reference tmp_image[j+i*height] has unaligned access   [ stencil.c(72,9) ]
+      remark #15389: vectorization support: reference tmp_image[j+i*height] has unaligned access   [ stencil.c(72,9) ]
+      remark #15389: vectorization support: reference image[j+(i+1)*height] has unaligned access   [ stencil.c(72,38) ]
+      remark #15389: vectorization support: reference tmp_image[j+i*height] has unaligned access   [ stencil.c(73,9) ]
+      remark #15389: vectorization support: reference tmp_image[j+i*height] has unaligned access   [ stencil.c(73,9) ]
+      remark #15389: vectorization support: reference image[j-1+i*height] has unaligned access   [ stencil.c(73,38) ]
+      remark #15389: vectorization support: reference tmp_image[j+i*height] has unaligned access   [ stencil.c(74,9) ]
+      remark #15389: vectorization support: reference tmp_image[j+i*height] has unaligned access   [ stencil.c(74,9) ]
+      remark #15389: vectorization support: reference image[j+1+i*height] has unaligned access   [ stencil.c(74,38) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15305: vectorization support: vector length 8
+      remark #15309: vectorization support: normalized vectorization overhead 0.658
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15442: entire loop may be executed in remainder
+      remark #15450: unmasked unaligned unit stride loads: 6 
+      remark #15451: unmasked unaligned unit stride stores: 5 
+      remark #15475: --- begin vector cost summary ---
+      remark #15476: scalar cost: 45 
+      remark #15477: vector cost: 4.750 
+      remark #15478: estimated potential speedup: 6.980 
+      remark #15488: --- end vector cost summary ---
+   LOOP END
+
+   LOOP BEGIN at stencil.c(69,7)
+   <Remainder loop for vectorization>
    LOOP END
 LOOP END
 ===========================================================================
@@ -239,51 +269,53 @@ Begin optimization report for: output_image(const char *, const int, const int, 
     Report from: Vector optimizations [vec]
 
 
-LOOP BEGIN at stencil.c(127,5)
+LOOP BEGIN at stencil.c(140,5)
    remark #15542: loop was not vectorized: inner loop was already vectorized
 
-   LOOP BEGIN at stencil.c(126,3)
+   LOOP BEGIN at stencil.c(139,3)
    <Peeled loop for vectorization>
    LOOP END
 
-   LOOP BEGIN at stencil.c(126,3)
-      remark #15389: vectorization support: reference image[j+i*height] has unaligned access   [ stencil.c(128,11) ]
-      remark #15381: vectorization support: unaligned access used inside loop body
-      remark #15305: vectorization support: vector length 8
-      remark #15399: vectorization support: unroll factor set to 2
-      remark #15309: vectorization support: normalized vectorization overhead 3.500
+   LOOP BEGIN at stencil.c(139,3)
+      remark #15388: vectorization support: reference image[j+i*height] has aligned access   [ stencil.c(141,11) ]
+      remark #15305: vectorization support: vector length 4
+      remark #15399: vectorization support: unroll factor set to 4
+      remark #15309: vectorization support: normalized vectorization overhead 1.208
+      remark #15417: vectorization support: number of FP up converts: single precision to double precision 1   [ stencil.c(138,18) ]
       remark #15301: PERMUTED LOOP WAS VECTORIZED
       remark #15442: entire loop may be executed in remainder
-      remark #15450: unmasked unaligned unit stride loads: 1 
+      remark #15448: unmasked aligned unit stride loads: 1 
       remark #15475: --- begin vector cost summary ---
-      remark #15476: scalar cost: 8 
-      remark #15477: vector cost: 0.620 
-      remark #15478: estimated potential speedup: 7.710 
+      remark #15476: scalar cost: 9 
+      remark #15477: vector cost: 1.500 
+      remark #15478: estimated potential speedup: 4.740 
+      remark #15487: type converts: 1 
       remark #15488: --- end vector cost summary ---
    LOOP END
 
-   LOOP BEGIN at stencil.c(126,3)
+   LOOP BEGIN at stencil.c(139,3)
    <Remainder loop for vectorization>
-      remark #15389: vectorization support: reference image[j+i*height] has unaligned access   [ stencil.c(128,11) ]
+      remark #15389: vectorization support: reference image[j+i*height] has unaligned access   [ stencil.c(141,11) ]
       remark #15381: vectorization support: unaligned access used inside loop body
-      remark #15305: vectorization support: vector length 8
-      remark #15309: vectorization support: normalized vectorization overhead 6.333
+      remark #15305: vectorization support: vector length 4
+      remark #15309: vectorization support: normalized vectorization overhead 4.000
+      remark #15417: vectorization support: number of FP up converts: single precision to double precision 1   [ stencil.c(138,18) ]
       remark #15301: REMAINDER LOOP WAS VECTORIZED
    LOOP END
 
-   LOOP BEGIN at stencil.c(126,3)
+   LOOP BEGIN at stencil.c(139,3)
    <Remainder loop for vectorization>
    LOOP END
 LOOP END
 
-LOOP BEGIN at stencil.c(133,3)
-   remark #15382: vectorization support: call to function fputc(int, FILE *) cannot be vectorized   [ stencil.c(135,7) ]
+LOOP BEGIN at stencil.c(146,3)
+   remark #15382: vectorization support: call to function fputc(int, FILE *) cannot be vectorized   [ stencil.c(148,7) ]
    remark #15344: loop was not vectorized: vector dependence prevents vectorization
-   remark #15346: vector dependence: assumed OUTPUT dependence between call:fputc(int, FILE *) (135:7) and call:fputc(int, FILE *) (135:7)
-   remark #15346: vector dependence: assumed OUTPUT dependence between call:fputc(int, FILE *) (135:7) and call:fputc(int, FILE *) (135:7)
+   remark #15346: vector dependence: assumed OUTPUT dependence between call:fputc(int, FILE *) (148:7) and call:fputc(int, FILE *) (148:7)
+   remark #15346: vector dependence: assumed OUTPUT dependence between call:fputc(int, FILE *) (148:7) and call:fputc(int, FILE *) (148:7)
 
-   LOOP BEGIN at stencil.c(134,5)
-      remark #15527: loop was not vectorized: function call to fputc(int, FILE *) cannot be vectorized   [ stencil.c(135,7) ]
+   LOOP BEGIN at stencil.c(147,5)
+      remark #15527: loop was not vectorized: function call to fputc(int, FILE *) cannot be vectorized   [ stencil.c(148,7) ]
    LOOP END
 LOOP END
 ===========================================================================
@@ -293,12 +325,12 @@ Begin optimization report for: init_image(const int, const int, const int, const
     Report from: Vector optimizations [vec]
 
 
-LOOP BEGIN at stencil.c(84,3)
+LOOP BEGIN at stencil.c(97,5)
    remark #15344: loop was not vectorized: vector dependence prevents vectorization
-   remark #15346: vector dependence: assumed OUTPUT dependence between image[j+i*height] (86:7) and image[j+i*height] (86:7)
-   remark #15346: vector dependence: assumed OUTPUT dependence between image[j+i*height] (86:7) and image[j+i*height] (86:7)
+   remark #15346: vector dependence: assumed OUTPUT dependence between image[j+i*height] (99:9) and image[j+i*height] (99:9)
+   remark #15346: vector dependence: assumed OUTPUT dependence between image[j+i*height] (99:9) and image[j+i*height] (99:9)
 
-   LOOP BEGIN at stencil.c(85,5)
+   LOOP BEGIN at stencil.c(98,7)
    <Multiversioned v1>
       remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
       remark #15305: vectorization support: vector length 4
@@ -311,11 +343,11 @@ LOOP BEGIN at stencil.c(84,3)
       remark #15488: --- end vector cost summary ---
    LOOP END
 
-   LOOP BEGIN at stencil.c(85,5)
+   LOOP BEGIN at stencil.c(98,7)
    <Multiversioned v2>
       remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
-      remark #15329: vectorization support: non-unit strided store was emulated for the variable <image[j+i*height]>, stride is unknown to compiler   [ stencil.c(86,7) ]
-      remark #15329: vectorization support: non-unit strided store was emulated for the variable <tmp_image[j+i*height]>, stride is unknown to compiler   [ stencil.c(87,7) ]
+      remark #15329: vectorization support: non-unit strided store was emulated for the variable <image[j+i*height]>, stride is unknown to compiler   [ stencil.c(99,9) ]
+      remark #15329: vectorization support: non-unit strided store was emulated for the variable <tmp_image[j+i*height]>, stride is unknown to compiler   [ stencil.c(100,9) ]
       remark #15305: vectorization support: vector length 4
       remark #15399: vectorization support: unroll factor set to 2
       remark #15453: unmasked strided stores: 2 
@@ -326,27 +358,27 @@ LOOP BEGIN at stencil.c(84,3)
       remark #15488: --- end vector cost summary ---
    LOOP END
 
-   LOOP BEGIN at stencil.c(85,5)
+   LOOP BEGIN at stencil.c(98,7)
    <Remainder, Multiversioned v2>
    LOOP END
 LOOP END
 
-LOOP BEGIN at stencil.c(93,3)
+LOOP BEGIN at stencil.c(106,3)
    remark #15344: loop was not vectorized: vector dependence prevents vectorization
-   remark #15346: vector dependence: assumed OUTPUT dependence between image[j+i*height] (100:13) and image[j+i*height] (100:13)
-   remark #15346: vector dependence: assumed OUTPUT dependence between image[j+i*height] (100:13) and image[j+i*height] (100:13)
+   remark #15346: vector dependence: assumed OUTPUT dependence between image[j+i*height] (113:13) and image[j+i*height] (113:13)
+   remark #15346: vector dependence: assumed OUTPUT dependence between image[j+i*height] (113:13) and image[j+i*height] (113:13)
 
-   LOOP BEGIN at stencil.c(94,5)
+   LOOP BEGIN at stencil.c(107,5)
       remark #15344: loop was not vectorized: vector dependence prevents vectorization
-      remark #15346: vector dependence: assumed OUTPUT dependence between image[j+i*height] (100:13) and image[j+i*height] (100:13)
-      remark #15346: vector dependence: assumed OUTPUT dependence between image[j+i*height] (100:13) and image[j+i*height] (100:13)
+      remark #15346: vector dependence: assumed OUTPUT dependence between image[j+i*height] (113:13) and image[j+i*height] (113:13)
+      remark #15346: vector dependence: assumed OUTPUT dependence between image[j+i*height] (113:13) and image[j+i*height] (113:13)
 
-      LOOP BEGIN at stencil.c(98,9)
+      LOOP BEGIN at stencil.c(111,9)
          remark #15344: loop was not vectorized: vector dependence prevents vectorization
-         remark #15346: vector dependence: assumed OUTPUT dependence between image[j+i*height] (100:13) and image[j+i*height] (100:13)
-         remark #15346: vector dependence: assumed OUTPUT dependence between image[j+i*height] (100:13) and image[j+i*height] (100:13)
+         remark #15346: vector dependence: assumed OUTPUT dependence between image[j+i*height] (113:13) and image[j+i*height] (113:13)
+         remark #15346: vector dependence: assumed OUTPUT dependence between image[j+i*height] (113:13) and image[j+i*height] (113:13)
 
-         LOOP BEGIN at stencil.c(99,11)
+         LOOP BEGIN at stencil.c(112,11)
          <Multiversioned v1>
             remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
             remark #15305: vectorization support: vector length 4
@@ -359,10 +391,10 @@ LOOP BEGIN at stencil.c(93,3)
             remark #15488: --- end vector cost summary ---
          LOOP END
 
-         LOOP BEGIN at stencil.c(99,11)
+         LOOP BEGIN at stencil.c(112,11)
          <Multiversioned v2>
             remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
-            remark #15329: vectorization support: non-unit strided store was emulated for the variable <image[j+i*height]>, stride is unknown to compiler   [ stencil.c(100,13) ]
+            remark #15329: vectorization support: non-unit strided store was emulated for the variable <image[j+i*height]>, stride is unknown to compiler   [ stencil.c(113,13) ]
             remark #15305: vectorization support: vector length 4
             remark #15399: vectorization support: unroll factor set to 2
             remark #15453: unmasked strided stores: 1 
@@ -373,7 +405,7 @@ LOOP BEGIN at stencil.c(93,3)
             remark #15488: --- end vector cost summary ---
          LOOP END
 
-         LOOP BEGIN at stencil.c(99,11)
+         LOOP BEGIN at stencil.c(112,11)
          <Remainder, Multiversioned v2>
          LOOP END
       LOOP END

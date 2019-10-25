@@ -32,8 +32,8 @@ int main(int argc, char* argv[])
 
   // Allocate the image
   // at
-  float* image = malloc(sizeof(float) * width * height,64);
-  float* tmp_image = malloc(sizeof(float) * width * height,64);
+  float* image = malloc(sizeof(float) * width * height);
+  float* tmp_image = malloc(sizeof(float) * width * height);
 
   // Set the input image
   init_image(nx, ny, width, height, image, tmp_image);

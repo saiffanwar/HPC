@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <sys/time.h>
 #include <stdio.h>
+#include <mpi.h>
 // Define output file name
 #define OUTPUT_FILE "stencil.pgm"
 
@@ -14,10 +15,16 @@ double wtime(void);
 
 int main(int argc, char* argv[])
 {
+  MPI_Init(&argc, &argv);
+  int size, rank;
+  MPI_Comm_size(MPI_COMM_WORLD, &size);
+  MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+
   // Check usage
   if (argc != 4) {
     fprintf(stderr, "Usage: %s nx ny niters\n", argv[0]);
     exit(EXIT_FAILURE);
+    MPI_Finalize();
   }
 
   // Initiliase problem dimensions from command line arguments

@@ -76,6 +76,11 @@ int main(int argc, char* argv[])
 }
   }
 
+  void halo_region(nx, ny) {
+    int no_procs = 56
+    int no_cols = int(nx/no_procs)
+    printf("%d\n", no_cols)
+  }
 
   // Create the input image
   void init_image(const int nx, const int ny, const int width, const int height,

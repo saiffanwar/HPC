@@ -19,6 +19,7 @@ int main(int argc, char* argv[])
   int size, rank;
   MPI_Comm_size(MPI_COMM_WORLD, &size);
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+  printf(size, rank"\n");
 
   // Check usage
   if (argc != 4) {
@@ -70,7 +71,7 @@ int main(int argc, char* argv[])
 
   for (int i = 1; i < nx + 1; ++i) {
     for (int j = 1; j < ny + 1; ++j) {
-      tmp_image[j + i * height] =  image[j     + i       * height] * 0.6f + image[j     + (i - 1) * height] * 0.1f + image[j     + (i + 1) * height] * 0.1f + image[j - 1 + i       * height] * 0.1f + image[j + 1 + i       * height] * 0.1f;
+      tmp_image[j + i * height] =  image[j+i* height] * 0.6f + image[j+ (i - 1) * height] * 0.1f + image[j+ (i + 1) * height] * 0.1f + image[j - 1 + i * height] * 0.1f + image[j + 1 + i * height] * 0.1f;
     }
 }
   }

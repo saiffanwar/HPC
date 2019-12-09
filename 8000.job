@@ -7,7 +7,7 @@
 #SBATCH --account COMS30005
 #SBATCH --job-name stencil
 #SBATCH --time 00:15:00
-#SBATCH --output stencil.out
+#SBATCH --output 8000.out
 #SBATCH --exclusive
 
 # Print some information about the job

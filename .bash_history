@@ -1,101 +1,3 @@
-nano sbatch.job
-#1570705776
-nano stencil.job
-#1570705797
-ls
-#1570705804
-module gcc -v
-#1570705814
-ls
-#1570705818
-nano stencil.out
-#1570705841
-./stencil.out
-#1570705845
-nano stencil.oout
-#1570705850
-nano stencil.out
-#1570706036
-sbatch stencil.job
-#1570706044
-squeue -u sa17826
-#1570706319
-nano stencil.job
-#1570706336
-sbatch stencil.job
-#1570706341
-make -B
-#1570706343
-sbatch stencil.job
-#1570706349
-nano stencil.out
-#1570706357
-y
-#1570706910
-s
-#1570706911
-ls
-#1570706925
-nano stencil_1024_1024_100.pgm
-ls
-ls cw1
-ls
-cd cw1
-cd introhpc
-#1571041938
-ls
-#1571041948
-cd cw1/introhpc
-#1571041950
-ls
-#1571041952
-make
-#1571041960
-make -B
-#1571041963
-ls
-#1571041965
-make
-#1571041978
-./stencil 1024 1024 100
-#1571041985
-nano make
-#1571041994
-nano Makefile
-#1571042015
-make -B
-#1571042028
-./stencil 1024 1024 100
-#1571042718
-nano make
-#1571042725
-nano Makefile
-#1571042785
-make -B
-#1571042798
-./stencil 1024 1024 100
-#1571042812
-nano Makefile
-#1571042832
-make -B
-#1571042836
-./stencil 1024 1024 100
-#1571042310
-cd cw1/introhpc
-#1571042311
-ls
-#1571042314
-make
-#1571042322
-make -B
-#1571042334
-./stencil 4096 4096 100
-#1571042549
-./stencil 8000 8000 100
-cd cw1/introhpc
-ls
-nano stencil.c
-ls
 cd cw1/introhpc
 ls
 make -B
@@ -1658,3 +1560,111 @@ less Makefile
 nano Makefile 
 #1571849938
 make -B
+#1575885950
+ls
+#1575885954
+\clear
+#1575885975
+ls
+#1575885978
+git status
+#1575885989
+less Makefile 
+#1575885999
+make -B
+#1575886005
+git checkout --f
+#1575886008
+ls
+#1575886013
+git status
+#1575886020
+nano Makefile 
+#1575886073
+module lis
+#1575886088
+module load mpi
+#1575886094
+module av mpi
+#1575886532
+module av mpicc
+#1575886620
+module load languages/intel-compiler-16-u2
+#1575886641
+module load languages/intel/201
+#1575886649
+module av languages/intel
+#1575886657
+module load languages/intel/2018-u3 
+#1575886670
+make -B
+#1575886688
+nano Makefile 
+#1575886740
+make -B
+#1575886751
+vim Makefile 
+#1575886811
+nano Makefile 
+#1575886827
+vim Makefile 
+#1575886856
+make -B
+#1575886868
+sbatch stencil.job
+#1575886874
+squeue -u sa17826
+#1575886882
+less stencil.otu
+#1575886885
+less stencil.out
+#1575888888
+nano Makefile 
+#1575888918
+git status
+#1575888944
+git push origin MPI
+#1575889052
+git commit -m 'new day fix compiler'
+#1575889054
+git add .
+#1575889056
+git commit -m 'new day fix compiler'
+#1575889063
+git push origin MPI
+#1575889251
+git pul
+#1575889254
+git pull
+#1575889278
+git status
+#1575889280
+ls
+#1575889287
+git pull MPI
+#1575889298
+git pull
+#1575889316
+git status
+#1575889325
+ls
+#1575889358
+git pull origin MPI
+#1575889370
+ls
+#1575889467
+mv 800.job 8000.job
+#1575889469
+ls
+#1575889474
+git status
+#1575889493
+git add .
+#1575889516
+git status
+#1575889539
+git add --all
+#1575889545
+git commit -m 'rename'
+#1575889553
+git push origin MPI

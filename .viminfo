@@ -9,6 +9,8 @@
 ~H
 # Command Line History (newest to oldest):
 :x
+:q!
+:q
 
 # Search String History (newest to oldest):
 
@@ -21,18 +23,19 @@
 # Registers:
 
 # File marks:
-'0  168  0  ~/stencil.c
-'1  49  2  ~/stencil.c
-'2  149  0  ~/stencil.c
-'3  66  1  ~/stencil.c
-'4  65  0  ~/stencil.c
-'5  70  13  ~/stencil.c
-'6  113  41  ~/stencil.c
-'7  162  0  ~/stencil.c
-'8  57  0  ~/stencil.c
-'9  1  2  ~/stencil.c
+'0  2  27  ~/Makefile
+'1  168  0  ~/stencil.c
+'2  49  2  ~/stencil.c
+'3  149  0  ~/stencil.c
+'4  66  1  ~/stencil.c
+'5  65  0  ~/stencil.c
+'6  70  13  ~/stencil.c
+'7  113  41  ~/stencil.c
+'8  162  0  ~/stencil.c
+'9  57  0  ~/stencil.c
 
 # Jumplist (newest first):
+-'  2  27  ~/Makefile
 -'  168  0  ~/stencil.c
 -'  49  4  ~/stencil.c
 -'  149  2  ~/stencil.c
@@ -50,89 +53,37 @@
 -'  67  0  ~/stencil.c
 -'  36  2  ~/stencil.c
 -'  138  2  ~/stencil.c
--'  2  24  ~/Makefile
 -'  1  0  ~/Makefile
 -'  35  2  ~/stencil.c
 -'  126  2  ~/stencil.c
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
--'  1  0  ~/Makefile
--'  2  24  ~/Makefile
+-'  168  0  ~/stencil.c
+-'  49  4  ~/stencil.c
+-'  149  2  ~/stencil.c
+-'  66  0  ~/stencil.c
+-'  65  2  ~/stencil.c
+-'  70  4  ~/stencil.c
+-'  113  12  ~/stencil.c
+-'  162  0  ~/stencil.c
+-'  57  2  ~/stencil.c
+-'  1  0  ~/stencil.c
+-'  69  77  ~/stencil.c
+-'  56  2  ~/stencil.c
+-'  37  2  ~/stencil.c
+-'  68  0  ~/stencil.c
+-'  67  0  ~/stencil.c
+-'  36  2  ~/stencil.c
+-'  138  2  ~/stencil.c
+-'  35  2  ~/stencil.c
+-'  126  2  ~/stencil.c
 
 # History of marks within files (newest to oldest):
+
+> ~/Makefile
+	"	2	27
+	^	2	28
+	.	2	27
+	+	2	29
+	+	2	27
 
 > ~/stencil.c
 	"	168	0
@@ -179,10 +130,3 @@
 	+	70	13
 	+	65	0
 	+	66	1
-
-> ~/Makefile
-	"	2	24
-	^	2	25
-	.	2	25
-	+	2	29
-	+	2	25

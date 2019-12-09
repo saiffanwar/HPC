@@ -19,7 +19,7 @@ int main(int argc, char* argv[])
   int size, rank;
   MPI_Comm_size(MPI_COMM_WORLD, &size);
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-  printf(size, rank"\n");
+  printf("%d, %d\n", size, rank);
 
   // Check usage
   if (argc != 4) {
@@ -76,10 +76,10 @@ int main(int argc, char* argv[])
 }
   }
 
-  void halo_region(nx, ny) {
-    int no_procs = 56
-    int no_cols = int(nx/no_procs)
-    printf("%d\n", no_cols)
+  void halo_region(int nx, int ny) {
+    int no_procs = 56;
+    int no_cols = nx/no_procs;
+    printf("%d\n", no_cols);
   }
 
   // Create the input image

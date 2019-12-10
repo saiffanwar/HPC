@@ -19,7 +19,7 @@ int main(int argc, char* argv[])
   int size, rank;
   MPI_Comm_size(MPI_COMM_WORLD, &size);
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-  printf("%d, %d\n", size, rank);
+  printf(size, rank"\n");
 
   // Check usage
   if (argc != 4) {
@@ -38,10 +38,14 @@ int main(int argc, char* argv[])
   int width = nx + 2;
   int height = ny + 2;
 
-  // Allocate the image
-  // at
-  float* image = malloc(sizeof(float) * width * height);
-  float* tmp_image = malloc(sizeof(float) * width * height);
+  //calculate values for halo regions
+  int no_procs = 56
+  int no_cols = int(nx/no_procs)
+  int rem = nx % no_procs
+
+  // Allocate the image at following, of sizes including extra space for halo regions
+  float* image = malloc(sizeof(float) * (width + (no_procs - 1) * 2) * height);
+  float* tmp_image = malloc(sizeof(float) * (width + (no_procs - 1) * 2) * height);
 
   // Set the input image
   init_image(nx, ny, width, height, image, tmp_image);
@@ -76,10 +80,8 @@ int main(int argc, char* argv[])
 }
   }
 
-  void halo_region(int nx, int ny) {
-    int no_procs = 56;
-    int no_cols = nx/no_procs;
-    printf("%d\n", no_cols);
+  void halo_exchange(int no_cols, int remainder) {
+
   }
 
   // Create the input image

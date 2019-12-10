@@ -30,18 +30,22 @@ int main(int argc, char* argv[])
   int local_nrows;       /* number of rows apportioned to this rank */
   int local_ncols;       /* number of columns apportioned to this rank */
   int remote_ncols;      /* number of columns apportioned to a remote rank */
-  double *subgrid;       /* local temperature grid at time t     */
-  double *sendbuf;       /* buffer to hold values to send */
-  double *recvbuf;       /* buffer to hold received values */
+  float *subgrid;       /* local temperature grid at time t     */
+  float *sendbuf;       /* buffer to hold values to send */
+  float *recvbuf;       /* buffer to hold received values */
 
   MPI_Init(&argc, &argv);
   MPI_Comm_size(MPI_COMM_WORLD, &size);
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-  printf(size, rank"\n");
 
   int nx = atoi(argv[1]);
   int ny = atoi(argv[2]);
   int niters = atoi(argv[3]);
+
+  // we pad the outer edge of the image to avoid out of range address issues in
+  // stencil
+  int width = nx + 2;
+  int height = ny + 2;
 
   left = (rank == MASTER) ? (rank + size - 1) : (rank - 1);
   right = (rank + 1) % size;
@@ -61,7 +65,7 @@ int main(int argc, char* argv[])
 
   // allocating local grid space including halo regions
 
-  subgrid = (float*)malloc(sizeof(float)*local_nrows * (local_ncols + 2))
+  subgrid = (float*)malloc(sizeof(float)*local_nrows * (local_ncols + 2));
   sendbuf = (float*)malloc(sizeof(float) * local_nrows);
   recvbuf = (float*)malloc(sizeof(float) * local_nrows);
 
@@ -85,14 +89,10 @@ int main(int argc, char* argv[])
 
   // Initiliase problem dimensions from command line arguments
 
-  // we pad the outer edge of the image to avoid out of range address issues in
-  // stencil
-  int width = nx + 2;
-  int height = ny + 2;
 
   // Allocate the image at following, of sizes including extra space for halo regions
-  float* image = malloc(sizeof(float) * (width + (no_procs - 1) * 2) * height);
-  float* tmp_image = malloc(sizeof(float) * (width + (no_procs - 1) * 2) * height);
+  float* image = malloc(sizeof(float) * (width * height);
+  float* tmp_image = malloc(sizeof(float) * (width * height);
 
 
   // Set the input image
@@ -128,7 +128,7 @@ int main(int argc, char* argv[])
 }
   }
 
-  void halo_exchange(rank) {
+  void halo_exchange(int rank) {
     for(ii=0; ii < local_nrows; ii++) {
       sendbuf[ii] = subgrid[ii * (local_ncols + 2) + 1];
     MPI_Sendrecv(sendbuf, local_nrows, MPI_FLOAT, left, tag, recvbuf, local_nrows, MPI_DOUBLE, right, tag, MPI_COMM_WORLD, &status);

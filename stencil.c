@@ -17,22 +17,23 @@ void output_image(const char* file_name, const int nx, const int ny,
                   const int width, const int height, float* image);
 double wtime(void);
 
+int ii,jj;             /* row and column indices for the grid */
+int kk;                /* index for looping over ranks */
+int rank;              /* the rank of this process */
+int left;              /* the rank of the process to the left */
+int right;             /* the rank of the process to the right */
+int size;              /* number of processes in the communicator */
+int tag = 0;           /* scope for adding extra information to a message */
+MPI_Status status;     /* struct used by MPI_Recv */
+int local_nrows;       /* number of rows apportioned to this rank */
+int local_ncols;       /* number of columns apportioned to this rank */
+int remote_ncols;      /* number of columns apportioned to a remote rank */
+float *subgrid;       /* local temperature grid at time t     */
+float *sendbuf;       /* buffer to hold values to send */
+float *recvbuf;       /* buffer to hold received values */
+
 int main(int argc, char* argv[])
 {
-  int ii,jj;             /* row and column indices for the grid */
-  int kk;                /* index for looping over ranks */
-  int rank;              /* the rank of this process */
-  int left;              /* the rank of the process to the left */
-  int right;             /* the rank of the process to the right */
-  int size;              /* number of processes in the communicator */
-  int tag = 0;           /* scope for adding extra information to a message */
-  MPI_Status status;     /* struct used by MPI_Recv */
-  int local_nrows;       /* number of rows apportioned to this rank */
-  int local_ncols;       /* number of columns apportioned to this rank */
-  int remote_ncols;      /* number of columns apportioned to a remote rank */
-  float *subgrid;       /* local temperature grid at time t     */
-  float *sendbuf;       /* buffer to hold values to send */
-  float *recvbuf;       /* buffer to hold received values */
 
   MPI_Init(&argc, &argv);
   MPI_Comm_size(MPI_COMM_WORLD, &size);
@@ -91,8 +92,8 @@ int main(int argc, char* argv[])
 
 
   // Allocate the image at following, of sizes including extra space for halo regions
-  float* image = malloc(sizeof(float) * (width * height);
-  float* tmp_image = malloc(sizeof(float) * (width * height);
+  float* image = malloc(sizeof(float) * (width * height));
+  float* tmp_image = malloc(sizeof(float) * (width * height));
 
 
   // Set the input image

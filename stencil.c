@@ -4,6 +4,10 @@
 #include <mpi.h>
 // Define output file name
 #define OUTPUT_FILE "stencil.pgm"
+#define MASTER 0
+
+int calc_ncols_from_rank(int rank, int size);
+
 
 void stencil(const int nx, const int ny, const int width, const int height,
              float* image, float* tmp_image);
@@ -15,11 +19,62 @@ double wtime(void);
 
 int main(int argc, char* argv[])
 {
+  int ii,jj;             /* row and column indices for the grid */
+  int kk;                /* index for looping over ranks */
+  int rank;              /* the rank of this process */
+  int left;              /* the rank of the process to the left */
+  int right;             /* the rank of the process to the right */
+  int size;              /* number of processes in the communicator */
+  int tag = 0;           /* scope for adding extra information to a message */
+  MPI_Status status;     /* struct used by MPI_Recv */
+  int local_nrows;       /* number of rows apportioned to this rank */
+  int local_ncols;       /* number of columns apportioned to this rank */
+  int remote_ncols;      /* number of columns apportioned to a remote rank */
+  double *subgrid;       /* local temperature grid at time t     */
+  double *sendbuf;       /* buffer to hold values to send */
+  double *recvbuf;       /* buffer to hold received values */
+
   MPI_Init(&argc, &argv);
-  int size, rank;
   MPI_Comm_size(MPI_COMM_WORLD, &size);
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
   printf(size, rank"\n");
+
+  int nx = atoi(argv[1]);
+  int ny = atoi(argv[2]);
+  int niters = atoi(argv[3]);
+
+  left = (rank == MASTER) ? (rank + size - 1) : (rank - 1);
+  right = (rank + 1) % size;
+
+  if (nx % size != 0){
+    if (rank != size -1){
+      local_ncols += nx % size;
+    }
+  } else {
+    local_ncols = nx/size;
+  }
+  if (local_ncols < 1) {
+    fprintf(stderr,"Error: too many processes:- local_ncols < 1\n");
+    MPI_Abort(MPI_COMM_WORLD, EXIT_FAILURE);
+  }
+  local_nrows = height;
+
+  // allocating local grid space including halo regions
+
+  subgrid = (float*)malloc(sizeof(float)*local_nrows * (local_ncols + 2))
+  sendbuf = (float*)malloc(sizeof(float) * local_nrows);
+  recvbuf = (float*)malloc(sizeof(float) * local_nrows);
+
+  //initialise subgrid
+  for(ii=0;ii<local_nrows;ii++) {
+    for(jj=0; jj<local_ncols + 2; jj++) {
+      if (jj > 0 && jj < (local_ncols + 1))
+	       subgrid[ii * (local_ncols + 2) + jj] = (float)rank;
+      else if (jj == 0 || jj == (local_ncols + 1))
+	       subgrid[ii * (local_ncols + 2) + jj] = -1.0f;
+    }
+  }
+
 
   // Check usage
   if (argc != 4) {
@@ -29,23 +84,16 @@ int main(int argc, char* argv[])
   }
 
   // Initiliase problem dimensions from command line arguments
-  int nx = atoi(argv[1]);
-  int ny = atoi(argv[2]);
-  int niters = atoi(argv[3]);
 
   // we pad the outer edge of the image to avoid out of range address issues in
   // stencil
   int width = nx + 2;
   int height = ny + 2;
 
-  //calculate values for halo regions
-  int no_procs = 56;
-  int no_cols = nx/no_procs;
-  int rem = nx % no_procs;
-
   // Allocate the image at following, of sizes including extra space for halo regions
   float* image = malloc(sizeof(float) * (width + (no_procs - 1) * 2) * height);
   float* tmp_image = malloc(sizeof(float) * (width + (no_procs - 1) * 2) * height);
+
 
   // Set the input image
   init_image(nx, ny, width, height, image, tmp_image);
@@ -80,8 +128,22 @@ int main(int argc, char* argv[])
 }
   }
 
-  void halo_exchange(int no_cols, int remainder) {
-
+  void halo_exchange(rank) {
+    for(ii=0; ii < local_nrows; ii++) {
+      sendbuf[ii] = subgrid[ii * (local_ncols + 2) + 1];
+    MPI_Sendrecv(sendbuf, local_nrows, MPI_FLOAT, left, tag, recvbuf, local_nrows, MPI_DOUBLE, right, tag, MPI_COMM_WORLD, &status);
+    }
+    for(ii=0; ii < local_nrows; ii++){
+      subgrid[ii * (local_ncols + 2) + local_ncols + 1] = recvbuf[ii];
+    }
+    /* send to the right, receive from left */
+    for(ii=0; ii < local_nrows; ii++){
+      sendbuf[ii] = subgrid[ii * (local_ncols + 2) + local_ncols];
+    MPI_Sendrecv(sendbuf, local_nrows, MPI_DOUBLE, right, tag, recvbuf, local_nrows, MPI_DOUBLE, left, tag, MPI_COMM_WORLD, &status);
+    }
+    for(ii=0; ii < local_nrows; ii++){
+      subgrid[ii * (local_ncols + 2)] = recvbuf[ii];
+    }
   }
 
   // Create the input image

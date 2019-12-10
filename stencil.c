@@ -39,9 +39,9 @@ int main(int argc, char* argv[])
   int height = ny + 2;
 
   //calculate values for halo regions
-  int no_procs = 56
-  int no_cols = int(nx/no_procs)
-  int rem = nx % no_procs
+  int no_procs = 56;
+  int no_cols = nx/no_procs;
+  int rem = nx % no_procs;
 
   // Allocate the image at following, of sizes including extra space for halo regions
   float* image = malloc(sizeof(float) * (width + (no_procs - 1) * 2) * height);

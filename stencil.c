@@ -43,7 +43,7 @@ int main(int argc, char* argv[])
   int nx = atoi(argv[1]);
   int ny = atoi(argv[2]);
   int niters = atoi(argv[3]);
-  int size = num_procs - 1;
+  int size = num_procs + 1;
   // we pad the outer edge of the image to avoid out of range address issues in
   // stencil
   int width = nx + 2;
@@ -80,7 +80,6 @@ int main(int argc, char* argv[])
 	       subgrid[ii * (local_ncols + 2) + jj] = -1.0f;
     }
   }
-
 
   // Check usage
   if (argc != 4) {

@@ -23,19 +23,21 @@
 # Registers:
 
 # File marks:
-'0  81  17  ~/stencil.c
-'1  79  22  ~/stencil.c
-'2  25  17  ~/stencil.c
-'3  10  20  ~/8000.job
-'4  10  20  ~/4096.job
-'5  10  20  ~/1024.job
-'6  2  27  ~/Makefile
-'7  168  0  ~/stencil.c
-'8  49  2  ~/stencil.c
-'9  149  0  ~/stencil.c
+'0  83  0  ~/stencil.c
+'1  45  25  ~/stencil.c
+'2  81  17  ~/stencil.c
+'3  79  22  ~/stencil.c
+'4  25  17  ~/stencil.c
+'5  10  20  ~/8000.job
+'6  10  20  ~/4096.job
+'7  10  20  ~/1024.job
+'8  2  27  ~/Makefile
+'9  167  0  ~/stencil.c
 
 # Jumplist (newest first):
--'  81  17  ~/stencil.c
+-'  83  0  ~/stencil.c
+-'  45  2  ~/stencil.c
+-'  81  4  ~/stencil.c
 -'  79  2  ~/stencil.c
 -'  25  2  ~/stencil.c
 -'  1  0  ~/stencil.c
@@ -46,14 +48,14 @@
 -'  10  20  ~/1024.job
 -'  1  0  ~/1024.job
 -'  2  27  ~/Makefile
--'  168  0  ~/stencil.c
+-'  167  0  ~/stencil.c
 -'  49  4  ~/stencil.c
--'  149  2  ~/stencil.c
+-'  148  2  ~/stencil.c
 -'  66  0  ~/stencil.c
 -'  65  2  ~/stencil.c
 -'  70  4  ~/stencil.c
--'  113  12  ~/stencil.c
--'  162  0  ~/stencil.c
+-'  112  12  ~/stencil.c
+-'  161  0  ~/stencil.c
 -'  57  2  ~/stencil.c
 -'  69  77  ~/stencil.c
 -'  56  2  ~/stencil.c
@@ -61,10 +63,10 @@
 -'  68  0  ~/stencil.c
 -'  67  0  ~/stencil.c
 -'  36  2  ~/stencil.c
--'  138  2  ~/stencil.c
+-'  137  2  ~/stencil.c
 -'  1  0  ~/Makefile
 -'  35  2  ~/stencil.c
--'  126  2  ~/stencil.c
+-'  125  2  ~/stencil.c
 -'  2  27  ~/Makefile
 -'  1  0  ~/Makefile
 -'  10  20  ~/1024.job
@@ -109,20 +111,36 @@
 -'  10  20  ~/1024.job
 -'  1  0  ~/1024.job
 -'  2  27  ~/Makefile
+-'  10  20  ~/8000.job
+-'  1  0  ~/8000.job
+-'  10  20  ~/4096.job
+-'  1  0  ~/4096.job
+-'  10  20  ~/1024.job
+-'  1  0  ~/1024.job
+-'  2  27  ~/Makefile
+-'  10  20  ~/8000.job
+-'  1  0  ~/8000.job
+-'  10  20  ~/4096.job
+-'  1  0  ~/4096.job
+-'  10  20  ~/1024.job
+-'  1  0  ~/1024.job
+-'  2  27  ~/Makefile
+-'  168  0  ~/stencil.c
+-'  149  2  ~/stencil.c
 
 # History of marks within files (newest to oldest):
 
 > ~/stencil.c
-	"	81	17
-	^	81	18
-	.	81	18
-	+	149	0
+	"	83	0
+	^	83	0
+	.	84	0
+	+	148	0
 	+	36	20
 	+	37	24
 	+	36	60
 	+	37	64
 	+	36	60
-	+	138	21
+	+	137	21
 	+	37	64
 	+	36	60
 	+	57	2
@@ -146,11 +164,11 @@
 	+	69	75
 	+	70	0
 	+	66	14
-	+	161	39
-	+	99	33
-	+	100	37
-	+	113	41
-	+	148	24
+	+	160	39
+	+	98	33
+	+	99	37
+	+	112	41
+	+	147	24
 	+	65	1
 	+	66	1
 	+	69	32
@@ -163,6 +181,8 @@
 	+	80	21
 	+	79	22
 	+	81	18
+	+	46	25
+	+	84	0
 
 > ~/8000.job
 	"	10	20

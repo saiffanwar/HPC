@@ -42,7 +42,6 @@ int main(int argc, char* argv[])
   int nx = atoi(argv[1]);
   int ny = atoi(argv[2]);
   int niters = atoi(argv[3]);
-  //int size = num_procs + 1;
   // we pad the outer edge of the image to avoid out of range address issues in
   // stencil
   int width = nx + 2;
@@ -98,11 +97,12 @@ int main(int argc, char* argv[])
   // Set the input image
   init_image(nx, ny, width, height, image, tmp_image);
 
-  // Call the stencil kernel
-  double tic = wtime();
-  for (int t = 0; t < niters; ++t) {
-    stencil(nx, ny, width, height, image, tmp_image);
-    stencil(nx, ny, width, height, tmp_image, image);
+  if (size == 1){
+    // Call the stencil kernel
+    double tic = wtime();
+    for (int t = 0; t < niters; ++t) {
+      stencil(nx, ny, width, height, image, tmp_image);
+      stencil(nx, ny, width, height, tmp_image, image);
     }
     double toc = wtime();
 
@@ -114,6 +114,25 @@ int main(int argc, char* argv[])
     output_image(OUTPUT_FILE, nx, ny, width, height, image);
     free(image);
     free(tmp_image);
+  } else {
+    // Call the stencil kernel
+    double tic = wtime();
+    for (int t = 0; t < niters; ++t) {
+      stencil(nx, ny, width, height, image, tmp_image);
+      halo_exchange(rank);
+      stencil(nx, ny, width, height, tmp_image, image);
+      halo_exchange(rank);
+    }
+    double toc = wtime();    
+    // Output
+    printf("------------------------------------\n");
+    printf(" runtime: %lf s\n", toc - tic);
+    printf("------------------------------------\n");
+
+    output_image(OUTPUT_FILE, nx, ny, width, height, image);
+    free(image);
+    free(tmp_image);
+  }
   }
 
   void stencil(const int nx, const int ny, const int width, const int height,

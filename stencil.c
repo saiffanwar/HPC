@@ -22,7 +22,7 @@ int kk;                /* index for looping over ranks */
 int rank;              /* the rank of this process */
 int left;              /* the rank of the process to the left */
 int right;             /* the rank of the process to the right */
-int num_procs;              /* number of processes in the communicator */
+int size;              /* number of processes in the communicator */
 int tag = 0;           /* scope for adding extra information to a message */
 MPI_Status status;     /* struct used by MPI_Recv */
 int local_nrows;       /* number of rows apportioned to this rank */
@@ -36,14 +36,13 @@ int main(int argc, char* argv[])
 {
 
   MPI_Init(&argc, &argv);
-  MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
+  MPI_Comm_size(MPI_COMM_WORLD, &size);
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-  printf("%d\n", rank );
-
+  printf("%d\n", rank);
   int nx = atoi(argv[1]);
   int ny = atoi(argv[2]);
   int niters = atoi(argv[3]);
-  int size = num_procs + 1;
+  //int size = num_procs + 1;
   // we pad the outer edge of the image to avoid out of range address issues in
   // stencil
   int width = nx + 2;
@@ -52,12 +51,12 @@ int main(int argc, char* argv[])
   left = (rank == MASTER) ? (rank + size - 1) : (rank - 1);
   right = (rank + 1) % size;
 
+  local_ncols = nx/size;
+
   if (nx % size != 0){
-    if (rank != size -1){
+    if (rank == size -1){
       local_ncols += nx % size;
     }
-  } else {
-    local_ncols = nx/size;
   }
   if (local_ncols < 1) {
     fprintf(stderr,"Error: too many processes:- local_ncols < 1\n");

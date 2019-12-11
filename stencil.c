@@ -60,7 +60,7 @@ int main(int argc, char* argv[])
     fprintf(stderr,"Error: too many processes:- local_ncols < 1\n");
     MPI_Abort(MPI_COMM_WORLD, EXIT_FAILURE);
   }
-  local_nrows = ny;
+  local_nrows = height;
 
   // Allocate the image at following, of sizes including extra space for halo regions
   float* image = malloc(sizeof(float) * (width * height));
@@ -150,19 +150,19 @@ void stencil(const int nx, const int ny, const int width, const int height,
 
 void halo_exchange(int rank) {
   for(ii=0; ii < local_nrows; ii++) {
-    sendbuf[ii] = subgrid[(ii+1) * (local_ncols + 2) + 1];
+    sendbuf[ii] = subgrid[ii * (local_ncols + 2) + 1];
   MPI_Sendrecv(sendbuf, local_nrows, MPI_FLOAT, left, tag, recvbuf, local_nrows, MPI_FLOAT, right, tag, MPI_COMM_WORLD, &status);
   }
   for(ii=0; ii < local_nrows; ii++){
-    subgrid[(ii+1) * (local_ncols + 2) + local_ncols + 1] = recvbuf[ii];
+    subgrid[ii * (local_ncols + 2) + local_ncols + 1] = recvbuf[ii];
   }
   /* send to the right, receive from left */
   for(ii=0; ii < local_nrows; ii++){
-    sendbuf[ii] = subgrid[(ii+1) * (local_ncols + 2) + local_ncols];
+    sendbuf[ii] = subgrid[ii * (local_ncols + 2) + local_ncols];
   MPI_Sendrecv(sendbuf, local_nrows, MPI_FLOAT, right, tag, recvbuf, local_nrows, MPI_FLOAT, left, tag, MPI_COMM_WORLD, &status);
   }
   for(ii=0; ii < local_nrows; ii++){
-    subgrid[(ii+1) * (local_ncols + 2)] = recvbuf[ii];
+    subgrid[(ii * (local_ncols + 2)] = recvbuf[ii];
   }
 }
 

@@ -48,8 +48,11 @@ int main(int argc, char* argv[])
   left = (rank == MASTER) ? (rank + size - 1) : (rank - 1);
   right = (rank + 1) % size;
 
+  if(rank==0) left = MPI_PROC_NULL;
+  if(rank==size-1) right = MPI_PROC_NULL;
+
   local_ncols = nx/size;
-  
+
 if (nx % size != 0){
     if (rank == size -1){
       local_ncols += nx % size;
@@ -76,26 +79,6 @@ if (nx % size != 0){
   sendbuf = (float*)malloc(sizeof(float) * local_nrows);
   recvbuf = (float*)malloc(sizeof(float) * local_nrows);
 
-<<<<<<< HEAD
-  for (i = 0; i < size; i++){
-    sendcounts[i] = local_ncols * local_nrows;
-  }
-  for (i = 0; i < size; i++){
-    displs[i] = rank * local_ncols + 1;
-  }
-  for (i = 0; i < size; i++){
-    sub_start[i] = rank * local_ncols + 1;
-=======
-  // //initialise subgrid
-  // for(jj=0; jj<local_ncols+2; jj++) {
-  //   for(ii=0;ii<local_nrows;ii++) {
-  //     if (jj > 0 && jj < (local_ncols + 1) && ii > 0 && ii < (local_nrows))
-	//        subgrid[ii*jj] = image[ii * (rank * local_ncols + 1)];
-  //     else if (jj == 0 || ii == 0 || jj == (local_ncols + 1) || ii == (local_nrows))
-	//        subgrid[ii * jj] = 0.0f;
-  //   }
-  // }
-  //
   if(rank==0){
 
    for (int i = 0; i < size; i++){
@@ -103,18 +86,18 @@ if (nx % size != 0){
 	if (nx % size != 0){
 	if (i==size-1){
 	sendcounts[i] = (local_ncols + nx%size) * local_nrows;
-}}	
+}}
 }
  for (int i=0; i < size;i++){
   printf("%d, %d, %d\n", i, local_nrows, local_ncols);
   displs[i] = i * local_ncols * local_nrows + local_nrows;
   printf("%d, %d\n", displs[i], sendcounts[i]);
->>>>>>> 0178f68c9e248364a3892211c6fe133da6962041
   }
 }
 
-  MPI_Scatterv(&image, sendcounts, displs, MPI_FLOAT, &subgrid+local_nrows, local_nrows * local_ncols, MPI_FLOAT, 0, MPI_COMM_WORLD);
-        printf("%s", "hello");
+  // MPI_Scatterv(&image, sendcounts, displs, MPI_FLOAT, &subgrid+local_nrows, local_nrows * local_ncols, MPI_FLOAT, 0, MPI_COMM_WORLD);
+  //       printf("%s", "hello");
+  MPI_Scatterv(image+width, sendcounts, displs, MPI_FLOAT, subgrid + local_ncols+2, local_ncols+2*local_nrows-2, MPI_FLOAT, 0, MPI_COMM_WORLD);
 
 
 //if(rank == 1) {  for(int x = 0; x < local_nrows+1; x++){

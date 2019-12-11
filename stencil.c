@@ -77,7 +77,7 @@ int main(int argc, char* argv[])
   for(ii=0;ii<local_nrows-1;ii++) {
     for(jj=0; jj<local_ncols+2; jj++) {
       if (jj > 0 && jj < (local_ncols + 1) && ii > 0 && ii < (local_nrows))
-	       subgrid[(ii*jj] = image[rank * jj * ii];
+	       subgrid[ii*jj] = image[rank * jj * ii];
       else if (jj == 0 || ii == 0 || jj == (local_ncols + 1) || ii == (local_nrows + 1))
 	       subgrid[ii * jj] = 0.0f;
     }

@@ -24,18 +24,20 @@
 # Registers:
 
 # File marks:
-'0  158  2  ~/stencil.c
-'1  124  77  ~/stencil.c
-'2  30  18  ~/stencil.c
-'3  41  22  ~/stencil.c
-'4  1  0  ~/stecil.c
-'5  57  13  ~/stencil.c
-'6  60  2  ~/stencil.c
-'7  40  38  ~/stencil.c
-'8  45  3  ~/stencil.c
-'9  82  0  ~/stencil.c
+'0  80  15  ~/stencil.c
+'1  85  2  ~/stencil.c
+'2  158  2  ~/stencil.c
+'3  124  77  ~/stencil.c
+'4  30  18  ~/stencil.c
+'5  41  22  ~/stencil.c
+'6  1  0  ~/stecil.c
+'7  57  13  ~/stencil.c
+'8  60  2  ~/stencil.c
+'9  40  38  ~/stencil.c
 
 # Jumplist (newest first):
+-'  80  15  ~/stencil.c
+-'  85  0  ~/stencil.c
 -'  158  2  ~/stencil.c
 -'  124  6  ~/stencil.c
 -'  30  0  ~/stencil.c
@@ -47,7 +49,6 @@
 -'  45  2  ~/stencil.c
 -'  82  0  ~/stencil.c
 -'  44  2  ~/stencil.c
--'  80  4  ~/stencil.c
 -'  78  2  ~/stencil.c
 -'  25  2  ~/stencil.c
 -'  1  0  ~/stencil.c
@@ -132,15 +133,13 @@
 -'  10  20  ~/4096.job
 -'  1  0  ~/4096.job
 -'  10  20  ~/1024.job
--'  1  0  ~/1024.job
--'  2  27  ~/Makefile
 
 # History of marks within files (newest to oldest):
 
 > ~/stencil.c
-	"	158	2
-	^	124	78
-	.	124	78
+	"	80	15
+	^	80	16
+	.	80	16
 	+	147	0
 	+	36	20
 	+	37	24
@@ -207,6 +206,7 @@
 	+	41	22
 	+	30	18
 	+	124	78
+	+	80	16
 
 > ~/stecil.c
 	"	1	0

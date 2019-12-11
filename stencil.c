@@ -30,6 +30,9 @@ float *subgrid;       /* local temperature grid at time t     */
 float *tmp_subgrid;
 float *sendbuf;       /* buffer to hold values to send */
 float *recvbuf;       /* buffer to hold received values */
+int *displs
+int *sendcounts
+int *sub_start
 
 int main(int argc, char* argv[])
 {
@@ -73,15 +76,27 @@ int main(int argc, char* argv[])
   sendbuf = (float*)malloc(sizeof(float) * local_nrows);
   recvbuf = (float*)malloc(sizeof(float) * local_nrows);
 
-  //initialise subgrid
-  for(jj=0; jj<local_ncols+2; jj++) {
-    for(ii=0;ii<local_nrows;ii++) {
-      if (jj > 0 && jj < (local_ncols + 1) && ii > 0 && ii < (local_nrows))
-	       subgrid[ii*jj] = image[ii * (rank * local_ncols + 1)];
-      else if (jj == 0 || ii == 0 || jj == (local_ncols + 1) || ii == (local_nrows))
-	       subgrid[ii * jj] = 0.0f;
-    }
+  // //initialise subgrid
+  // for(jj=0; jj<local_ncols+2; jj++) {
+  //   for(ii=0;ii<local_nrows;ii++) {
+  //     if (jj > 0 && jj < (local_ncols + 1) && ii > 0 && ii < (local_nrows))
+	//        subgrid[ii*jj] = image[ii * (rank * local_ncols + 1)];
+  //     else if (jj == 0 || ii == 0 || jj == (local_ncols + 1) || ii == (local_nrows))
+	//        subgrid[ii * jj] = 0.0f;
+  //   }
+  // }
+  for (i = 0; i < size; i++){
+    sendcounts[i] = local_ncols * local_nrows
   }
+  for (i = 0; i < size; i++){
+    displs[i] = rank * local_ncols + 1
+  }
+  for (i = 0; i < size; i++){
+    sub_start[i] = rank * local_ncols + 1
+  }
+
+  MPI_Scatterv(&image, sendcounts, displs, MPI_FLOAT, &subgrid[local_nrows], local_nrows * local_ncols, MPI_FLOAT, 0, MPI_COMM_WORLD);
+
 
 //if(rank == 1) {  for(int x = 0; x < local_nrows+1; x++){
   //    printf("%d ", image[x]);
@@ -135,6 +150,8 @@ int main(int argc, char* argv[])
     printf("------------------------------------\n");
     printf(" runtime: %lf s\n", toc - tic);
     printf("------------------------------------\n");
+
+    MPI_Gatherv(&subgrid[local_nrows], local_nrows * local_ncols, MPI_FLOAT,&image, sendcounts, displs, MPI_FLOAT, 0, MPI_COMM_WORLD);
 
     output_image(OUTPUT_FILE, nx, ny, width, height, image);
     free(image);

@@ -60,23 +60,23 @@ int main(int argc, char* argv[])
     fprintf(stderr,"Error: too many processes:- local_ncols < 1\n");
     MPI_Abort(MPI_COMM_WORLD, EXIT_FAILURE);
   }
-  local_nrows = height;
+  local_nrows = ny;
 
   // allocating local grid space including halo regions
 
-  subgrid = (float*)malloc(sizeof(float)*local_nrows * (local_ncols + 2));
-  tmp_subgrid = (float*)malloc(sizeof(float)*local_nrows * (local_ncols + 2));
+  subgrid = (float*)malloc(sizeof(float)*(local_nrows+2) * (local_ncols + 2));
+  tmp_subgrid = (float*)malloc(sizeof(float)*(local_nrows+2) * (local_ncols + 2));
 
   sendbuf = (float*)malloc(sizeof(float) * local_nrows);
   recvbuf = (float*)malloc(sizeof(float) * local_nrows);
 
   //initialise subgrid
-  for(ii=0;ii<local_nrows;ii++) {
-    for(jj=0; jj<local_ncols + 2; jj++) {
-      if (jj > 0 && jj < (local_ncols + 1))
-	       subgrid[ii * (local_ncols + 2) + jj] = (float)rank;
-      else if (jj == 0 || jj == (local_ncols + 1))
-	       subgrid[ii * (local_ncols + 2) + jj] = -1.0f;
+  for(ii=0;ii<local_nrows-1;ii++) {
+    for(jj=0; jj<local_ncols+2; jj++) {
+      if (jj > 0 && jj < (local_ncols + 1) && ii > 0 && ii < (local_nrows))
+	       subgrid[(ii*jj] = image[rank * jj * ii];
+      else if (jj == 0 || ii == 0 || jj == (local_ncols + 1) || ii == (local_nrows + 1))
+	       subgrid[ii * jj] = 0.0f;
     }
   }
 
@@ -148,21 +148,27 @@ void stencil(const int nx, const int ny, const int width, const int height,
   }
 }
 
-void halo_exchange(int rank) {
-  for(ii=0; ii < local_nrows; ii++) {
-    sendbuf[ii] = subgrid[ii * (local_ncols + 2) + 1];
-  MPI_Sendrecv(sendbuf, local_nrows, MPI_FLOAT, left, tag, recvbuf, local_nrows, MPI_FLOAT, right, tag, MPI_COMM_WORLD, &status);
-  }
-  for(ii=0; ii < local_nrows; ii++){
-    subgrid[ii * (local_ncols + 2) + local_ncols + 1] = recvbuf[ii];
-  }
-  /* send to the right, receive from left */
-  for(ii=0; ii < local_nrows; ii++){
-    sendbuf[ii] = subgrid[ii * (local_ncols + 2) + local_ncols];
-  MPI_Sendrecv(sendbuf, local_nrows, MPI_FLOAT, right, tag, recvbuf, local_nrows, MPI_FLOAT, left, tag, MPI_COMM_WORLD, &status);
-  }
-  for(ii=0; ii < local_nrows; ii++){
-    subgrid[ii * (local_ncols + 2)] = recvbuf[ii];
+// void halo_exchange(int rank) {
+//   for(ii=0; ii < local_nrows; ii++) {
+//     sendbuf[ii] = subgrid[ii * (local_ncols + 2) + 1];
+//   MPI_Sendrecv(sendbuf, local_nrows, MPI_FLOAT, left, tag, recvbuf, local_nrows, MPI_FLOAT, right, tag, MPI_COMM_WORLD, &status);
+//   }
+//   for(ii=0; ii < local_nrows; ii++){
+//     subgrid[ii * (local_ncols + 2) + local_ncols + 1] = recvbuf[ii];
+//   }
+//   /* send to the right, receive from left */
+//   for(ii=0; ii < local_nrows; ii++){
+//     sendbuf[ii] = subgrid[ii * (local_ncols + 2) + local_ncols];
+//   MPI_Sendrecv(sendbuf, local_nrows, MPI_FLOAT, right, tag, recvbuf, local_nrows, MPI_FLOAT, left, tag, MPI_COMM_WORLD, &status);
+//   }
+//   for(ii=0; ii < local_nrows; ii++){
+//     subgrid[ii * (local_ncols + 2)] = recvbuf[ii];
+//   }
+// }
+
+void halo_exchange(rank){
+  if (rank != 0){
+    for (ii = 0; ii < local_nrows; )
   }
 }
 

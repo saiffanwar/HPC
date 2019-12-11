@@ -37,7 +37,7 @@ int main(int argc, char* argv[])
   MPI_Init(&argc, &argv);
   MPI_Comm_size(MPI_COMM_WORLD, &size);
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-  printf("%d\n", rank);
+ // printf("%d\n", rank);
   int nx = atoi(argv[1]);
   int ny = atoi(argv[2]);
   int niters = atoi(argv[3]);
@@ -79,13 +79,15 @@ int main(int argc, char* argv[])
       if (jj > 0 && jj < (local_ncols + 1) && ii > 0 && ii < (local_nrows))
 	       subgrid[ii*jj] = image[ii * (rank * local_ncols + 1)];
       else if (jj == 0 || ii == 0 || jj == (local_ncols + 1) || ii == (local_nrows))
-	       subgrid[ii * jj] = 0.0;
+	       subgrid[ii * jj] = 0.0f;
     }
   }
 
-//if(rank == 0) {  for(int x = 0; x < local_ncols*local_nrows; x++){
-      printf("%d ", image[0]);
-//      //      }}
+//if(rank == 1) {  for(int x = 0; x < local_nrows+1; x++){
+  //    printf("%d ", image[x]);
+    //  printf("%d ", subgrid[x]);
+
+      //}}
 //      //printf("%d", local_ncols);
 
   // Check usage

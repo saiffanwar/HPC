@@ -24,26 +24,30 @@
 # Registers:
 
 # File marks:
-'0  87  24  ~/stencil.c
-'1  70  52  ~/stencil.c
-'2  81  81  ~/stencil.c
-'3  170  11  ~/stencil.c
-'4  80  15  ~/stencil.c
-'5  90  2  ~/stencil.c
-'6  163  2  ~/stencil.c
-'7  129  77  ~/stencil.c
-'8  30  18  ~/stencil.c
-'9  41  22  ~/stencil.c
+'0  90  7  ~/stencil.c
+'1  86  11  ~/stencil.c
+'2  111  6  ~/stencil.c
+'3  87  26  ~/stencil.c
+'4  82  30  ~/stencil.c
+'5  70  52  ~/stencil.c
+'6  81  81  ~/stencil.c
+'7  172  11  ~/stencil.c
+'8  80  15  ~/stencil.c
+'9  92  2  ~/stencil.c
 
 # Jumplist (newest first):
--'  87  24  ~/stencil.c
+-'  90  7  ~/stencil.c
+-'  86  0  ~/stencil.c
+-'  111  6  ~/stencil.c
+-'  87  6  ~/stencil.c
+-'  82  8  ~/stencil.c
 -'  70  2  ~/stencil.c
 -'  81  6  ~/stencil.c
--'  170  4  ~/stencil.c
+-'  172  4  ~/stencil.c
 -'  80  8  ~/stencil.c
--'  90  0  ~/stencil.c
--'  163  2  ~/stencil.c
--'  129  6  ~/stencil.c
+-'  92  0  ~/stencil.c
+-'  165  2  ~/stencil.c
+-'  131  6  ~/stencil.c
 -'  30  0  ~/stencil.c
 -'  41  2  ~/stencil.c
 -'  57  4  ~/stencil.c
@@ -51,7 +55,6 @@
 -'  60  2  ~/stencil.c
 -'  40  2  ~/stencil.c
 -'  45  2  ~/stencil.c
--'  82  0  ~/stencil.c
 -'  44  2  ~/stencil.c
 -'  78  2  ~/stencil.c
 -'  25  2  ~/stencil.c
@@ -63,14 +66,14 @@
 -'  10  20  ~/1024.job
 -'  1  0  ~/1024.job
 -'  2  27  ~/Makefile
--'  171  0  ~/stencil.c
+-'  173  0  ~/stencil.c
 -'  48  4  ~/stencil.c
--'  152  2  ~/stencil.c
+-'  154  2  ~/stencil.c
 -'  65  0  ~/stencil.c
 -'  64  2  ~/stencil.c
 -'  69  4  ~/stencil.c
--'  116  12  ~/stencil.c
--'  165  0  ~/stencil.c
+-'  118  12  ~/stencil.c
+-'  167  0  ~/stencil.c
 -'  58  2  ~/stencil.c
 -'  68  77  ~/stencil.c
 -'  56  24  ~/stencil.c
@@ -78,7 +81,7 @@
 -'  67  0  ~/stencil.c
 -'  66  0  ~/stencil.c
 -'  36  2  ~/stencil.c
--'  141  2  ~/stencil.c
+-'  143  2  ~/stencil.c
 -'  1  0  ~/Makefile
 -'  35  2  ~/stencil.c
 -'  2  27  ~/Makefile
@@ -130,24 +133,20 @@
 -'  10  20  ~/4096.job
 -'  1  0  ~/4096.job
 -'  10  20  ~/1024.job
--'  1  0  ~/1024.job
--'  2  27  ~/Makefile
--'  10  20  ~/8000.job
--'  1  0  ~/8000.job
 
 # History of marks within files (newest to oldest):
 
 > ~/stencil.c
-	"	87	24
-	^	87	25
-	.	87	20
-	+	152	0
+	"	90	7
+	^	90	8
+	.	90	7
+	+	154	0
 	+	36	20
 	+	37	24
 	+	36	60
 	+	37	64
 	+	36	60
-	+	141	21
+	+	143	21
 	+	37	64
 	+	36	60
 	+	58	2
@@ -171,11 +170,11 @@
 	+	68	75
 	+	69	0
 	+	65	14
-	+	164	39
-	+	102	33
-	+	103	37
-	+	116	41
-	+	151	24
+	+	166	39
+	+	104	33
+	+	105	37
+	+	118	41
+	+	153	24
 	+	64	1
 	+	65	1
 	+	68	32
@@ -206,14 +205,24 @@
 	+	57	13
 	+	41	22
 	+	30	18
-	+	129	78
+	+	131	78
 	+	80	16
-	+	170	12
-	+	89	8
+	+	172	12
+	+	91	8
 	+	87	0
 	+	81	82
 	+	70	53
 	+	87	20
+	+	82	30
+	+	40	2
+	+	86	48
+	+	88	28
+	+	87	26
+	+	90	0
+	+	86	1
+	+	87	3
+	+	88	5
+	+	90	7
 
 > ~/stecil.c
 	"	1	0

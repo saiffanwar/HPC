@@ -1,198 +1,3 @@
-cd cw1/introhpc
-ls
-make -B
-./stencil 1024 1024 100
-./stencil 4096 4096 100
-./stencil 8000 8000 100
-nano Makefile
-make -B
-sbatch stencil.job
-./stencil.out
-nano Makefile
-make -B
-nano Makefile
-make -B
-nano Makefile
-make -B
-./stencil 1024 1024 100
-sbatch stencil.job
-nano stencil.out
-gprof stencil.out gmon.out > profile.txt
-ls
-less profile.txt
-nano profile.txt
-cd cw1/introhpc
-ls
-make -B
-gcc -pg stencil.c
-make -B
-gcc -std=c99 -pg -Ofast -mtune=native -Wall stencil.c -o stencil
-./a.out
-ls
-./stencil.out
-./stencil
-gcc -std=c99 -pg -Ofast -mtune=native -Wall stencil.c -o stencil
-./stencil 1024 1024 100
-gprof stencil.out gmon.out > profile.txt
-nano stencil.out
-nano stencil.job
-sbatch stencil.job
-nano stencil.out
-#1571150103
-ls
-#1571150253
-rm hello.c
-#1571150254
-ls
-#1571150257
-rm hello.out
-#1571150261
-rm hello.sh
-#1571150262
-ls
-#1571150284
-mv cw1/* .
-#1571150285
-ls
-#1571150290
-cd cw1
-#1571150291
-ls
-#1571150300
-cd ..
-#1571150300
-ls
-#1571150303
-rm cw1
-#1571150310
-rmdir c w1
-#1571150315
-rmdir cw1
-#1571150316
-ls
-#1571150326
-mv introhpc/* .
-#1571150327
-ls
-#1571150334
-rmdir introhpc
-#1571150335
-ls
-#1571150346
-cd introhpc
-#1571150347
-ls
-#1571150349
-cd ..
-#1571150352
-rmdir introhpc
-#1571150379
-cd introhpc
-#1571150381
-ls
-#1571150383
-cd ..
-#1571150385
-ls
-#1571150394
-rmdir -r introhpc
-#1571150405
-rmdir --help
-#1571150476
-rm -rf introhpc/
-#1571150477
-ls
-#1571150489
-git pull
-#1571150539
-git init
-#1571150689
-git add *.c
-#1571150699
-git add LICENSE
-#1571150747
-git commit -m 'initial skeleton commit'
-#1571150801
-git config --global user.name "Saif Anwar"
-#1571150817
-git config --global user.email anwarsaif99@hotmail.com
-#1571150835
-git commit --amend --reset-author
-#1571150985
-git commit --amend --reset-author "Initial skeleton commit"
-#1571150990
-git commit --amend --reset-author
-rm hello.c+0x0): first defined here
-stencil:(.rodata+0x8): multiple definition of `__dso_handle'
-stencil:(.rodata+0x8): multiple definition of `__dso_handle'+0x0): first defined here
-stencil:(.rodata+0x8): multiple definition of `__dso_handle'
-/usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtbegin.o:(.rodata+0x0): first+0x0): first defined here
-stencil:(.rodata+0x8): multiple definition of `__dso_handle'
-/usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtbegin.o:(.rodata+0x0): first+0x0): first defined here
-stencil:(.rodata+0x8): multiple definition of `__dso_handle'
-/usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtbegin.o:(.rodata+0x0): first+0x0): first defined here
-stencil:(.rodata+0x8): multiple definition of `__dso_handle'
-ls
-make
-make -B
-ls
-make -B
-sbatch stencil.job
-ls
-rm stencil.out
-ls
-sbatch stencil.job
-nano stencil.out
-y
-ls
-nano stencil.out
-git commit
-git commit -m
-git init
-ls
-git init
-git --version
-#1571167718
-ls
-#1571167722
-git --version
-#1571167725
-git commit
-#1571167822
-git push origin master
-#1571167829
-git push master
-#1571167860
-git config --get remote.origin.url
-#1571167868
-git remote show origin
-#1571167973
-cd .git
-#1571167976
-cd ..
-#1571167986
-rmdir -rf .git/
-#1571168022
-git add .
-#1571168046
-git commit -m "test commit"
-#1571168222
-git remote add origin https://github.com/saiffanwar/HPC.git
-#1571168227
-git remote -v
-#1571168240
-git push -u origin master
-#1571168349
-git pull
-#1571168642
-git remote add origin https://github.com/saiffanwar/HPC.git
-#1571168656
-git push origin
-#1571169100
-git git 
-#1571169102
-git 
-#1571170356
 git commit
 #1571170434
 git status
@@ -1668,3 +1473,135 @@ git add --all
 git commit -m 'rename'
 #1575889553
 git push origin MPI
+ls
+module load languages/intel/2018-u3 
+sbatch 1024.job
+squeue -u sa17826
+less 1024.out
+vim stencil.c
+make -B
+./stencil
+./stencil 1024 1024 100
+vim stencil.c
+make -B
+./stencil 1024 1024 100
+vim stencil.c
+make -B
+vim stencil.c
+make -B
+vim stencil.c
+make -B
+vim stencil.c
+make -B
+./stencil 1024 1024 100
+vim stencil.c
+./stencil 1024 1024 100
+make -B
+./stencil 1024 1024 100
+vim stencil.c
+make -B
+./stencil 1024 1024 100
+vim stencil.c
+make -B
+./stencil 1024 1024 100
+sbatch 1024.job
+squeue -u sa17826
+less 1024.job
+squeue -u sa17826
+less 1024.out
+vim stencil.c
+make -B
+sbatch 1024.job
+squeue -u sa17826
+less 1024.out
+vim stencil.c
+make -B
+sbatch 1024.job
+squeue -u sa17826
+less 1024.out
+vim stencil.c
+make -B
+sbatch 1024.job
+squeue -u sa17826
+less 1024.out
+vim stencil.c
+git checkout --f
+module load git 
+module load tools/git
+git checkout --f
+git pull
+git pull origin 11-12
+make -B
+vim stencil.c
+git add . 
+git commit -m 'removed that dead bracket loool'
+git push origin 11-12
+git status
+git checkout 11-12
+git add .
+git commit -m 'removed that dead bracket loool'
+git push origin 11-12
+make -B
+vim stencil.c
+git add .
+git commit -m 'removed that dead bracket loool'
+git push origin 11-12
+make -B
+sbatch 1024.job
+squeue -u sa17826
+less 1024.out
+vim stencil.c
+make -B
+sbatch 1024.job
+squeue -u sa17826
+less 1024.out
+vim stencil.c
+make -B
+sbatch 1024.job
+squeue -u sa17826
+less 1024.out
+vim stencil.c
+make -B
+git status
+git add .
+git commit -m 'move'
+git push origin 11-12
+git pull origin 11-12
+make -B
+sbatch 1024.job
+squeue -u sa17862
+squeue -u sa17826
+sbatch 1024.job
+vim stencil.c
+make -B
+sbatch 1024.job
+squeue -u sa17826
+less 1024.out
+ls
+less 1024.out
+vim stencil.c
+make -B
+module load languages/intel/2018-u3 
+module list
+module load tools/git
+make -B
+vim stencil.c
+vim stencil.c
+make -B
+module load languages/intel/2018-u3 
+module load tools/git
+make -B
+./stencil 1024 1024 100
+sbatch 1024.job
+squeue -u sa17826
+less 1024.out
+vim stencil.c
+:x
+make -B
+sbatch 1024.job
+squeue -u sa17826
+less 1024.out
+squeue -u sa17826
+sbatch 1024.job
+squeue -u sa17826
+less 1024.out

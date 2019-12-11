@@ -37,6 +37,13 @@ int main(int argc, char* argv[])
   MPI_Init(&argc, &argv);
   MPI_Comm_size(MPI_COMM_WORLD, &size);
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+
+  // Check usage
+  if (argc != 4) {
+    fprintf(stderr, "Usage: %s nx ny niters\n", argv[0]);
+    exit(EXIT_FAILURE);
+  }
+
   int nx = atoi(argv[1]);
   int ny = atoi(argv[2]);
   int niters = atoi(argv[3]);
@@ -64,62 +71,42 @@ if (nx % size != 0){
   }
   local_nrows = height;
 
-    int *sendcounts = malloc(sizeof(int)*size);
-    int *displs = malloc(sizeof(int)*size);
 
 
-  // Allocate the image at following, of sizes including extra space for halo regions
-  float* image = malloc(sizeof(float) * (width * height));
-  float* tmp_image = malloc(sizeof(float) * (width * height));
-  // allocating local grid space including halo regions
+  // // Allocate the image at following, of sizes including extra space for halo regions
+  // float* image = malloc(sizeof(float) * (width * height));
+  // float* tmp_image = malloc(sizeof(float) * (width * height));
+  // // allocating local grid space including halo regions
 
   subgrid = (float*)malloc(sizeof(float)*(local_nrows) * (local_ncols + 2));
   tmp_subgrid = (float*)malloc(sizeof(float)*(local_nrows) * (local_ncols + 2));
 
+  // Master
+  if(rank==MASTER){
+    //init full image
+    image = malloc(sizeof(float) * width * height);
+    init_image(nx, ny, width, height, image);
+  }
+
   sendbuf = (float*)malloc(sizeof(float) * local_nrows);
   recvbuf = (float*)malloc(sizeof(float) * local_nrows);
 
-  if(rank==0){
-
-   for (int i = 0; i < size; i++){
+  int sendcounts[size];
+  int displs[size];
+  for (int i = 0; i < size; i++){
 	sendcounts[i] = local_ncols * local_nrows;
-	if (nx % size != 0){
-	if (i==size-1){
-	sendcounts[i] = (local_ncols + nx%size) * local_nrows;
-}}
-}
- for (int i=0; i < size;i++){
-  printf("%d, %d, %d\n", i, local_nrows, local_ncols);
-  displs[i] = i * local_ncols * local_nrows + local_nrows;
-  printf("%d, %d\n", displs[i], sendcounts[i]);
+	 if (nx % size != 0){
+	   if (i==size-1){
+	      sendcounts[i] = (local_ncols + nx%size) * local_nrows;
+      }
+    }
+  displs[i] = i * local_ncols+2 * local_nrows;
   }
-}
 
   // MPI_Scatterv(&image, sendcounts, displs, MPI_FLOAT, &subgrid+local_nrows, local_nrows * local_ncols, MPI_FLOAT, 0, MPI_COMM_WORLD);
   //       printf("%s", "hello");
   MPI_Scatterv(image+width, sendcounts, displs, MPI_FLOAT, subgrid + local_ncols+2, local_ncols+2*local_nrows-2, MPI_FLOAT, 0, MPI_COMM_WORLD);
 
-
-//if(rank == 1) {  for(int x = 0; x < local_nrows+1; x++){
-  //    printf("%d ", image[x]);
-    //  printf("%d ", subgrid[x]);
-
-      //}}
-//      //printf("%d", local_ncols);
-
-  // Check usage
-  if (argc != 4) {
-    fprintf(stderr, "Usage: %s nx ny niters\n", argv[0]);
-    exit(EXIT_FAILURE);
-  }
-
-  // Initiliase problem dimensions from command line arguments
-
-
-
-
-  // Set the input image
-  init_image(nx, ny, width, height, image, tmp_image);
 
   if (size == 1){
     // Call the stencil kernel
@@ -128,11 +115,14 @@ if (nx % size != 0){
       stencil(nx, ny, width, height, image, tmp_image);
       stencil(nx, ny, width, height, tmp_image, image);
     }
-    double toc = wtime();
+    double toc = wtime() - tic;
+    double time;
+    MPI_Gatherv(subgrid + local_ncols+2, local_ncols+2*local_nrows-2, MPI_FLOAT,image+width, sendcounts, displs, MPI_FLOAT, 0, MPI_COMM_WORLD);
+    MPI_Reduce(&toc, &time, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
 
     // Output
     printf("------------------------------------\n");
-    printf(" runtime: %lf s\n", toc - tic);
+    printf(" runtime: %lf s\n", time);
     printf("------------------------------------\n");
 
     output_image(OUTPUT_FILE, nx, ny, width, height, image);
@@ -147,13 +137,15 @@ if (nx % size != 0){
       halo_exchange(rank);
       stencil(local_ncols, local_nrows, local_ncols + 2, height, tmp_subgrid, subgrid);
     }
-    double toc = wtime();
+    double toc = wtime() - tic;
+    double time;
+    MPI_Gatherv(subgrid + local_ncols+2, local_ncols+2*local_nrows-2, MPI_FLOAT,image+width, sendcounts, displs, MPI_FLOAT, 0, MPI_COMM_WORLD);
+    MPI_Reduce(&toc, &time, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
+
     // Output
     printf("------------------------------------\n");
-    printf(" runtime: %lf s\n", toc - tic);
+    printf(" runtime: %lf s\n", time);
     printf("------------------------------------\n");
-
-    MPI_Gatherv(&subgrid[local_nrows], local_nrows * local_ncols, MPI_FLOAT,&image, sendcounts, displs, MPI_FLOAT, 0, MPI_COMM_WORLD);
 
     output_image(OUTPUT_FILE, nx, ny, width, height, image);
     free(image);

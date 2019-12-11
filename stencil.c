@@ -64,6 +64,8 @@ int main(int argc, char* argv[])
   // allocating local grid space including halo regions
 
   subgrid = (float*)malloc(sizeof(float)*local_nrows * (local_ncols + 2));
+  tmp_subgrid = (float*)malloc(sizeof(float)*local_nrows * (local_ncols + 2));
+
   sendbuf = (float*)malloc(sizeof(float) * local_nrows);
   recvbuf = (float*)malloc(sizeof(float) * local_nrows);
 
@@ -98,7 +100,7 @@ int main(int argc, char* argv[])
     // Call the stencil kernel
     double tic = wtime();
     for (int t = 0; t < niters; ++t) {
-      stencil(nx, ny, width, height, image, tmp_image);
+      stencil(nx, ny, width, height, tmp_image, image);
       stencil(nx, ny, width, height, tmp_image, image);
     }
     double toc = wtime();
@@ -115,10 +117,10 @@ int main(int argc, char* argv[])
     // Call the stencil kernel
     double tic = wtime();
     for (int t = 0; t < niters; ++t) {
-      stencil(nx, ny, width, height, image, tmp_image);
       halo_exchange(rank);
-      stencil(nx, ny, width, height, tmp_image, image);
+      stencil(local_ncols, local_nrows, local_ncols + 2, height, subgrid, tmp_subgrid);
       halo_exchange(rank);
+      stencil(local_ncols, local_nrows, local_ncols + 2, height, subgrid, tmp_subgrid);
     }
     double toc = wtime();
     // Output

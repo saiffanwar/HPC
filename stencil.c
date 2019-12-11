@@ -162,7 +162,7 @@ void halo_exchange(int rank) {
   MPI_Sendrecv(sendbuf, local_nrows, MPI_FLOAT, right, tag, recvbuf, local_nrows, MPI_FLOAT, left, tag, MPI_COMM_WORLD, &status);
   }
   for(ii=0; ii < local_nrows; ii++){
-    subgrid[(ii * (local_ncols + 2)] = recvbuf[ii];
+    subgrid[ii * (local_ncols + 2)] = recvbuf[ii];
   }
 }
 

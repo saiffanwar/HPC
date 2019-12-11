@@ -71,20 +71,11 @@ int main(int argc, char* argv[])
   // allocating local grid space including halo regions
 
   subgrid = (float*)malloc(sizeof(float)*(local_nrows) * (local_ncols + 2));
-  tmp_subgrid = (float*)malloc(sizeof(float)*(local_nrows+2) * (local_ncols + 2));
+  tmp_subgrid = (float*)malloc(sizeof(float)*(local_nrows) * (local_ncols + 2));
 
   sendbuf = (float*)malloc(sizeof(float) * local_nrows);
   recvbuf = (float*)malloc(sizeof(float) * local_nrows);
 
-  // //initialise subgrid
-  // for(jj=0; jj<local_ncols+2; jj++) {
-  //   for(ii=0;ii<local_nrows;ii++) {
-  //     if (jj > 0 && jj < (local_ncols + 1) && ii > 0 && ii < (local_nrows))
-	//        subgrid[ii*jj] = image[ii * (rank * local_ncols + 1)];
-  //     else if (jj == 0 || ii == 0 || jj == (local_ncols + 1) || ii == (local_nrows))
-	//        subgrid[ii * jj] = 0.0f;
-  //   }
-  // }
   for (i = 0; i < size; i++){
     sendcounts[i] = local_ncols * local_nrows;
   }

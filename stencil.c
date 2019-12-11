@@ -30,7 +30,7 @@ float *subgrid;       /* local temperature grid at time t     */
 float *tmp_subgrid;
 float *sendbuf;       /* buffer to hold values to send */
 float *recvbuf;       /* buffer to hold received values */
-float* image;
+
 
 int main(int argc, char* argv[])
 {
@@ -75,8 +75,8 @@ if (nx % size != 0){
 
 
   // // Allocate the image at following, of sizes including extra space for halo regions
-  // float* image = malloc(sizeof(float) * (width * height));
-  // float* tmp_image = malloc(sizeof(float) * (width * height));
+float* image = malloc(sizeof(float) * (width * height));
+float* tmp_image = malloc(sizeof(float) * (width * height));
   // // allocating local grid space including halo regions
 
   subgrid = (float*)malloc(sizeof(float)*(local_nrows) * (local_ncols + 2));
@@ -86,7 +86,7 @@ if (nx % size != 0){
   if(rank==MASTER){
     //init full image
     image = malloc(sizeof(float) * width * height);
-    init_image(nx, ny, width, height, image);
+    init_image(nx, ny, width, height, image, tmp_image);
   }
 
   sendbuf = (float*)malloc(sizeof(float) * local_nrows);

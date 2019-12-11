@@ -30,9 +30,6 @@ float *subgrid;       /* local temperature grid at time t     */
 float *tmp_subgrid;
 float *sendbuf;       /* buffer to hold values to send */
 float *recvbuf;       /* buffer to hold received values */
-int *displs;
-int *sendcounts;
-int *sub_start;
 
 int main(int argc, char* argv[])
 {
@@ -40,7 +37,6 @@ int main(int argc, char* argv[])
   MPI_Init(&argc, &argv);
   MPI_Comm_size(MPI_COMM_WORLD, &size);
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
- // printf("%d\n", rank);
   int nx = atoi(argv[1]);
   int ny = atoi(argv[2]);
   int niters = atoi(argv[3]);
@@ -53,8 +49,8 @@ int main(int argc, char* argv[])
   right = (rank + 1) % size;
 
   local_ncols = nx/size;
-
-  if (nx % size != 0){
+  
+if (nx % size != 0){
     if (rank == size -1){
       local_ncols += nx % size;
     }
@@ -64,6 +60,10 @@ int main(int argc, char* argv[])
     MPI_Abort(MPI_COMM_WORLD, EXIT_FAILURE);
   }
   local_nrows = height;
+
+    int *sendcounts = malloc(sizeof(int)*size);
+    int *displs = malloc(sizeof(int)*size);
+
 
   // Allocate the image at following, of sizes including extra space for halo regions
   float* image = malloc(sizeof(float) * (width * height));
@@ -85,17 +85,25 @@ int main(int argc, char* argv[])
 	//        subgrid[ii * jj] = 0.0f;
   //   }
   // }
-  for (i = 0; i < size; i++){
-    sendcounts[i] = local_ncols * local_nrows;
-  }
-  for (i = 0; i < size; i++){
-    displs[i] = rank * local_ncols + 1;
-  }
-  for (i = 0; i < size; i++){
-    sub_start[i] = rank * local_ncols + 1;
-  }
+  //
+  if(rank==0){
 
-  MPI_Scatterv(&image, sendcounts, displs, MPI_FLOAT, &subgrid[local_nrows], local_nrows * local_ncols, MPI_FLOAT, 0, MPI_COMM_WORLD);
+   for (int i = 0; i < size; i++){
+	sendcounts[i] = local_ncols * local_nrows;
+	if (nx % size != 0){
+	if (i==size-1){
+	sendcounts[i] = (local_ncols + nx%size) * local_nrows;
+}}	
+}
+ for (int i=0; i < size;i++){
+  printf("%d, %d, %d\n", i, local_nrows, local_ncols);
+  displs[i] = i * local_ncols * local_nrows + local_nrows;
+  printf("%d, %d\n", displs[i], sendcounts[i]);
+  }
+}
+
+  MPI_Scatterv(&image, sendcounts, displs, MPI_FLOAT, &subgrid+local_nrows, local_nrows * local_ncols, MPI_FLOAT, 0, MPI_COMM_WORLD);
+        printf("%s", "hello");
 
 
 //if(rank == 1) {  for(int x = 0; x < local_nrows+1; x++){

@@ -62,6 +62,9 @@ int main(int argc, char* argv[])
   }
   local_nrows = ny;
 
+  // Allocate the image at following, of sizes including extra space for halo regions
+  float* image = malloc(sizeof(float) * (width * height));
+  float* tmp_image = malloc(sizeof(float) * (width * height));
   // allocating local grid space including halo regions
 
   subgrid = (float*)malloc(sizeof(float)*(local_nrows+2) * (local_ncols + 2));
@@ -89,9 +92,6 @@ int main(int argc, char* argv[])
   // Initiliase problem dimensions from command line arguments
 
 
-  // Allocate the image at following, of sizes including extra space for halo regions
-  float* image = malloc(sizeof(float) * (width * height));
-  float* tmp_image = malloc(sizeof(float) * (width * height));
 
 
   // Set the input image

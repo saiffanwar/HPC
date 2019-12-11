@@ -74,10 +74,10 @@ int main(int argc, char* argv[])
   recvbuf = (float*)malloc(sizeof(float) * local_nrows);
 
   //initialise subgrid
-  for(ii=0;ii<local_nrows+2;ii++) {
+  for(ii=0;ii<local_nrows;ii++) {
     for(jj=0; jj<local_ncols+2; jj++) {
       if (jj > 0 && jj < (local_ncols + 1) && ii > 0 && ii < (local_nrows))
-	       subgrid[ii*jj] = image[rank * jj * ii];
+	       subgrid[ii*jj] = image[width * ii + jj];
       else if (jj == 0 || ii == 0 || jj == (local_ncols + 1) || ii == (local_nrows + 1))
 	       subgrid[ii * jj] = 0.0f;
     }

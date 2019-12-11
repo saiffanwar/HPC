@@ -30,6 +30,7 @@ float *subgrid;       /* local temperature grid at time t     */
 float *tmp_subgrid;
 float *sendbuf;       /* buffer to hold values to send */
 float *recvbuf;       /* buffer to hold received values */
+float* image;
 
 int main(int argc, char* argv[])
 {

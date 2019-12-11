@@ -67,7 +67,7 @@ int main(int argc, char* argv[])
   float* tmp_image = malloc(sizeof(float) * (width * height));
   // allocating local grid space including halo regions
 
-  subgrid = (float*)malloc(sizeof(float)*(local_nrows+2) * (local_ncols + 2));
+  subgrid = (float*)malloc(sizeof(float)*(local_nrows) * (local_ncols + 2));
   tmp_subgrid = (float*)malloc(sizeof(float)*(local_nrows+2) * (local_ncols + 2));
 
   sendbuf = (float*)malloc(sizeof(float) * local_nrows);
@@ -78,10 +78,15 @@ int main(int argc, char* argv[])
     for(ii=0;ii<local_nrows;ii++) {
       if (jj > 0 && jj < (local_ncols + 1) && ii > 0 && ii < (local_nrows))
 	       subgrid[ii*jj] = image[ii * (rank * local_ncols + 1)];
-      else if (jj == 0 || ii == 0 || jj == (local_ncols + 1) || ii == (local_nrows + 1))
+      else if (jj == 0 || ii == 0 || jj == (local_ncols + 1) || ii == (local_nrows))
 	       subgrid[ii * jj] = 0.0f;
     }
   }
+
+//if(rank == 0) {  for(int x = 0; x < local_ncols*local_nrows; x++){
+      printf("%d ", image[0]);
+//      //      }}
+//      //printf("%d", local_ncols);
 
   // Check usage
   if (argc != 4) {

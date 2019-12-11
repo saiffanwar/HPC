@@ -24,23 +24,26 @@
 # Registers:
 
 # File marks:
-'0  165  11  ~/stencil.c
-'1  80  15  ~/stencil.c
-'2  85  2  ~/stencil.c
-'3  158  2  ~/stencil.c
-'4  124  77  ~/stencil.c
-'5  30  18  ~/stencil.c
-'6  41  22  ~/stencil.c
-'7  1  0  ~/stecil.c
-'8  57  13  ~/stencil.c
-'9  60  2  ~/stencil.c
+'0  87  24  ~/stencil.c
+'1  70  52  ~/stencil.c
+'2  81  81  ~/stencil.c
+'3  170  11  ~/stencil.c
+'4  80  15  ~/stencil.c
+'5  90  2  ~/stencil.c
+'6  163  2  ~/stencil.c
+'7  129  77  ~/stencil.c
+'8  30  18  ~/stencil.c
+'9  41  22  ~/stencil.c
 
 # Jumplist (newest first):
--'  165  11  ~/stencil.c
+-'  87  24  ~/stencil.c
+-'  70  2  ~/stencil.c
+-'  81  6  ~/stencil.c
+-'  170  4  ~/stencil.c
 -'  80  8  ~/stencil.c
--'  85  0  ~/stencil.c
--'  158  2  ~/stencil.c
--'  124  6  ~/stencil.c
+-'  90  0  ~/stencil.c
+-'  163  2  ~/stencil.c
+-'  129  6  ~/stencil.c
 -'  30  0  ~/stencil.c
 -'  41  2  ~/stencil.c
 -'  57  4  ~/stencil.c
@@ -60,14 +63,14 @@
 -'  10  20  ~/1024.job
 -'  1  0  ~/1024.job
 -'  2  27  ~/Makefile
--'  166  0  ~/stencil.c
+-'  171  0  ~/stencil.c
 -'  48  4  ~/stencil.c
--'  147  2  ~/stencil.c
+-'  152  2  ~/stencil.c
 -'  65  0  ~/stencil.c
 -'  64  2  ~/stencil.c
 -'  69  4  ~/stencil.c
--'  111  12  ~/stencil.c
--'  160  0  ~/stencil.c
+-'  116  12  ~/stencil.c
+-'  165  0  ~/stencil.c
 -'  58  2  ~/stencil.c
 -'  68  77  ~/stencil.c
 -'  56  24  ~/stencil.c
@@ -75,7 +78,7 @@
 -'  67  0  ~/stencil.c
 -'  66  0  ~/stencil.c
 -'  36  2  ~/stencil.c
--'  136  2  ~/stencil.c
+-'  141  2  ~/stencil.c
 -'  1  0  ~/Makefile
 -'  35  2  ~/stencil.c
 -'  2  27  ~/Makefile
@@ -131,23 +134,20 @@
 -'  2  27  ~/Makefile
 -'  10  20  ~/8000.job
 -'  1  0  ~/8000.job
--'  10  20  ~/4096.job
--'  1  0  ~/4096.job
--'  10  20  ~/1024.job
 
 # History of marks within files (newest to oldest):
 
 > ~/stencil.c
-	"	165	11
-	^	165	12
-	.	165	12
-	+	147	0
+	"	87	24
+	^	87	25
+	.	87	20
+	+	152	0
 	+	36	20
 	+	37	24
 	+	36	60
 	+	37	64
 	+	36	60
-	+	136	21
+	+	141	21
 	+	37	64
 	+	36	60
 	+	58	2
@@ -171,11 +171,11 @@
 	+	68	75
 	+	69	0
 	+	65	14
-	+	159	39
-	+	97	33
-	+	98	37
-	+	111	41
-	+	146	24
+	+	164	39
+	+	102	33
+	+	103	37
+	+	116	41
+	+	151	24
 	+	64	1
 	+	65	1
 	+	68	32
@@ -206,9 +206,14 @@
 	+	57	13
 	+	41	22
 	+	30	18
-	+	124	78
+	+	129	78
 	+	80	16
-	+	165	12
+	+	170	12
+	+	89	8
+	+	87	0
+	+	81	82
+	+	70	53
+	+	87	20
 
 > ~/stecil.c
 	"	1	0

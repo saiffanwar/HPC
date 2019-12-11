@@ -27,7 +27,7 @@ int local_nrows;       /* number of rows apportioned to this rank */
 int local_ncols;       /* number of columns apportioned to this rank */
 int remote_ncols;      /* number of columns apportioned to a remote rank */
 float *subgrid;       /* local temperature grid at time t     */
-float *tmp_subgrid
+float *tmp_subgrid;
 float *sendbuf;       /* buffer to hold values to send */
 float *recvbuf;       /* buffer to hold received values */
 
@@ -121,7 +121,7 @@ int main(int argc, char* argv[])
       halo_exchange(rank);
       stencil(local_ncols, local_nrows, local_ncols + 2, height, subgrid, tmp_subgrid);
       halo_exchange(rank);
-      stencil(local_ncols, local_nrows, local_ncols + 2, height, subgrid, tmp_subgrid);
+      stencil(local_ncols, local_nrows, local_ncols + 2, height, tmp_subgrid, subgrid);
     }
     double toc = wtime();
     // Output

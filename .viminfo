@@ -24,19 +24,20 @@
 # Registers:
 
 # File marks:
-'0  80  15  ~/stencil.c
-'1  85  2  ~/stencil.c
-'2  158  2  ~/stencil.c
-'3  124  77  ~/stencil.c
-'4  30  18  ~/stencil.c
-'5  41  22  ~/stencil.c
-'6  1  0  ~/stecil.c
-'7  57  13  ~/stencil.c
-'8  60  2  ~/stencil.c
-'9  40  38  ~/stencil.c
+'0  165  11  ~/stencil.c
+'1  80  15  ~/stencil.c
+'2  85  2  ~/stencil.c
+'3  158  2  ~/stencil.c
+'4  124  77  ~/stencil.c
+'5  30  18  ~/stencil.c
+'6  41  22  ~/stencil.c
+'7  1  0  ~/stecil.c
+'8  57  13  ~/stencil.c
+'9  60  2  ~/stencil.c
 
 # Jumplist (newest first):
--'  80  15  ~/stencil.c
+-'  165  11  ~/stencil.c
+-'  80  8  ~/stencil.c
 -'  85  0  ~/stencil.c
 -'  158  2  ~/stencil.c
 -'  124  6  ~/stencil.c
@@ -137,9 +138,9 @@
 # History of marks within files (newest to oldest):
 
 > ~/stencil.c
-	"	80	15
-	^	80	16
-	.	80	16
+	"	165	11
+	^	165	12
+	.	165	12
 	+	147	0
 	+	36	20
 	+	37	24
@@ -207,6 +208,7 @@
 	+	30	18
 	+	124	78
 	+	80	16
+	+	165	12
 
 > ~/stecil.c
 	"	1	0

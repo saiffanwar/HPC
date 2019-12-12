@@ -61,12 +61,12 @@ int main(int argc, char* argv[])
   if(rank==0) left = MPI_PROC_NULL;
   if(rank==size-1) right = MPI_PROC_NULL;
 
-  local_nrows = calc_ny_from_rank(ny, rank, size);
-  local_ncols = nx;
+  local_ncols = calc_ny_from_rank(ny, rank, size);
+  local_nrows = nx;
 
 
-  // check if too many is
-  if (local_nrows < 1) {
+  // check if too many processes
+  if (local_ncols < 1) {
     fprintf(stderr,"Error: too many processes:- local_ncols < 1\n");
     MPI_Abort(MPI_COMM_WORLD, EXIT_FAILURE);
   }
@@ -90,10 +90,10 @@ int main(int argc, char* argv[])
   for(int i = 0; i<size; i++){
     var_nx = calc_ny_from_rank(ny, i, size);
     sendcounts[i] = (local_ncols+2) * var_nx;
-    displs[i] = i * (local_ncols+2) * local_nrows;
+    displs[i] = i * (local_nrows+2) * local_ncols;
   }
 
-  MPI_Scatterv(image+width, sendcounts, displs, MPI_FLOAT, subgrid + (local_ncols+2), (local_ncols+2)*local_nrows, MPI_FLOAT, 0, MPI_COMM_WORLD);
+  MPI_Scatterv(image+height, sendcounts, displs, MPI_FLOAT, subgrid + (local_nrows+2), (local_ncols)*(local_nrows+2), MPI_FLOAT, 0, MPI_COMM_WORLD);
 
 
     // Call the stencil kernel
@@ -106,7 +106,7 @@ int main(int argc, char* argv[])
     double time;
 
 
-    MPI_Gatherv(subgrid+(local_ncols+2), (local_ncols+2)*local_nrows, MPI_FLOAT, image+width, sendcounts, displs, MPI_FLOAT, 0, MPI_COMM_WORLD);
+    MPI_Gatherv(subgrid+(local_nrows+2), (local_nrows+2)*local_ncols, MPI_FLOAT, image+height, sendcounts, displs, MPI_FLOAT, 0, MPI_COMM_WORLD);
     MPI_Reduce(&toc, &time, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
 
     // maxTime = toc-tic;
@@ -131,18 +131,18 @@ int main(int argc, char* argv[])
 void stencil(const int nx, const int ny, const int width, const int height, const int right, const int left, float* restrict image, float* restrict tmp_image){
     MPI_Status status;
     //first send to left and recieve on the right
-    MPI_Sendrecv(image+width, width, MPI_FLOAT, left, 6,
+    MPI_Sendrecv(image+height, width, MPI_FLOAT, left, 6,
 		 image+((height-1)*width), width, MPI_FLOAT, right, 6,
 		 MPI_COMM_WORLD, &status);
 
     //then send on the right and recieve on the left
-    MPI_Sendrecv(image+((height-2)*width), width, MPI_FLOAT, right, 9,
-		 image, width, MPI_FLOAT, left, 9,
+    MPI_Sendrecv(image+((width-2)*height), height, MPI_FLOAT, right, 9,
+		 image, height, MPI_FLOAT, left, 9,
 		 MPI_COMM_WORLD, &status);
 
     for (int j = 1; j < ny + 1; ++j) {
       for (int i = 1; i < nx + 1; ++i) {
-        tmp_image[i+j*width]= 0.6f*image[i+j*width] + 0.1f*(image[i+(j-1)*width] + image[i+(j+1)*width] + image[(i-1)+j*width] + image[(i+1)+j*width]);
+        tmp_image[i+j*height]= 0.6f*image[i+j*height] + 0.1f*(image[i+(j-1)*height] + image[i+(j+1)*height] + image[(i-1)+j*height] + image[(i+1)+j*height]);
       }
     }
 }

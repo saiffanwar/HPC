@@ -88,7 +88,8 @@ int main(int argc, char* argv[])
   int sendcounts[size];
   int displs[size];
   for(int i = 0; i<size; i++){
-    var_nx = calc_ny_from_rank(ny, i, size);
+    var_nx = calc_ny_from_rank(nx, i, size);
+    printf("%d", var_nx)
     sendcounts[i] = (local_ncols+2) * var_nx;
     displs[i] = i * (local_nrows+2) * local_ncols;
   }
@@ -219,15 +220,15 @@ gettimeofday(&tv, NULL);
 return tv.tv_sec + tv.tv_usec * 1e-6;
 }
 
-int calc_ny_from_rank(int ny, int rank, int size)
+int calc_ny_from_rank(int nx, int rank, int size)
 {
-  int local_nrows;
+  int local_ncols;
 
-  local_nrows = ny / size;       /* integer division */
+  local_ncols = nx / size;       /* integer division */
   if ((ny % size) != 0) {  /* if there is a remainder */
     if (rank == size - 1)
-      local_nrows += ny % size;  /* add remainder to last rank */
+      local_ncols += nx % size;  /* add remainder to last rank */
   }
 
-  return local_nrows;
+  return local_ncols;
 }

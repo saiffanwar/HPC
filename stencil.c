@@ -12,7 +12,8 @@ void init_image(const int nx, const int ny, const int width, const int height,
                 float* image, float* tmp_image);
 void output_image(const char* file_name, const int nx, const int ny,
                   const int width, const int height, float* image);
-void halo_exchange(int rank);
+void halo_exchange(const int width, const int height, const int right, const int left, float* restrict image, float* restrict tmp_image);
+
 double wtime(void);
 
 

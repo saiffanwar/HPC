@@ -124,7 +124,7 @@ int main(int argc, char* argv[])
     double toc = wtime() - tic;
     double time;
 
-    MPI_Gatherv(subgrid + local_width, local_widtht*local_nrows, MPI_FLOAT,image+width, sendcounts, displs, MPI_FLOAT, 0, MPI_COMM_WORLD);
+    MPI_Gatherv(subgrid + local_width, local_width*local_nrows, MPI_FLOAT,image+width, sendcounts, displs, MPI_FLOAT, 0, MPI_COMM_WORLD);
     MPI_Reduce(&toc, &time, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
 
     if (rank == MASTER){

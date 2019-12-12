@@ -65,9 +65,6 @@ int main(int argc, char* argv[])
   local_nrows = calc_ny_from_rank(ny, rank, size);
   local_ncols = nx;
 
-  int local_height=local_nrows+2;
-  int local_width = local_ncols+2;
-
   // check if too many is
   if (local_nrows < 1) {
     fprintf(stderr,"Error: too many processes:- local_ncols < 1\n");
@@ -75,9 +72,7 @@ int main(int argc, char* argv[])
   }
 
 
-  // // Allocate the image at following, of sizes including extra space for halo regions
-
-
+  // Allocate the image at following, of sizes including extra space for halo regions
   subgrid = (float*)malloc(sizeof(float) * local_height * local_width);
   tmp_subgrid = (float*)malloc(sizeof(float) * local_height * local_width);
 
@@ -136,13 +131,13 @@ void stencil(const int nx, const int ny, const int width, const int height, cons
 
 void halo_exchange(const int nx, const int ny, const int width, const int height, const int right, const int left, float* image, float* tmp_image) {
   MPI_Status status;
-  //halo exchange
-   //send left, receive right
+ //halo exchange
+ //first send on the left and recieve on the right
   MPI_Sendrecv(image+width, width, MPI_FLOAT, left, 6,
    image+((height-1)*width), width, MPI_FLOAT, right, 6,
    MPI_COMM_WORLD, &status);
 
-  //send right, receive left
+  //send on the right and receive left
   MPI_Sendrecv(image+((height-2)*width), width, MPI_FLOAT, right, 9,
    image, width, MPI_FLOAT, left, 9,
    MPI_COMM_WORLD, &status);

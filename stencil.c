@@ -183,7 +183,7 @@ void halo_exchange(const int width, const int height, const int right, const int
 
 // Create the input image
 void init_image(const int nx, const int ny, const int width, const int height,
-                float* image, float* tmp_image)
+                float* image)
 {
   // Zero everything
   for (int j = 0; j < ny + 2; ++j) {

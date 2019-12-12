@@ -106,12 +106,19 @@ int main(int argc, char* argv[])
 
 
     MPI_Gatherv(subgrid+(local_ncols+2), (local_ncols+2)*local_nrows, MPI_FLOAT, image+width, sendcounts, displs, MPI_FLOAT, 0, MPI_COMM_WORLD);
-    MPI_Reduce(&toc, &time, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
+    // MPI_Reduce(&toc, &time, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
+
+    maxTime = toc-tic;
+    double rTime = 0;
+    for (int r = 1; r < size; r++) {
+        MPI_Recv(&rTime, BUFSIZ, MPI_DOUBLE, r, tag, MPI_COMM_WORLD, &status);
+        if (rTime > maxTime) maxTime = rTime;
+    }
 
     if (rank == MASTER){
     // Output
     printf("------------------------------------\n");
-    printf(" runtime: %lf s\n", toc - tic);
+    printf(" runtime: %lf s\n", maxTime);
     printf("------------------------------------\n");
 
     output_image(OUTPUT_FILE, nx, ny, width, height, image);

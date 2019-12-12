@@ -102,8 +102,8 @@ int main(int argc, char* argv[])
       stencil(local_ncols, local_nrows, (local_ncols+2), (local_nrows+2), right, left, subgrid, tmp_subgrid);
       stencil(local_ncols, local_nrows, (local_ncols+2), (local_nrows+2), right, left, tmp_subgrid, subgrid);
     }
-    double toc = wtime() - tic;
-    double time;
+    double toc = wtime();
+
 
     MPI_Gatherv(subgrid+(local_ncols+2), (local_ncols+2)*local_nrows, MPI_FLOAT, image+width, sendcounts, displs, MPI_FLOAT, 0, MPI_COMM_WORLD);
     MPI_Reduce(&toc, &time, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
@@ -111,7 +111,7 @@ int main(int argc, char* argv[])
     if (rank == MASTER){
     // Output
     printf("------------------------------------\n");
-    printf(" runtime: %lf s\n", time);
+    printf(" runtime: %lf s\n", toc - tic);
     printf("------------------------------------\n");
 
     output_image(OUTPUT_FILE, nx, ny, width, height, image);

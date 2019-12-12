@@ -28,8 +28,8 @@ int local_ncols;       /* number of columns apportioned to this rank */
 int remote_ncols;      /* number of columns apportioned to a remote rank */
 float *subgrid;       /* local temperature grid at time t     */
 float *tmp_subgrid;
-float *sendbuf;       /* buffer to hold values to send */
-float *recvbuf;       /* buffer to hold received values */
+// float *sendbuf;       /* buffer to hold values to send */
+// float *recvbuf;       /* buffer to hold received values */
 
 
 int main(int argc, char* argv[])
@@ -48,8 +48,7 @@ int main(int argc, char* argv[])
   int nx = atoi(argv[1]);
   int ny = atoi(argv[2]);
   int niters = atoi(argv[3]);
-  // we pad the outer edge of the image to avoid out of range address issues in
-  // stencil
+
   int width = nx + 2;
   int height = ny + 2;
 
@@ -89,8 +88,8 @@ float* tmp_image = malloc(sizeof(float) * (width * height));
     init_image(nx, ny, width, height, image, tmp_image);
   }
 
-  sendbuf = (float*)malloc(sizeof(float) * local_nrows);
-  recvbuf = (float*)malloc(sizeof(float) * local_nrows);
+  // sendbuf = (float*)malloc(sizeof(float) * local_nrows);
+  // recvbuf = (float*)malloc(sizeof(float) * local_nrows);
 
   int sendcounts[size];
   int displs[size];
@@ -168,21 +167,31 @@ void stencil(const int nx, const int ny, const int width, const int height,
 }
 
 void halo_exchange(int rank) {
-  for(ii=0; ii < local_nrows; ii++) {
-    sendbuf[ii] = subgrid[ii * (local_ncols + 2) + 1];
-  MPI_Sendrecv(sendbuf, local_nrows, MPI_FLOAT, left, tag, recvbuf, local_nrows, MPI_FLOAT, right, tag, MPI_COMM_WORLD, &status);
-  }
-  for(ii=0; ii < local_nrows; ii++){
-    subgrid[ii * (local_ncols + 2) + local_ncols + 1] = recvbuf[ii];
-  }
-  /* send to the right, receive from left */
-  for(ii=0; ii < local_nrows; ii++){
-    sendbuf[ii] = subgrid[ii * (local_ncols + 2) + local_ncols];
-  MPI_Sendrecv(sendbuf, local_nrows, MPI_FLOAT, right, tag, recvbuf, local_nrows, MPI_FLOAT, left, tag, MPI_COMM_WORLD, &status);
-  }
-  for(ii=0; ii < local_nrows; ii++){
-    subgrid[ii * (local_ncols + 2)] = recvbuf[ii];
-  }
+  MPI_Status status;
+  // for(ii=0; ii < local_nrows; ii++) {
+  //   sendbuf[ii] = subgrid[ii * (local_ncols + 2) + 1];
+  // MPI_Sendrecv(sendbuf, local_nrows, MPI_FLOAT, left, tag, recvbuf, local_nrows, MPI_FLOAT, right, tag, MPI_COMM_WORLD, &status);
+  // }
+  // for(ii=0; ii < local_nrows; ii++){
+  //   subgrid[ii * (local_ncols + 2) + local_ncols + 1] = recvbuf[ii];
+  // }
+  // /* send to the right, receive from left */
+  // for(ii=0; ii < local_nrows; ii++){
+  //   sendbuf[ii] = subgrid[ii * (local_ncols + 2) + local_ncols];
+  // MPI_Sendrecv(sendbuf, local_nrows, MPI_FLOAT, right, tag, recvbuf, local_nrows, MPI_FLOAT, left, tag, MPI_COMM_WORLD, &status);
+  // }
+  // for(ii=0; ii < local_nrows; ii++){
+  //   subgrid[ii * (local_ncols + 2)] = recvbuf[ii];
+  //}
+  MPI_Sendrecv(image+width, width, MPI_FLOAT, left, 4,
+   image+((height-1)*width), width, MPI_FLOAT, right, 4,
+   MPI_COMM_WORLD, &status);
+
+  //send right, receive left
+  MPI_Sendrecv(image+((height-2)*width), width, MPI_FLOAT, right, 20,
+   image, width, MPI_FLOAT, left, 20,
+   MPI_COMM_WORLD, &status);
+
 }
 
 // Create the input image

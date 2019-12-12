@@ -35,6 +35,7 @@ int main(int argc, char* argv[])
   float *subgrid;       /* local temperature grid at time t     */
   float *tmp_subgrid;
   float* image;
+  int var_nx;
   // float *sendbuf;       /* buffer to hold values to send */
   // float *recvbuf;       /* buffer to hold received values */
 
@@ -100,13 +101,9 @@ int main(int argc, char* argv[])
   int sendcounts[size];
   int displs[size];
   for (int i = 0; i < size; i++){
-	sendcounts[i] = local_ncols * local_nrows;
-	 if (nx % size != 0){
-	   if (i==size-1){
-	      sendcounts[i] = (local_ncols + nx%size) * local_nrows;
-      }
-    }
-  displs[i] = i * local_ncols+2 * local_nrows;
+  var_nx = calc_ny_from_rank(nx, i, size);
+  sendcounts[i] = (local_ncols +2) * var_nx;
+  displs[i] = i * (local_ncols+2) * (local_nrows-2);
   }
 
   // MPI_Scatterv(&image, sendcounts, displs, MPI_FLOAT, &subgrid+local_nrows, local_nrows * local_ncols, MPI_FLOAT, 0, MPI_COMM_WORLD);

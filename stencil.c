@@ -102,7 +102,9 @@ int main(int argc, char* argv[])
     // Call the stencil kernel
     double tic = wtime();
     for (int t = 0; t < niters; ++t) {
+      halo_exchange(local_ncols, local_nrows, local_width, local_height, right, left, subgrid, tmp_subgrid);
       stencil(local_ncols, local_nrows, local_width, local_height, right, left, subgrid, tmp_subgrid);
+      halo_exchange(local_ncols, local_nrows, local_width, local_height, right, left, tmp_subgrid, subgrid);
       stencil(local_ncols, local_nrows, local_width, local_height, right, left, tmp_subgrid, subgrid);
     }
     double toc = wtime() - tic;
@@ -124,18 +126,7 @@ int main(int argc, char* argv[])
 }
 
 void stencil(const int nx, const int ny, const int width, const int height, const int right, const int left, float* restrict image, float* restrict tmp_image){
-    MPI_Status status;
-    //halo exchange
-     //send left, receive right
-    MPI_Sendrecv(image+width, width, MPI_FLOAT, left, 6,
-		 image+((height-1)*width), width, MPI_FLOAT, right, 6,
-		 MPI_COMM_WORLD, &status);
-
-  //send right, receive left
-    MPI_Sendrecv(image+((height-2)*width), width, MPI_FLOAT, right, 9,
-		 image, width, MPI_FLOAT, left, 9,
-		 MPI_COMM_WORLD, &status);
-    #pragma omp parallel for
+    #pragma omp parallel for shared(image, tmp_image, nx, ny) schedule(dynamic, 10)
     for (int j = 1; j < ny + 1; ++j) {
       for (int i = 1; i < nx + 1; ++i) {
         tmp_image[i+j*width]= 0.6f*image[i+j*width] + 0.1f*(image[i+(j-1)*width] + image[i+(j+1)*width] + image[(i-1)+j*width] + image[(i+1)+j*width]);
@@ -143,33 +134,20 @@ void stencil(const int nx, const int ny, const int width, const int height, cons
     }
 }
 
-// void halo_exchange(const int width, const int height, const int right, const int left, float* restrict image, float* restrict tmp_image) {
-//   MPI_Status status;
-//   // for(ii=0; ii < local_nrows; ii++) {
-//   //   sendbuf[ii] = subgrid[ii * (local_ncols + 2) + 1];
-//   // MPI_Sendrecv(sendbuf, local_nrows, MPI_FLOAT, left, tag, recvbuf, local_nrows, MPI_FLOAT, right, tag, MPI_COMM_WORLD, &status);
-//   // }
-//   // for(ii=0; ii < local_nrows; ii++){
-//   //   subgrid[ii * (local_ncols + 2) + local_ncols + 1] = recvbuf[ii];
-//   // }
-//   // /* send to the right, receive from left */
-//   // for(ii=0; ii < local_nrows; ii++){
-//   //   sendbuf[ii] = subgrid[ii * (local_ncols + 2) + local_ncols];
-//   // MPI_Sendrecv(sendbuf, local_nrows, MPI_FLOAT, right, tag, recvbuf, local_nrows, MPI_FLOAT, left, tag, MPI_COMM_WORLD, &status);
-//   // }
-//   // for(ii=0; ii < local_nrows; ii++){
-//   //   subgrid[ii * (local_ncols + 2)] = recvbuf[ii];
-//   //}
-//   MPI_Sendrecv(image+width, width, MPI_FLOAT, left, 4,
-//    image+((height-1)*width), width, MPI_FLOAT, right, 4,
-//    MPI_COMM_WORLD, &status);
-//
-//   //send right, receive left
-//   MPI_Sendrecv(image+((height-2)*width), width, MPI_FLOAT, right, 20,
-//    image, width, MPI_FLOAT, left, 20,
-//    MPI_COMM_WORLD, &status);
-//
-// }
+void halo_exchange(const int width, const int height, const int right, const int left, float* restrict image, float* restrict tmp_image) {
+  MPI_Status status;
+  //halo exchange
+   //send left, receive right
+  MPI_Sendrecv(image+width, width, MPI_FLOAT, left, 6,
+   image+((height-1)*width), width, MPI_FLOAT, right, 6,
+   MPI_COMM_WORLD, &status);
+
+  //send right, receive left
+  MPI_Sendrecv(image+((height-2)*width), width, MPI_FLOAT, right, 9,
+   image, width, MPI_FLOAT, left, 9,
+   MPI_COMM_WORLD, &status);
+
+ }
 
 // Create the input image
 void init_image(const int nx, const int ny, const int width, const int height,

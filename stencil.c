@@ -117,9 +117,9 @@ int main(int argc, char* argv[])
     double tic = wtime();
     for (int t = 0; t < niters; ++t) {
       halo_exchange(local_height, local_nrows, right, left, subgrid, tmp_subgrid);
-      stencil(local_ncols, local_nrows, local_width, local_height, right, left, subgrid, tmp_subgrid);
+      stencil(local_ncols, local_nrows, local_width, local_height, subgrid, tmp_subgrid);
       halo_exchange(local_height, local_nrows, right, left, subgrid, tmp_subgrid);
-      stencil(local_ncols, local_nrows, local_width, local_height, right, left, tmp_subgrid, subgrid);
+      stencil(local_ncols, local_nrows, local_width, local_height, tmp_subgrid, subgrid);
     }
     double toc = wtime() - tic;
     double time;

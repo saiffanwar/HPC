@@ -9,12 +9,9 @@
 #define OUTPUT_FILE "stencil.pgm"
 #define MASTER 0
 
-void stencil(const int nx, const int ny, const int width, const int height, const int right, const int left,
-             float* image, float* tmp_image);
-void init_image(const int nx, const int ny, const int width, const int height,
-                float* image);
-void output_image(const char* file_name, const int nx, const int ny,
-                  const int width, const int height, float* image);
+void stencil(const int nx, const int ny, bfloat* image, float* tmp_image);
+void init_image(const int nx, const int ny, const int width, const int height, float* image);
+void output_image(const char* file_name, const int nx, const int ny, const int width, const int height, float* image);
 void halo_exchange(const int nx, const int ny, const int width, const int height, const int right, const int left, float* image, float* tmp_image);
 int calc_ny_from_rank(int ny, int rank, int size);
 
@@ -75,9 +72,7 @@ int main(int argc, char* argv[])
   }
 
 
-  // // Allocate the image at following, of sizes including extra space for halo regions
-
-
+  // Allocate the image at following, of sizes including extra space for halo regions
   subgrid = (float*)malloc(sizeof(float) * local_height * local_width);
   tmp_subgrid = (float*)malloc(sizeof(float) * local_height * local_width);
 
@@ -103,9 +98,9 @@ int main(int argc, char* argv[])
     double tic = wtime();
     for (int t = 0; t < niters; ++t) {
       halo_exchange(local_ncols, local_nrows, local_width, local_height, right, left, subgrid, tmp_subgrid);
-      stencil(local_ncols, local_nrows, local_width, local_height, right, left, subgrid, tmp_subgrid);
+      stencil(local_ncols, local_nrows, subgrid, tmp_subgrid);
       halo_exchange(local_ncols, local_nrows, local_width, local_height, right, left, tmp_subgrid, subgrid);
-      stencil(local_ncols, local_nrows, local_width, local_height, right, left, tmp_subgrid, subgrid);
+      stencil(local_ncols, local_nrows, tmp_subgrid, subgrid);
     }
     double toc = wtime() - tic;
     double time;
@@ -125,7 +120,7 @@ int main(int argc, char* argv[])
   MPI_Finalize();
 }
 
-void stencil(const int nx, const int ny, const int width, const int height, const int right, const int left, float* restrict image, float* restrict tmp_image){
+void stencil(const int nx, const int ny, float* restrict image, float* restrict tmp_image){
     #pragma omp parallel for shared(image, tmp_image, nx, ny) schedule(dynamic, 10)
     for (int j = 1; j < ny + 1; ++j) {
       for (int i = 1; i < nx + 1; ++i) {
@@ -137,12 +132,12 @@ void stencil(const int nx, const int ny, const int width, const int height, cons
 void halo_exchange(const int nx, const int ny, const int width, const int height, const int right, const int left, float* image, float* tmp_image) {
   MPI_Status status;
   //halo exchange
-   //send left, receive right
+   //send on the left recieve on the right
   MPI_Sendrecv(image+width, width, MPI_FLOAT, left, 6,
    image+((height-1)*width), width, MPI_FLOAT, right, 6,
    MPI_COMM_WORLD, &status);
 
-  //send right, receive left
+  //send on the right and recieve on the left
   MPI_Sendrecv(image+((height-2)*width), width, MPI_FLOAT, right, 9,
    image, width, MPI_FLOAT, left, 9,
    MPI_COMM_WORLD, &status);

@@ -28,19 +28,20 @@
 	v
 
 # File marks:
-'0  42  22  ~/stencil.c
-'1  103  24  ~/stencil.c
-'2  129  0  ~/stencil.c
-'3  149  19  ~/stencil.c
-'4  104  0  ~/stencil.c
-'5  164  74  ~/stencil.c
-'6  1  0  ~/stencil.
-'7  5  15  ~/stencil.c
-'8  69  16  ~/stencil.c
-'9  61  0  ~/stencil.c
+'0  18  146  ~/stencil.c
+'1  42  22  ~/stencil.c
+'2  103  24  ~/stencil.c
+'3  129  0  ~/stencil.c
+'4  149  19  ~/stencil.c
+'5  104  0  ~/stencil.c
+'6  164  74  ~/stencil.c
+'7  1  0  ~/stencil.
+'8  5  15  ~/stencil.c
+'9  69  16  ~/stencil.c
 
 # Jumplist (newest first):
--'  42  22  ~/stencil.c
+-'  18  146  ~/stencil.c
+-'  42  2  ~/stencil.c
 -'  103  4  ~/stencil.c
 -'  129  5  ~/stencil.c
 -'  149  0  ~/stencil.c
@@ -141,10 +142,9 @@
 # History of marks within files (newest to oldest):
 
 > ~/stencil.c
-	"	42	22
-	^	42	23
-	.	42	22
-	+	103	35
+	"	18	146
+	^	18	147
+	.	18	146
 	+	103	65
 	+	103	31
 	+	102	51
@@ -244,6 +244,7 @@
 	+	42	45
 	+	42	45
 	+	42	22
+	+	18	146
 
 > ~/stencil.
 	"	1	0

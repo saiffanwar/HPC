@@ -64,8 +64,6 @@ int main(int argc, char* argv[])
   local_nrows = calc_ny_from_rank(ny, rank, size);
   local_ncols = nx;
 
-  int local_height=local_nrows+2;
-  int local_width = local_ncols+2;
 
   // check if too many is
   if (local_nrows < 1) {
@@ -77,8 +75,8 @@ int main(int argc, char* argv[])
   // // Allocate the image at following, of sizes including extra space for halo regions
 
 
-  subgrid = (float*)malloc(sizeof(float) * local_height * local_width);
-  tmp_subgrid = (float*)malloc(sizeof(float) * local_height * local_width);
+  subgrid = (float*)malloc(sizeof(float) * (local_nrows+2) * (local_ncols+2));
+  tmp_subgrid = (float*)malloc(sizeof(float) * (local_nrows+2) * (local_ncols+2));
 
   // Master
   if(rank==MASTER){
@@ -91,23 +89,23 @@ int main(int argc, char* argv[])
   int displs[size];
   for(int i = 0; i<size; i++){
     var_nx = calc_ny_from_rank(ny, i, size);
-    sendcounts[i] = local_width * var_nx;
-    displs[i] = i * local_width * local_nrows;
+    sendcounts[i] = (local_ncols+2) * var_nx;
+    displs[i] = i * (local_ncols+2) * local_nrows;
   }
 
-  MPI_Scatterv(image+width, sendcounts, displs, MPI_FLOAT, subgrid + local_width, local_width*local_nrows, MPI_FLOAT, 0, MPI_COMM_WORLD);
+  MPI_Scatterv(image+width, sendcounts, displs, MPI_FLOAT, subgrid + (local_ncols+2), (local_ncols+2)*local_nrows, MPI_FLOAT, 0, MPI_COMM_WORLD);
 
 
     // Call the stencil kernel
     double tic = wtime();
     for (int t = 0; t < niters; ++t) {
-      stencil(local_ncols, local_nrows, local_width, local_height, right, left, subgrid, tmp_subgrid);
-      stencil(local_ncols, local_nrows, local_width, local_height, right, left, tmp_subgrid, subgrid);
+      stencil(local_ncols, local_nrows, (local_ncols+2), (local_nrows+2), right, left, subgrid, tmp_subgrid);
+      stencil(local_ncols, local_nrows, (local_ncols+2), (local_nrows+2), right, left, tmp_subgrid, subgrid);
     }
     double toc = wtime() - tic;
     double time;
 
-    MPI_Gatherv(subgrid+local_width, local_width*local_nrows, MPI_FLOAT, image+width, sendcounts, displs, MPI_FLOAT, 0, MPI_COMM_WORLD);
+    MPI_Gatherv(subgrid+(local_ncols+2), (local_ncols+2)*local_nrows, MPI_FLOAT, image+width, sendcounts, displs, MPI_FLOAT, 0, MPI_COMM_WORLD);
     MPI_Reduce(&toc, &time, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
 
     if (rank == MASTER){

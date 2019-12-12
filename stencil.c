@@ -14,7 +14,7 @@ void init_image(const int nx, const int ny, const int width, const int height,
                 float* image);
 void output_image(const char* file_name, const int nx, const int ny,
                   const int width, const int height, float* image);
-void halo_exchange(const int width, const int height, const int right, const int left, float* restrict image, float* restrict tmp_image);
+// void halo_exchange(const int width, const int height, const int right, const int left, float* restrict image, float* restrict tmp_image);
 int calc_ny_from_rank(int ny, int rank, int size);
 
 double wtime(void);
@@ -156,38 +156,38 @@ MPI_Sendrecv(image+((height-2)*width), width, MPI_FLOAT, right, 20,
 
   for (int i = 1; i < nx + 1; ++i) {
     for (int j = 1; j < ny + 1; ++j) {
-      tmp_image[j + i * height] =  image[j+i* height] * 0.6f + image[j+ (i - 1) * height] * 0.1f + image[j+ (i + 1) * height] * 0.1f + image[j - 1 + i * height] * 0.1f + image[j + 1 + i * height] * 0.1f;
+      tmp_image[j + i * width] =  image[j+i* width] * 0.6f + image[j+ (i - 1) * width] * 0.1f + image[j+ (i + 1) * width] * 0.1f + image[j - 1 + i * width] * 0.1f + image[j + 1 + i * width] * 0.1f;
     }
   }
 }
 
-void halo_exchange(const int width, const int height, const int right, const int left, float* restrict image, float* restrict tmp_image) {
-  MPI_Status status;
-  // for(ii=0; ii < local_nrows; ii++) {
-  //   sendbuf[ii] = subgrid[ii * (local_ncols + 2) + 1];
-  // MPI_Sendrecv(sendbuf, local_nrows, MPI_FLOAT, left, tag, recvbuf, local_nrows, MPI_FLOAT, right, tag, MPI_COMM_WORLD, &status);
-  // }
-  // for(ii=0; ii < local_nrows; ii++){
-  //   subgrid[ii * (local_ncols + 2) + local_ncols + 1] = recvbuf[ii];
-  // }
-  // /* send to the right, receive from left */
-  // for(ii=0; ii < local_nrows; ii++){
-  //   sendbuf[ii] = subgrid[ii * (local_ncols + 2) + local_ncols];
-  // MPI_Sendrecv(sendbuf, local_nrows, MPI_FLOAT, right, tag, recvbuf, local_nrows, MPI_FLOAT, left, tag, MPI_COMM_WORLD, &status);
-  // }
-  // for(ii=0; ii < local_nrows; ii++){
-  //   subgrid[ii * (local_ncols + 2)] = recvbuf[ii];
-  //}
-  MPI_Sendrecv(image+width, width, MPI_FLOAT, left, 4,
-   image+((height-1)*width), width, MPI_FLOAT, right, 4,
-   MPI_COMM_WORLD, &status);
-
-  //send right, receive left
-  MPI_Sendrecv(image+((height-2)*width), width, MPI_FLOAT, right, 20,
-   image, width, MPI_FLOAT, left, 20,
-   MPI_COMM_WORLD, &status);
-
-}
+// void halo_exchange(const int width, const int height, const int right, const int left, float* restrict image, float* restrict tmp_image) {
+//   MPI_Status status;
+//   // for(ii=0; ii < local_nrows; ii++) {
+//   //   sendbuf[ii] = subgrid[ii * (local_ncols + 2) + 1];
+//   // MPI_Sendrecv(sendbuf, local_nrows, MPI_FLOAT, left, tag, recvbuf, local_nrows, MPI_FLOAT, right, tag, MPI_COMM_WORLD, &status);
+//   // }
+//   // for(ii=0; ii < local_nrows; ii++){
+//   //   subgrid[ii * (local_ncols + 2) + local_ncols + 1] = recvbuf[ii];
+//   // }
+//   // /* send to the right, receive from left */
+//   // for(ii=0; ii < local_nrows; ii++){
+//   //   sendbuf[ii] = subgrid[ii * (local_ncols + 2) + local_ncols];
+//   // MPI_Sendrecv(sendbuf, local_nrows, MPI_FLOAT, right, tag, recvbuf, local_nrows, MPI_FLOAT, left, tag, MPI_COMM_WORLD, &status);
+//   // }
+//   // for(ii=0; ii < local_nrows; ii++){
+//   //   subgrid[ii * (local_ncols + 2)] = recvbuf[ii];
+//   //}
+//   MPI_Sendrecv(image+width, width, MPI_FLOAT, left, 4,
+//    image+((height-1)*width), width, MPI_FLOAT, right, 4,
+//    MPI_COMM_WORLD, &status);
+//
+//   //send right, receive left
+//   MPI_Sendrecv(image+((height-2)*width), width, MPI_FLOAT, right, 20,
+//    image, width, MPI_FLOAT, left, 20,
+//    MPI_COMM_WORLD, &status);
+//
+// }
 
 // Create the input image
 void init_image(const int nx, const int ny, const int width, const int height,
@@ -209,7 +209,7 @@ void init_image(const int nx, const int ny, const int width, const int height,
         const int ilim = (ib + tile_size > nx) ? nx : ib + tile_size;
         for (int j = jb + 1; j < jlim + 1; ++j) {
           for (int i = ib + 1; i < ilim + 1; ++i) {
-            image[j + i * height] = 100.0f;
+            image[j + i * height] = 100.0;
           }
         }
       }
@@ -260,15 +260,15 @@ gettimeofday(&tv, NULL);
 return tv.tv_sec + tv.tv_usec * 1e-6;
 }
 
-int calc_ny_from_rank(int nx, int rank, int size)
+int calc_ny_from_rank(int ny, int rank, int size)
 {
-  int local_ncols;
+  int local_nrows;
 
-  local_ncols = nx / size;       /* integer division */
-  if ((nx % size) != 0) {  /* if there is a remainder */
+  local_nrows = ny / size;       /* integer division */
+  if ((ny % size) != 0) {  /* if there is a remainder */
     if (rank == size - 1)
-      local_ncols += nx % size;  /* add remainder to last rank */
+      local_nrows += ny % size;  /* add remainder to last rank */
   }
 
-  return local_ncols;
+  return local_nrows;
 }

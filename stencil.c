@@ -15,8 +15,7 @@ void output_image(const char* file_name, const int nx, const int ny,
 void halo_exchange(int rank);
 double wtime(void);
 
-int ii,jj;             /* row and column indices for the grid */
-int kk;                /* index for looping over ranks */
+
 int rank;              /* the rank of this process */
 int left;              /* the rank of the process to the left */
 int right;             /* the rank of the process to the right */
@@ -132,10 +131,10 @@ float* tmp_image = malloc(sizeof(float) * (width * height));
     // Call the stencil kernel
     double tic = wtime();
     for (int t = 0; t < niters; ++t) {
-      halo_exchange(rank);
-      stencil(local_ncols, local_nrows-2, local_ncols + 2, right, left, subgrid, tmp_subgrid);
-      halo_exchange(rank);
-      stencil(local_ncols, local_nrows-2, local_ncols + 2, right, left, tmp_subgrid, subgrid);
+      halo_exchange(local_ncols, local_nrows-2, local_ncols + 2, right, left, subgrid, tmp_subgrid);
+      stencil(local_ncols, local_nrows-2, local_ncols + 2, local_nrows, subgrid, tmp_subgrid);
+      halo_exchange(local_ncols, local_nrows-2, local_ncols + 2, right, left, subgrid, tmp_subgrid);
+      stencil(local_ncols, local_nrows-2, local_ncols + 2, local_nrows, subgrid, tmp_subgrid);
     }
     double toc = wtime() - tic;
     double time;

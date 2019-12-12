@@ -2,6 +2,8 @@
 #include <sys/time.h>
 #include <stdio.h>
 #include <mpi.h>
+
+
 // Define output file name
 #define OUTPUT_FILE "stencil.pgm"
 #define MASTER 0
@@ -13,27 +15,28 @@ void init_image(const int nx, const int ny, const int width, const int height,
 void output_image(const char* file_name, const int nx, const int ny,
                   const int width, const int height, float* image);
 void halo_exchange(const int width, const int height, const int right, const int left, float* restrict image, float* restrict tmp_image);
+int calc_ny_from_rank(int ny, int rank, int size);
 
 double wtime(void);
 
 
-int rank;              /* the rank of this process */
-int left;              /* the rank of the process to the left */
-int right;             /* the rank of the process to the right */
-int size;              /* number of processes in the communicator */
-int tag = 0;           /* scope for adding extra information to a message */
-MPI_Status status;     /* struct used by MPI_Recv */
-int local_nrows;       /* number of rows apportioned to this rank */
-int local_ncols;       /* number of columns apportioned to this rank */
-int remote_ncols;      /* number of columns apportioned to a remote rank */
-float *subgrid;       /* local temperature grid at time t     */
-float *tmp_subgrid;
-// float *sendbuf;       /* buffer to hold values to send */
-// float *recvbuf;       /* buffer to hold received values */
-
 
 int main(int argc, char* argv[])
 {
+  int rank;              /* the rank of this process */
+  int left;              /* the rank of the process to the left */
+  int right;             /* the rank of the process to the right */
+  int size;              /* number of processes in the communicator */
+  int tag = 0;           /* scope for adding extra information to a message */
+  MPI_Status status;     /* struct used by MPI_Recv */
+  int local_nrows;       /* number of rows apportioned to this rank */
+  int local_ncols;       /* number of columns apportioned to this rank */
+  int remote_ncols;      /* number of columns apportioned to a remote rank */
+  float *subgrid;       /* local temperature grid at time t     */
+  float *tmp_subgrid;
+  // float *sendbuf;       /* buffer to hold values to send */
+  // float *recvbuf;       /* buffer to hold received values */
+
 
   MPI_Init(&argc, &argv);
   MPI_Comm_size(MPI_COMM_WORLD, &size);
@@ -58,24 +61,26 @@ int main(int argc, char* argv[])
   if(rank==0) left = MPI_PROC_NULL;
   if(rank==size-1) right = MPI_PROC_NULL;
 
-  local_ncols = nx/size;
+//   local_nrows = nx/size;
+//
+// if (nx % size != 0){
+//     if (rank == size -1){
+//       local_ncols += nx % size;
+//     }
+//   }
+//   if (local_ncols < 1) {
+//     fprintf(stderr,"Error: too many processes:- local_ncols < 1\n");
+//     MPI_Abort(MPI_COMM_WORLD, EXIT_FAILURE);
+//   }
+  local_ncols = calc_ny_from_rank(nx, rank, size);
 
-if (nx % size != 0){
-    if (rank == size -1){
-      local_ncols += nx % size;
-    }
-  }
-  if (local_ncols < 1) {
-    fprintf(stderr,"Error: too many processes:- local_ncols < 1\n");
-    MPI_Abort(MPI_COMM_WORLD, EXIT_FAILURE);
-  }
   local_nrows = height;
 
 
 
   // // Allocate the image at following, of sizes including extra space for halo regions
-float* image = malloc(sizeof(float) * (width * height));
-float* tmp_image = malloc(sizeof(float) * (width * height));
+
+// float* tmp_image = malloc(sizeof(float) * (width * height));
   // // allocating local grid space including halo regions
 
   subgrid = (float*)malloc(sizeof(float)*(local_nrows) * (local_ncols + 2));
@@ -84,7 +89,7 @@ float* tmp_image = malloc(sizeof(float) * (width * height));
   // Master
   if(rank==MASTER){
     //init full image
-    image = malloc(sizeof(float) * width * height);
+    float* image = malloc(sizeof(float) * (width * height));
     init_image(nx, ny, width, height, image, tmp_image);
   }
 
@@ -130,7 +135,7 @@ float* tmp_image = malloc(sizeof(float) * (width * height));
 
     output_image(OUTPUT_FILE, nx, ny, width, height, image);
     free(image);
-    free(tmp_image);
+    // free(tmp_image);
   }
   MPI_Finalize();
 }
@@ -245,4 +250,17 @@ double wtime(void)
 struct timeval tv;
 gettimeofday(&tv, NULL);
 return tv.tv_sec + tv.tv_usec * 1e-6;
+}
+
+int calc_ny_from_rank(int nx, int rank, int size)
+{
+  int local_ncols;
+
+  local_ncols = nx / size;       /* integer division */
+  if ((nx % size) != 0) {  /* if there is a remainder */
+    if (rank == size - 1)
+      local_ncols += nx % size;  /* add remainder to last rank */
+  }
+
+  return local_nols;
 }

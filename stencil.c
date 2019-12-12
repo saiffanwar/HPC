@@ -2,6 +2,7 @@
 #include <sys/time.h>
 #include <stdio.h>
 #include <mpi.h>
+#include <omp.h>
 
 
 // Define output file name
@@ -130,11 +131,11 @@ void stencil(const int nx, const int ny, const int width, const int height, cons
 		 image+((height-1)*width), width, MPI_FLOAT, right, 6,
 		 MPI_COMM_WORLD, &status);
 
-    //send right, receive left
+  //send right, receive left
     MPI_Sendrecv(image+((height-2)*width), width, MPI_FLOAT, right, 9,
 		 image, width, MPI_FLOAT, left, 9,
 		 MPI_COMM_WORLD, &status);
-
+    #pragma omp parallel for
     for (int j = 1; j < ny + 1; ++j) {
       for (int i = 1; i < nx + 1; ++i) {
         tmp_image[i+j*width]= 0.6f*image[i+j*width] + 0.1f*(image[i+(j-1)*width] + image[i+(j+1)*width] + image[(i-1)+j*width] + image[(i+1)+j*width]);

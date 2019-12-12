@@ -32,8 +32,8 @@ int main(int argc, char* argv[])
   int local_nrows;       /* number of rows apportioned to this rank */
   int local_ncols;       /* number of columns apportioned to this rank */
   int remote_ncols;      /* number of columns apportioned to a remote rank */
-  float *subgrid;       /* local temperature grid at time t     */
-  float *tmp_subgrid;
+  float* subgrid;       /* local temperature grid at time t     */
+  float* tmp_subgrid;
   float* image;
   int var_nx;
 
@@ -55,8 +55,9 @@ int main(int argc, char* argv[])
   int width = nx + 2;
   int height = ny + 2;
 
-  left = (rank == MASTER) ? (size - 1) : (rank - 1);
-  right = (rank + 1) % size;
+//  left = (rank == MASTER) ? (size - 1) : (rank - 1);
+  left = (rank-1+size)%size;
+  right = (rank + 1+size) % size;
 
   if(rank==0) left = MPI_PROC_NULL;
   if(rank==size-1) right = MPI_PROC_NULL;
@@ -89,12 +90,15 @@ int main(int argc, char* argv[])
   int displs[size];
   for(int i = 0; i<size; i++){
     var_nx = calc_ny_from_rank(nx, i, size);
-    printf("%d", var_nx)
-    sendcounts[i] = (local_ncols+2) * var_nx;
-    displs[i] = i * (local_nrows+2) * local_ncols;
-  }
+    double previous_cols = calc_ny_from_rank(nx, i-1, size);
+    sendcounts[i] = (local_nrows+2) * var_nx;
+	        printf("%d, %d, %d\n",rank, i,  sendcounts[i] );
 
-  MPI_Scatterv(image+height, sendcounts, displs, MPI_FLOAT, subgrid + (local_nrows+2), (local_ncols)*(local_nrows+2), MPI_FLOAT, 0, MPI_COMM_WORLD);
+    displs[i] = height + (height*i*previous_cols);
+  }
+	
+  MPI_Scatterv(&image[height], sendcounts, displs, MPI_FLOAT, &subgrid[height], (local_ncols)*(local_nrows+2), MPI_FLOAT, 0, MPI_COMM_WORLD);
+
 
 
     // Call the stencil kernel
@@ -107,7 +111,7 @@ int main(int argc, char* argv[])
     double time;
 
 
-    MPI_Gatherv(subgrid+(local_nrows+2), (local_nrows+2)*local_ncols, MPI_FLOAT, image+height, sendcounts, displs, MPI_FLOAT, 0, MPI_COMM_WORLD);
+    MPI_Gatherv(&subgrid[(local_nrows+2)], (local_nrows+2)*local_ncols, MPI_FLOAT, &image[height], sendcounts, displs, MPI_FLOAT, 0, MPI_COMM_WORLD);
     MPI_Reduce(&toc, &time, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
 
     // maxTime = toc-tic;
@@ -132,14 +136,15 @@ int main(int argc, char* argv[])
 void stencil(const int nx, const int ny, const int width, const int height, const int right, const int left, float* restrict image, float* restrict tmp_image){
     MPI_Status status;
     //first send to left and recieve on the right
-    MPI_Sendrecv(image+height, width, MPI_FLOAT, left, 6,
-		 image+((height-1)*width), width, MPI_FLOAT, right, 6,
+    MPI_Sendrecv(&image[height], height, MPI_FLOAT, left, 6,
+		 &image[(width-1)*height], height, MPI_FLOAT, right, 6,
 		 MPI_COMM_WORLD, &status);
-
+	printf("%s\n", "ur nan");
     //then send on the right and recieve on the left
-    MPI_Sendrecv(image+((width-2)*height), height, MPI_FLOAT, right, 9,
-		 image, height, MPI_FLOAT, left, 9,
+    MPI_Sendrecv(&image[(nx*height)], height, MPI_FLOAT, right, 9,
+		 &image[0], height, MPI_FLOAT, left, 9,
 		 MPI_COMM_WORLD, &status);
+	        printf("%d", 420);
 
     for (int j = 1; j < ny + 1; ++j) {
       for (int i = 1; i < nx + 1; ++i) {
@@ -225,7 +230,7 @@ int calc_ny_from_rank(int nx, int rank, int size)
   int local_ncols;
 
   local_ncols = nx / size;       /* integer division */
-  if ((ny % size) != 0) {  /* if there is a remainder */
+  if ((nx % size) != 0) {  /* if there is a remainder */
     if (rank == size - 1)
       local_ncols += nx % size;  /* add remainder to last rank */
   }

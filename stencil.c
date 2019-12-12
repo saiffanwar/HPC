@@ -122,13 +122,12 @@ int main(int argc, char* argv[])
 
 void stencil(const int nx, const int ny, const int width, const int height, const int right, const int left, float* restrict image, float* restrict tmp_image){
     MPI_Status status;
-    //halo exchange
-     //send left, receive right
+    //first send to left and recieve on the right
     MPI_Sendrecv(image+width, width, MPI_FLOAT, left, 6,
 		 image+((height-1)*width), width, MPI_FLOAT, right, 6,
 		 MPI_COMM_WORLD, &status);
 
-    //send right, receive left
+    //then send on the right and recieve on the left
     MPI_Sendrecv(image+((height-2)*width), width, MPI_FLOAT, right, 9,
 		 image, width, MPI_FLOAT, left, 9,
 		 MPI_COMM_WORLD, &status);
@@ -140,33 +139,6 @@ void stencil(const int nx, const int ny, const int width, const int height, cons
     }
 }
 
-// void halo_exchange(const int width, const int height, const int right, const int left, float* restrict image, float* restrict tmp_image) {
-//   MPI_Status status;
-//   // for(ii=0; ii < local_nrows; ii++) {
-//   //   sendbuf[ii] = subgrid[ii * (local_ncols + 2) + 1];
-//   // MPI_Sendrecv(sendbuf, local_nrows, MPI_FLOAT, left, tag, recvbuf, local_nrows, MPI_FLOAT, right, tag, MPI_COMM_WORLD, &status);
-//   // }
-//   // for(ii=0; ii < local_nrows; ii++){
-//   //   subgrid[ii * (local_ncols + 2) + local_ncols + 1] = recvbuf[ii];
-//   // }
-//   // /* send to the right, receive from left */
-//   // for(ii=0; ii < local_nrows; ii++){
-//   //   sendbuf[ii] = subgrid[ii * (local_ncols + 2) + local_ncols];
-//   // MPI_Sendrecv(sendbuf, local_nrows, MPI_FLOAT, right, tag, recvbuf, local_nrows, MPI_FLOAT, left, tag, MPI_COMM_WORLD, &status);
-//   // }
-//   // for(ii=0; ii < local_nrows; ii++){
-//   //   subgrid[ii * (local_ncols + 2)] = recvbuf[ii];
-//   //}
-//   MPI_Sendrecv(image+width, width, MPI_FLOAT, left, 4,
-//    image+((height-1)*width), width, MPI_FLOAT, right, 4,
-//    MPI_COMM_WORLD, &status);
-//
-//   //send right, receive left
-//   MPI_Sendrecv(image+((height-2)*width), width, MPI_FLOAT, right, 20,
-//    image, width, MPI_FLOAT, left, 20,
-//    MPI_COMM_WORLD, &status);
-//
-// }
 
 // Create the input image
 void init_image(const int nx, const int ny, const int width, const int height,

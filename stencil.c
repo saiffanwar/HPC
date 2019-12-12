@@ -34,6 +34,7 @@ int main(int argc, char* argv[])
   int remote_ncols;      /* number of columns apportioned to a remote rank */
   float *subgrid;       /* local temperature grid at time t     */
   float *tmp_subgrid;
+  float* image;
   // float *sendbuf;       /* buffer to hold values to send */
   // float *recvbuf;       /* buffer to hold received values */
 
@@ -89,8 +90,8 @@ int main(int argc, char* argv[])
   // Master
   if(rank==MASTER){
     //init full image
-    float* image = malloc(sizeof(float) * (width * height));
-    init_image(nx, ny, width, height, image, tmp_image);
+    image = malloc(sizeof(float) * (width * height));
+    init_image(nx, ny, width, height, image);
   }
 
   // sendbuf = (float*)malloc(sizeof(float) * local_nrows);
@@ -262,5 +263,5 @@ int calc_ny_from_rank(int nx, int rank, int size)
       local_ncols += nx % size;  /* add remainder to last rank */
   }
 
-  return local_nols;
+  return local_ncols;
 }

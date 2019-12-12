@@ -166,7 +166,7 @@ void stencil(const int nx, const int ny, const int width, const int height,
   }
 }
 
-void halo_exchange(const int width, const int height, const int right, const int left) {
+void halo_exchange(const int width, const int height, const int right, const int left, float* restrict image, float* restrict tmp_image) {
   MPI_Status status;
   // for(ii=0; ii < local_nrows; ii++) {
   //   sendbuf[ii] = subgrid[ii * (local_ncols + 2) + 1];

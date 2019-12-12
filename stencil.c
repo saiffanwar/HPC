@@ -146,11 +146,11 @@ void stencil(const int nx, const int ny, const int width, const int height, cons
 {
 MPI_Status status;
 MPI_Sendrecv(image+width, width, MPI_FLOAT, left, 6,
- image+((height-1)*width), width, MPI_FLOAT, right, 9,
+ image+((height-1)*width), width, MPI_FLOAT, right, 6,
  MPI_COMM_WORLD, &status);
 
 //send right, receive left
-MPI_Sendrecv(image+((height-2)*width), width, MPI_FLOAT, right, 6,
+MPI_Sendrecv(image+((height-2)*width), width, MPI_FLOAT, right, 9,
  image, width, MPI_FLOAT, left, 9,
  MPI_COMM_WORLD, &status);
 

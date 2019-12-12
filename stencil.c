@@ -61,15 +61,15 @@ int main(int argc, char* argv[])
   if(rank==0) left = MPI_PROC_NULL;
   if(rank==size-1) right = MPI_PROC_NULL;
 
-  local_nrows = calc_ny_from_rank(nx, rank, size);
+  local_nrows = calc_ny_from_rank(ny, rank, size);
   local_ncols = nx;
 
   int local_width=local_nrows+2;
   int local_height = local_ncols+2;
 
-  // check if too many workers
+  // check if too many is
   if (local_nrows < 1) {
-    fprintf(stderr,"Error: too many processes:- local_nx < 1\n");
+    fprintf(stderr,"Error: too many processes:- local_ncols < 1\n");
     MPI_Abort(MPI_COMM_WORLD, EXIT_FAILURE);
   }
 
@@ -77,8 +77,8 @@ int main(int argc, char* argv[])
   // // Allocate the image at following, of sizes including extra space for halo regions
 
 
-  subgrid = (float*)malloc(sizeof(float)*(local_nrows) * (local_ncols + 2));
-  tmp_subgrid = (float*)malloc(sizeof(float)*(local_nrows) * (local_ncols + 2));
+  subgrid = (float*)malloc(sizeof(float) * local_height * local_width);
+  tmp_subgrid = (float*)malloc(sizeof(float) * local_height * local_width);
 
   // Master
   if(rank==MASTER){
@@ -89,10 +89,10 @@ int main(int argc, char* argv[])
 
   int sendcounts[size];
   int displs[size];
-  for (int i = 0; i < size; i++){
-  var_nx = calc_ny_from_rank(nx, i, size);
-  sendcounts[i] = local_width * var_nx;
-  displs[i] = i * local_width * local_nrows;
+  for(int i = 0; i<size; i++){
+    var_nx = calc_ny_from_rank(ny, i, size);
+    sendcounts[i] = local_width * var_nx;
+    displs[i] = i * local_width * local_nrows;
   }
 
   MPI_Scatterv(image+width, sendcounts, displs, MPI_FLOAT, subgrid + local_width, local_width*local_nrows, MPI_FLOAT, 0, MPI_COMM_WORLD);
@@ -101,15 +101,13 @@ int main(int argc, char* argv[])
     // Call the stencil kernel
     double tic = wtime();
     for (int t = 0; t < niters; ++t) {
-      // halo_exchange(local_height, local_nrows, right, left, subgrid, tmp_subgrid);
       stencil(local_ncols, local_nrows, local_width, local_height, right, left, subgrid, tmp_subgrid);
-      // halo_exchange(local_height, local_nrows, right, left, subgrid, tmp_subgrid);
       stencil(local_ncols, local_nrows, local_width, local_height, right, left, tmp_subgrid, subgrid);
     }
     double toc = wtime() - tic;
     double time;
 
-    MPI_Gatherv(subgrid + local_width, local_width*local_nrows, MPI_FLOAT,image+width, sendcounts, displs, MPI_FLOAT, 0, MPI_COMM_WORLD);
+    MPI_Gatherv(subgrid+local_width, local_width*local_nrows, MPI_FLOAT, image+width, sendcounts, displs, MPI_FLOAT, 0, MPI_COMM_WORLD);
     MPI_Reduce(&toc, &time, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
 
     if (rank == MASTER){
@@ -120,30 +118,28 @@ int main(int argc, char* argv[])
 
     output_image(OUTPUT_FILE, nx, ny, width, height, image);
     free(image);
-    // free(tmp_image);
   }
   MPI_Finalize();
 }
 
-void stencil(const int nx, const int ny, const int width, const int height, const int right, const int left,
-             float* restrict image, float* restrict tmp_image)
-//with floating points
-{
-MPI_Status status;
-MPI_Sendrecv(image+width, width, MPI_FLOAT, left, 6,
- image+((height-1)*width), width, MPI_FLOAT, right, 6,
- MPI_COMM_WORLD, &status);
+void stencil(const int nx, const int ny, const int width, const int height, const int right, const int left, float* restrict image, float* restrict tmp_image){
+    MPI_Status status;
+    //halo exchange
+     //send left, receive right
+    MPI_Sendrecv(image+width, width, MPI_FLOAT, left, 6,
+		 image+((height-1)*width), width, MPI_FLOAT, right, 6,
+		 MPI_COMM_WORLD, &status);
 
-//send right, receive left
-MPI_Sendrecv(image+((height-2)*width), width, MPI_FLOAT, right, 9,
- image, width, MPI_FLOAT, left, 9,
- MPI_COMM_WORLD, &status);
+    //send right, receive left
+    MPI_Sendrecv(image+((height-2)*width), width, MPI_FLOAT, right, 9,
+		 image, width, MPI_FLOAT, left, 9,
+		 MPI_COMM_WORLD, &status);
 
-  for (int i = 1; i < nx + 1; ++i) {
     for (int j = 1; j < ny + 1; ++j) {
-      tmp_image[j + i * width] =  image[j+i* width] * 0.6f + image[j+ (i - 1) * width] * 0.1f + image[j+ (i + 1) * width] * 0.1f + image[j - 1 + i * width] * 0.1f + image[j + 1 + i * width] * 0.1f;
+      for (int i = 1; i < nx + 1; ++i) {
+        tmp_image[i+j*width]= 0.6f*image[i+j*width] + 0.1f*(image[i+(j-1)*width] + image[i+(j+1)*width] + image[(i-1)+j*width] + image[(i+1)+j*width]);
+      }
     }
-  }
 }
 
 // void halo_exchange(const int width, const int height, const int right, const int left, float* restrict image, float* restrict tmp_image) {

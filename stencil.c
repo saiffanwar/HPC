@@ -36,8 +36,6 @@ int main(int argc, char* argv[])
   float *tmp_subgrid;
   float* image;
   int var_nx;
-  // float *sendbuf;       /* buffer to hold values to send */
-  // float *recvbuf;       /* buffer to hold received values */
 
 
   MPI_Init(&argc, &argv);
@@ -63,29 +61,21 @@ int main(int argc, char* argv[])
   if(rank==0) left = MPI_PROC_NULL;
   if(rank==size-1) right = MPI_PROC_NULL;
 
-//   local_nrows = nx/size;
-//
-// if (nx % size != 0){
-//     if (rank == size -1){
-//       local_ncols += nx % size;
-//     }
-//   }
-//   if (local_ncols < 1) {
-//     fprintf(stderr,"Error: too many processes:- local_ncols < 1\n");
-//     MPI_Abort(MPI_COMM_WORLD, EXIT_FAILURE);
-//   }
   local_nrows = calc_ny_from_rank(nx, rank, size);
-
-  local_ncols = height;
+  local_ncols = nx;
 
   int local_width=local_nrows+2;
   int local_height = local_ncols+2;
 
+  // check if too many workers
+  if (local_nrows < 1) {
+    fprintf(stderr,"Error: too many processes:- local_nx < 1\n");
+    MPI_Abort(MPI_COMM_WORLD, EXIT_FAILURE);
+  }
+
 
   // // Allocate the image at following, of sizes including extra space for halo regions
 
-// float* tmp_image = malloc(sizeof(float) * (width * height));
-  // // allocating local grid space including halo regions
 
   subgrid = (float*)malloc(sizeof(float)*(local_nrows) * (local_ncols + 2));
   tmp_subgrid = (float*)malloc(sizeof(float)*(local_nrows) * (local_ncols + 2));
@@ -97,9 +87,6 @@ int main(int argc, char* argv[])
     init_image(nx, ny, width, height, image);
   }
 
-  // sendbuf = (float*)malloc(sizeof(float) * local_nrows);
-  // recvbuf = (float*)malloc(sizeof(float) * local_nrows);
-
   int sendcounts[size];
   int displs[size];
   for (int i = 0; i < size; i++){
@@ -108,8 +95,6 @@ int main(int argc, char* argv[])
   displs[i] = i * local_width * local_nrows;
   }
 
-  // MPI_Scatterv(&image, sendcounts, displs, MPI_FLOAT, &subgrid+local_nrows, local_nrows * local_ncols, MPI_FLOAT, 0, MPI_COMM_WORLD);
-  //       printf("%s", "hello");
   MPI_Scatterv(image+width, sendcounts, displs, MPI_FLOAT, subgrid + local_width, local_width*local_nrows, MPI_FLOAT, 0, MPI_COMM_WORLD);
 
 

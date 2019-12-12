@@ -78,8 +78,8 @@ int main(int argc, char* argv[])
 
   local_ncols = height;
 
-  local_width=local_nrows+2;
-  local_height = local_ncols+2;
+  int local_width=local_nrows+2;
+  int local_height = local_ncols+2;
 
 
   // // Allocate the image at following, of sizes including extra space for halo regions

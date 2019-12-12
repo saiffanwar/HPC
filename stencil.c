@@ -74,10 +74,12 @@ int main(int argc, char* argv[])
 //     fprintf(stderr,"Error: too many processes:- local_ncols < 1\n");
 //     MPI_Abort(MPI_COMM_WORLD, EXIT_FAILURE);
 //   }
-  local_ncols = calc_ny_from_rank(nx, rank, size);
+  local_nrows = calc_ny_from_rank(nx, rank, size);
 
-  local_nrows = height;
+  local_ncols = height;
 
+  local_width=local_nrows+2;
+  local_height = local_ncols+2;
 
 
   // // Allocate the image at following, of sizes including extra space for halo regions
@@ -102,27 +104,27 @@ int main(int argc, char* argv[])
   int displs[size];
   for (int i = 0; i < size; i++){
   var_nx = calc_ny_from_rank(nx, i, size);
-  sendcounts[i] = (local_ncols +2) * var_nx;
-  displs[i] = i * (local_ncols+2) * (local_nrows-2);
+  sendcounts[i] = local_width * var_nx;
+  displs[i] = i * local_width * local_nrows;
   }
 
   // MPI_Scatterv(&image, sendcounts, displs, MPI_FLOAT, &subgrid+local_nrows, local_nrows * local_ncols, MPI_FLOAT, 0, MPI_COMM_WORLD);
   //       printf("%s", "hello");
-  MPI_Scatterv(image+width, sendcounts, displs, MPI_FLOAT, subgrid + local_ncols+2, local_ncols+2*local_nrows-2, MPI_FLOAT, 0, MPI_COMM_WORLD);
+  MPI_Scatterv(image+width, sendcounts, displs, MPI_FLOAT, subgrid + local_width, local_width*local_nrows, MPI_FLOAT, 0, MPI_COMM_WORLD);
 
 
     // Call the stencil kernel
     double tic = wtime();
     for (int t = 0; t < niters; ++t) {
-      halo_exchange(local_ncols+2, local_nrows, right, left, subgrid, tmp_subgrid);
-      stencil(local_ncols, local_nrows-2, local_ncols + 2, local_nrows, subgrid, tmp_subgrid);
-      halo_exchange(local_ncols+2, local_nrows, right, left, subgrid, tmp_subgrid);
-      stencil(local_ncols, local_nrows-2, local_ncols + 2, local_nrows, subgrid, tmp_subgrid);
+      halo_exchange(local_height, local_nrows, right, left, subgrid, tmp_subgrid);
+      stencil(local_ncols, local_nrows, local_width, local_height, right, left, subgrid, tmp_subgrid);
+      halo_exchange(local_height, local_nrows, right, left, subgrid, tmp_subgrid);
+      stencil(local_ncols, local_nrows, local_width, local_height, right, left, tmp_subgrid, subgrid);
     }
     double toc = wtime() - tic;
     double time;
 
-    MPI_Gatherv(subgrid + local_ncols+2, local_ncols+2*local_nrows-2, MPI_FLOAT,image+width, sendcounts, displs, MPI_FLOAT, 0, MPI_COMM_WORLD);
+    MPI_Gatherv(subgrid + local_width, local_widtht*local_nrows, MPI_FLOAT,image+width, sendcounts, displs, MPI_FLOAT, 0, MPI_COMM_WORLD);
     MPI_Reduce(&toc, &time, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
 
     if (rank == MASTER){

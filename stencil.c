@@ -15,7 +15,7 @@ void init_image(const int nx, const int ny, const int width, const int height,
                 float* image);
 void output_image(const char* file_name, const int nx, const int ny,
                   const int width, const int height, float* image);
-// void halo_exchange(const int width, const int height, const int right, const int left, float* restrict image, float* restrict tmp_image);
+void halo_exchange(const int width, const int height, const int right, const int left, float* restrict image, float* restrict tmp_image) {
 int calc_ny_from_rank(int ny, int rank, int size);
 
 double wtime(void);

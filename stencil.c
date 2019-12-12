@@ -9,7 +9,7 @@
 #define OUTPUT_FILE "stencil.pgm"
 #define MASTER 0
 
-void stencil(const int nx, const int ny, bfloat* image, float* tmp_image);
+void stencil(const int nx, const int ny, const int width, float* image, float* tmp_image);
 void init_image(const int nx, const int ny, const int width, const int height, float* image);
 void output_image(const char* file_name, const int nx, const int ny, const int width, const int height, float* image);
 void halo_exchange(const int nx, const int ny, const int width, const int height, const int right, const int left, float* image, float* tmp_image);
@@ -98,9 +98,9 @@ int main(int argc, char* argv[])
     double tic = wtime();
     for (int t = 0; t < niters; ++t) {
       halo_exchange(local_ncols, local_nrows, local_width, local_height, right, left, subgrid, tmp_subgrid);
-      stencil(local_ncols, local_nrows, subgrid, tmp_subgrid);
+      stencil(local_ncols, local_nrows, local_width, subgrid, tmp_subgrid);
       halo_exchange(local_ncols, local_nrows, local_width, local_height, right, left, tmp_subgrid, subgrid);
-      stencil(local_ncols, local_nrows, tmp_subgrid, subgrid);
+      stencil(local_ncols, local_nrows, local_width, tmp_subgrid, subgrid);
     }
     double toc = wtime() - tic;
     double time;
@@ -120,7 +120,7 @@ int main(int argc, char* argv[])
   MPI_Finalize();
 }
 
-void stencil(const int nx, const int ny, float* restrict image, float* restrict tmp_image){
+void stencil(const int nx, const int ny, const int width, float* restrict image, float* restrict tmp_image){
     #pragma omp parallel for shared(image, tmp_image, nx, ny) schedule(dynamic, 10)
     for (int j = 1; j < ny + 1; ++j) {
       for (int i = 1; i < nx + 1; ++i) {

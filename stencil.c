@@ -133,9 +133,9 @@ float* tmp_image = malloc(sizeof(float) * (width * height));
     double tic = wtime();
     for (int t = 0; t < niters; ++t) {
       halo_exchange(rank);
-      stencil(local_ncols, local_nrows, local_ncols + 2, height, subgrid, tmp_subgrid);
+      stencil(local_ncols, local_nrows-2, local_ncols + 2, right, left, subgrid, tmp_subgrid);
       halo_exchange(rank);
-      stencil(local_ncols, local_nrows, local_ncols + 2, height, tmp_subgrid, subgrid);
+      stencil(local_ncols, local_nrows-2, local_ncols + 2, right, left, tmp_subgrid, subgrid);
     }
     double toc = wtime() - tic;
     double time;
@@ -166,7 +166,7 @@ void stencil(const int nx, const int ny, const int width, const int height,
   }
 }
 
-void halo_exchange(int rank) {
+void halo_exchange(const int width, const int height, const int right, const int left) {
   MPI_Status status;
   // for(ii=0; ii < local_nrows; ii++) {
   //   sendbuf[ii] = subgrid[ii * (local_ncols + 2) + 1];

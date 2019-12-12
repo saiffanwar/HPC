@@ -131,9 +131,9 @@ float* tmp_image = malloc(sizeof(float) * (width * height));
     // Call the stencil kernel
     double tic = wtime();
     for (int t = 0; t < niters; ++t) {
-      halo_exchange(local_ncols, local_nrows-2, local_ncols + 2, right, left, subgrid, tmp_subgrid);
+      halo_exchange(local_ncols+2, local_nrows, right, left, subgrid, tmp_subgrid);
       stencil(local_ncols, local_nrows-2, local_ncols + 2, local_nrows, subgrid, tmp_subgrid);
-      halo_exchange(local_ncols, local_nrows-2, local_ncols + 2, right, left, subgrid, tmp_subgrid);
+      halo_exchange(local_ncols+2, local_nrows, right, left, subgrid, tmp_subgrid);
       stencil(local_ncols, local_nrows-2, local_ncols + 2, local_nrows, subgrid, tmp_subgrid);
     }
     double toc = wtime() - tic;

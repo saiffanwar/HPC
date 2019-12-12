@@ -55,7 +55,7 @@ int main(int argc, char* argv[])
   int width = nx + 2;
   int height = ny + 2;
 
-  left = (rank == MASTER) ? (rank + size - 1) : (rank - 1);
+  left = (rank == MASTER) ? (size - 1) : (rank - 1);
   right = (rank + 1) % size;
 
   if(rank==0) left = MPI_PROC_NULL;
@@ -64,8 +64,8 @@ int main(int argc, char* argv[])
   local_nrows = calc_ny_from_rank(ny, rank, size);
   local_ncols = nx;
 
-  int local_width=local_nrows+2;
-  int local_height = local_ncols+2;
+  int local_height=local_nrows+2;
+  int local_width = local_ncols+2;
 
   // check if too many is
   if (local_nrows < 1) {

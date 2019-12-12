@@ -9,6 +9,7 @@
 ~H
 # Command Line History (newest to oldest):
 :x
+:X
 :q!
 :xx
 :q
@@ -27,19 +28,21 @@
 	a
 
 # File marks:
-'0  148  17  ~/stencil.c
-'1  15  136  ~/stencil.c
-'2  106  8  ~/stencil.c
-'3  96  48  ~/stencil.c
-'4  97  1  ~/stencil.c
-'5  104  0  ~/stencil.c
-'6  40  38  ~/stencil.c
-'7  102  2  ~/stencil.c
-'8  103  2  ~/stencil.c
-'9  98  0  ~/stencil.c
+'0  68  16  ~/stencil.c
+'1  60  0  ~/stencil.c
+'2  148  17  ~/stencil.c
+'3  15  136  ~/stencil.c
+'4  106  8  ~/stencil.c
+'5  96  48  ~/stencil.c
+'6  97  1  ~/stencil.c
+'7  104  0  ~/stencil.c
+'8  40  38  ~/stencil.c
+'9  102  2  ~/stencil.c
 
 # Jumplist (newest first):
--'  148  17  ~/stencil.c
+-'  68  16  ~/stencil.c
+-'  60  0  ~/stencil.c
+-'  148  0  ~/stencil.c
 -'  15  0  ~/stencil.c
 -'  106  2  ~/stencil.c
 -'  96  1  ~/stencil.c
@@ -135,18 +138,13 @@
 -'  1  0  ~/4096.job
 -'  10  20  ~/1024.job
 -'  1  0  ~/1024.job
--'  2  27  ~/Makefile
--'  1  0  ~/Makefile
 
 # History of marks within files (newest to oldest):
 
 > ~/stencil.c
-	"	148	17
-	^	148	18
-	.	148	17
-	+	52	37
-	+	39	22
-	+	31	18
+	"	68	16
+	^	68	17
+	.	68	16
 	+	139	78
 	+	81	16
 	+	180	12
@@ -244,6 +242,9 @@
 	+	106	8
 	+	15	136
 	+	148	17
+	+	58	29
+	+	67	17
+	+	68	16
 
 > ~/stecil.c
 	"	1	0

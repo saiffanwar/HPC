@@ -1,351 +1,3 @@
-git commit
-#1571170434
-git status
-#1571170446
-git commit origin master
-#1571170454
-git commit origin
-#1571170461
-git commit -u origin master
-#1571170479
-git commit
-#1571169119
-ls
-#1571169122
-git add .
-#1571169123
-ls
-#1571169132
-git push origin master
-#1571169159
-git push --help
-#1571169323
-git pull
-#1571169391
-rmdir -r .git/
-#1571169400
-rmdir --r .git/
-#1571169406
-rmdir --rf .git/
-#1571169414
-rmdir -rf .git/
-#1571169424
-rmdir --help
-#1571169437
-rm -r .git/
-#1571169482
-rm -rf .git/
-#1571169484
-ls
-#1571169487
-git init
-#1571169511
-git add .
-#1571169525
-git commit -m "First commit"
-#1571169554
-git remote add origin https://github.com/saiffanwar/HPC.git
-#1571169557
-git remote -v
-#1571169567
-git push -u origin master
-#1571169618
-git pull
-#1571169650
-git pull origin master
-#1571169664
-git push origin master
-#1571169855
-git pull
-#1571169869
-git push -u origin master
-#1571169913
-git remote add origin https://github.com/saiffanwar/HPC.git
-#1571169922
-git pull origin master
-#1571170004
-git rm README.md
-#1571170015
-git merge README.md
-#1571170031
-git commit origin master
-#1571170050
-git push
-#1571170127
-git status
-#1571170134
-git commit
-#1571170566
-git status
-#1571170595
-git pull origin
-#1571170608
-git commit "Initial Commit"
-#1571170615
-git commit"1"
-#1571170621
-git commit "1"
-#1571170658
-git commit -i 
-#1571170680
-git commit -am 'Conflicts Resolved'
-#1571170685
-git status
-#1571170693
-git commit origin master
-#1571170701
-git add .
-#1571170704
-git status
-#1571170709
-git push origin master
-#1571170756
-git pull
-#1571170771
-git pull origin master
-#1571177409
-ls
-#1571177412
-git status
-#1571177426
-ls
-#1571177481
-git pull
-#1571177488
-git pull origin
-#1571177503
-git merge
-#1571177511
-git merge stencil.c
-#1571177547
-git add .
-#1571177555
-git stash
-#1571177566
-git push origin
-#1571177583
-git pull origin
-#1571177614
-nano stencil.c
-#1571177649
-git pull 15-10
-#1571177660
-git pull origin 15-10
-#1571177723
-git status
-#1571177748
-nano stencil
-#1571177866
-rm stencil
-#1571177876
-rm stencil.pgm
-#1571177880
-git status
-#1571177892
-git commit -m "test new branch"
-#1571177903
-git status
-#1571177950
-git add .
-#1571177960
-git status
-#1571177966
-git rm stencil
-#1571177972
-git status
-#1571177978
-git rm stencil.pgm
-#1571177981
-git status
-#1571177992
-git commit -m "test new branch"
-#1571178013
-git push origin 15-10
-#1571178270
-ls
-#1571178273
-git status
-#1571178300
-git pull origin 15-10
-#1571178469
-make
-#1571178478
-sbatch stencil
-#1571178482
-sbatch stencil.job
-#1571178492
-nano stencil.out
-#1571178535
-gcc -std=c99 -Wall -pg stencil.c -o stencil
-#1571178542
-./stencil
-#1571178549
-./stencil 1024 1024 100
-#1571178601
-gprof stencil.out gmon.out > profile.txt
-#1571178607
-gprof stencil gmon.out > profile.txt
-#1571178611
-ls
-#1571178619
-git pull origin 15-10
-#1571178657
-git commit -m "new profile"
-#1571178664
-git add .
-#1571178666
-git commit -m "new profile"
-#1571178672
-git pull origin 15-10
-#1571178692
-git push origin 15-10
-#1571178750
-nano Makefile
-#1571178769
-make -B
-#1571178785
-sbatch stencil.job
-#1571178789
-./stencil
-#1571178824
-gprof stencil gmon.out > profile.txt
-#1571178839
-nano profile.txt
-#1571178854
-less profile.txt
-#1571178862
-./stencil
-#1571178867
-./stencil 1024 1024 100
-#1571178872
-gprof stencil gmon.out > profile.txt
-#1571178875
-less profile.txt
-#1571179054
-less Makefile
-#1571179087
-make
-#1571179090
-make -B
-#1571179101
-./stencil 1024 1024 100
-#1571179118
-gprof stencil gmon.out > profile.txt
-#1571179124
-less profile.txt
-#1571179142
-./stencil 4096 4096 100
-#1571179225
-gprof stencil gmon.out > profile.txt
-#1571179229
-less profile.txt
-#1571179500
-git commit -m "profile of 4096"
-#1571179508
-git add .
-#1571179511
-git commit -m "profile of 4096"
-#1571179522
-git push origin 15-10
-#1571237505
-ls
-#1571237511
-less profile.txt
-#1571237558
-git status
-#1571237568
-git branch 16-10
-#1571237571
-git status
-#1571237577
-git checkout 16-10
-#1571237581
-git add .
-#1571237593
-git status
-#1571237610
-git commit -m "new day commit 16-10"
-#1571237618
-git push origin 16-10
-#1571238753
-sbatch stencil.job
-#1571238764
-squeue -u sa17826
-#1571238773
-less stencil.out
-#1571238805
-make -B
-#1571238814
-nano Makefile
-#1571238839
-make -B
-#1571238873
-sbatch stencil.job
-#1571238888
-nano Makefile
-#1571238934
-make -B
-#1571238940
-modules avail
-#1571238946
-module available
-#1571238976
-module load icc/2017.1.132-GCC-5.4.0-2.26 
-#1571238979
-make -B
-#1571238986
-sbatch stencil.job
-#1571238993
-less stencil.out
-#1571239268
-nano stencil.job
-#1571239604
-make -B
-#1571239610
-sbatch stencil.job
-#1571239616
-squeue -u sa17826
-#1571239652
-less stencil.out
-#1571239802
-gcc --versiob
-#1571239803
-gcc --version
-#1571239816
-less Makefile
-#1571239868
-nano stencil.job
-#1571239889
-make -B
-#1571239895
-sbatch stencil.job
-#1571239903
-squeue -u sa17826
-#1571240113
-less stencil.out
-#1571241576
-nano Makefile
-#1571241603
-make -B
-#1571241633
-nano Makefile
-#1571241655
-make -B
-#1571241691
-sbatch stencil.job
-#1571241699
-squeue -u sa17826
-#1571241733
-less stencil.out
-#1571241748
-nano Makefile
-#1571241783
-ls
-#1571241789
-less intel
-#1571241800
-cd intel
-#1571241803
 ls
 #1571241806
 cd ism
@@ -1605,3 +1257,177 @@ squeue -u sa17826
 sbatch 1024.job
 squeue -u sa17826
 less 1024.out
+ls
+git status
+module load tools/git
+module load languages/intel/2018-u3 
+git status
+git checkout --f
+git pull origin 11-12
+make -B
+git pull origin 11-12
+
+git pull origin 11-12
+make -B
+git pull origin 11-12
+make -B
+git pull origin 11-12
+make -B
+vim stencil.c
+make -B
+git add .
+git commit -m 'compiles'
+git push origin 11-12
+make -B
+sbatch 1024.job
+squeue -u sa17826
+less 1024.out
+git status
+nano stencil.c
+make -B
+git checkout --f
+nano stencil.
+nano stencil.c
+git pull origin 11-12
+make -B
+sbatch 1024.job
+squeue -u sa17826
+less 1024.out
+sbatch 4096.job
+squeue -u sa17826
+less 4096.out
+nano 4096.job
+nano 8000.job
+sbatch 4096.job
+sbatch 8000.job
+squeue -u sa17826
+less 4096.out
+less 8000.out
+git add .
+git commit -m 'change jobs'
+git push origin 11-12
+git pull origin 11-12
+make -B
+sbatch 1024.job
+squeue -u sa17826
+less 1024.job
+less 1024.out
+vim stencil.c
+make -B
+sbatch 1024.job
+less 1024.out
+squeue -u sa17826
+less 1024.out
+git status
+git checkout --f
+git pull origin 11-12
+make -B
+git pull origin 11-12
+make -B
+git pull origin 11-12
+make -B
+git pull origin 11-12
+make -B
+git pull origin 11-12
+make -B
+vim stencil.c
+make -B
+sbatch 1024.job
+squeue -u sa17826
+less 1024.out
+git add .
+git commit -m 'compiles again'
+git push origin 11-12
+git pull origin 11-12
+make -B
+sbatch 1024.job
+squeue -u sa17826
+less 1024.out
+git pull origin 11-12
+make -B
+git pull origin 11-12
+make -B
+git pull origin 11-12
+make -B
+vim stencil.c
+make -B
+sbatch 1024.job
+squeue -u sa17826
+less 1024.out
+git pull origin 11-12
+git checkout --f
+git pull
+make -B
+git pull origin 11-12
+make -B
+sbatch 1024.job
+squeue -u sa17826
+less 1024.out
+git checkout --f
+git pull origin 11-12
+make -B
+sbatch 1024.job
+squeue -u sa17826
+less 1024.out
+git pull origin 11-12
+make -B
+sbatch 1024.job
+squeue -u sa17826
+less 1024.out
+squeue -u sa17826
+less 1024.out
+squeue -u sa17826
+cancel 2900734
+squeue -u sa17826
+scancel 2900734
+squeue -u sa17826
+git pull origin 11-12
+make -B
+sbatch 1024.job
+squeue -u sa17826
+less 1024.out
+git pull origin 11-12
+make -B
+sbatch 1024.job
+squeue -u sa17826
+less 1024.out
+nano 1024.job
+sbatch 1024.job
+squeue -u sa17826
+sbatch 1024.job
+squeue -u sa17826
+scancel 2900781
+squeue -u sa17826
+less 1024.out
+git pull origin 11-12
+make -B
+sbatch 1024.job
+less 1024.out
+squeue -u sa17826
+less 1024.out
+vim stencil.c
+make -B
+sbatch 1024.job
+squeue -u sa17826
+less 1024.out
+vim stencil.c
+sbatch 1024.job
+squeue -u sa17826
+make -B
+sbatch 1024.job
+squeue -u sa17826
+less 1024.out
+nano 1024.job
+sbatch 1024.job
+squeue -u sa17826
+less 1024.out
+python check.py --ref-stencil-file stencil_1024_1024_100.pgm --stencil-file stencil.pgm
+nano 4096.job
+sbatch 4096.job
+nano 4096.job
+sbatch 4096.job
+sbatch 8000.job
+squeue -u sa17826
+less 4096.out
+less 8000.out
+less 4096.out

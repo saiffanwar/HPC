@@ -96,7 +96,6 @@ int main(int argc, char* argv[])
     double maxTime = 0;
     if (rank == MASTER){
       maxTime = toc-tic;
-      MPI_Send(&maxTime, 1, MPI_DOUBLE, 0, tag, MPI_COMM_WORLD);
       double rTime = 0;
       for (int r = 1; r < size; r++) {
           MPI_Recv(&rTime, size, MPI_DOUBLE, r, tag, MPI_COMM_WORLD, &status);
@@ -110,6 +109,9 @@ int main(int argc, char* argv[])
 
     output_image(OUTPUT_FILE, nx, ny, width, height, image);
     free(image);
+  } else {
+    double time = toc-tic;
+    MPI_Send(&time, 1, MPI_DOUBLE, 0, tag, MPI_COMM_WORLD);
   }
   MPI_Finalize();
 }

@@ -2,19 +2,24 @@
 #include <sys/time.h>
 #include <stdio.h>
 #include <mpi.h>
-#include <omp.h>
 
 
 // Define output file name
 #define OUTPUT_FILE "stencil.pgm"
 #define MASTER 0
 
-void stencil(const int nx, const int ny, const int width, float* image, float* tmp_image);
-void init_image(const int nx, const int ny, const int width, const int height, float* image);
-void output_image(const char* file_name, const int nx, const int ny, const int width, const int height, float* image);
-void halo_exchange(const int nx, const int ny, const int width, const int height, const int right, const int left, float* image, float* tmp_image);
-int calc_nocols(int ny, int rank, int size);
+void stencil(const int nx, const int ny, const int width, const int height, const int right, const int left,
+             float* image, float* tmp_image);
+void init_image(const int nx, const int ny, const int width, const int height,
+                float* image);
+void output_image(const char* file_name, const int nx, const int ny,
+                  const int width, const int height, float* image);
+// void halo_exchange(const int width, const int height, const int right, const int left, float* restrict image, float* restrict tmp_image);
+int calc_ny_from_rank(int ny, int rank, int size);
+
 double wtime(void);
+
+
 
 int main(int argc, char* argv[])
 {
@@ -26,10 +31,12 @@ int main(int argc, char* argv[])
   MPI_Status status;     /* struct used by MPI_Recv */
   int local_nrows;       /* number of rows apportioned to this rank */
   int local_ncols;       /* number of columns apportioned to this rank */
+  int remote_ncols;      /* number of columns apportioned to a remote rank */
   float *subgrid;       /* local temperature grid at time t     */
   float *tmp_subgrid;
   float* image;
   int var_nx;
+
 
   MPI_Init(&argc, &argv);
   MPI_Comm_size(MPI_COMM_WORLD, &size);
@@ -44,30 +51,38 @@ int main(int argc, char* argv[])
   int nx = atoi(argv[1]);
   int ny = atoi(argv[2]);
   int niters = atoi(argv[3]);
+
   int width = nx + 2;
   int height = ny + 2;
 
-  local_nrows = calc_nocols(ny, rank, size);
+  left = (rank == MASTER) ? (size - 1) : (rank - 1);
+  right = (rank + 1) % size;
+
+  if(rank==0) left = MPI_PROC_NULL;
+  if(rank==size-1) right = MPI_PROC_NULL;
+
+  local_nrows = calc_ny_from_rank(ny, rank, size);
   local_ncols = nx;
-  int subgrid_height=local_nrows+2;
-  int subgrid_width = local_ncols+2;
 
+  int local_height=local_nrows+2;
+  int local_width = local_ncols+2;
 
+  // check if too many is
   if (local_nrows < 1) {
     fprintf(stderr,"Error: too many processes:- local_ncols < 1\n");
     MPI_Abort(MPI_COMM_WORLD, EXIT_FAILURE);
   }
 
-  left = (rank == MASTER) ? (size - 1) : (rank - 1);
-  right = (rank + 1) % size;
-  if(rank==0) left = MPI_PROC_NULL;
-  if(rank==size-1) right = MPI_PROC_NULL;
+
+  // // Allocate the image at following, of sizes including extra space for halo regions
 
 
-  subgrid = (float*)malloc(sizeof(float) * subgrid_height * subgrid_width);
-  tmp_subgrid = (float*)malloc(sizeof(float) * subgrid_height * subgrid_width);
+  subgrid = (float*)malloc(sizeof(float) * local_height * local_width);
+  tmp_subgrid = (float*)malloc(sizeof(float) * local_height * local_width);
 
+  // Master
   if(rank==MASTER){
+    //init full image
     image = malloc(sizeof(float) * (width * height));
     init_image(nx, ny, width, height, image);
   }
@@ -75,49 +90,51 @@ int main(int argc, char* argv[])
   int sendcounts[size];
   int displs[size];
   for(int i = 0; i<size; i++){
-    var_nx = calc_nocols(ny, i, size);
-    sendcounts[i] = subgrid_width * var_nx;
-    displs[i] = i * subgrid_width * local_nrows;
+    var_nx = calc_ny_from_rank(ny, i, size);
+    sendcounts[i] = local_width * var_nx;
+    displs[i] = i * local_width * local_nrows;
   }
 
-    MPI_Scatterv(&image[width], sendcounts, displs, MPI_FLOAT, &subgrid[subgrid_width], subgrid_width*local_nrows, MPI_FLOAT, 0, MPI_COMM_WORLD);
+  MPI_Scatterv(image+width, sendcounts, displs, MPI_FLOAT, subgrid + local_width, local_width*local_nrows, MPI_FLOAT, 0, MPI_COMM_WORLD);
 
-    // Call the stencil kernel with halo exchange and this is what gets timed
+
+    // Call the stencil kernel
     double tic = wtime();
     for (int t = 0; t < niters; ++t) {
-      halo_exchange(local_ncols, local_nrows, subgrid_width, subgrid_height, right, left, subgrid, tmp_subgrid);
-      stencil(local_ncols, local_nrows, subgrid_width, subgrid, tmp_subgrid);
-      halo_exchange(local_ncols, local_nrows, subgrid_width, subgrid_height, right, left, tmp_subgrid, subgrid);
-      stencil(local_ncols, local_nrows, subgrid_width, tmp_subgrid, subgrid);
+      stencil(local_ncols, local_nrows, local_width, local_height, right, left, subgrid, tmp_subgrid);
+      stencil(local_ncols, local_nrows, local_width, local_height, right, left, tmp_subgrid, subgrid);
     }
-    double toc = wtime();
+    double toc = wtime() - tic;
+    double time;
 
-    MPI_Gatherv(&subgrid[subgrid_width], subgrid_width*local_nrows, MPI_FLOAT, &image[width], sendcounts, displs, MPI_FLOAT, 0, MPI_COMM_WORLD);
-    double maxTime = 0;
+    MPI_Gatherv(subgrid+local_width, local_width*local_nrows, MPI_FLOAT, image+width, sendcounts, displs, MPI_FLOAT, 0, MPI_COMM_WORLD);
+    MPI_Reduce(&toc, &time, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
+
     if (rank == MASTER){
-      maxTime = toc-tic;
-      double rTime = 0;
-      for (int r = 1; r < size; r++) {
-          MPI_Recv(&rTime, size, MPI_DOUBLE, r, tag, MPI_COMM_WORLD, &status);
-          if (rTime > maxTime) maxTime = rTime;
-      }
-
     // Output
     printf("------------------------------------\n");
-    printf(" runtime: %lf s\n", maxTime);
+    printf(" runtime: %lf s\n", time);
     printf("------------------------------------\n");
 
     output_image(OUTPUT_FILE, nx, ny, width, height, image);
     free(image);
-  } else {
-    double time = toc-tic;
-    MPI_Send(&time, 1, MPI_DOUBLE, 0, tag, MPI_COMM_WORLD);
   }
   MPI_Finalize();
 }
 
-void stencil(const int nx, const int ny, const int width, float* restrict image, float* restrict tmp_image){
-    #pragma omp parallel for shared(image, tmp_image, nx, ny) schedule(dynamic, 10)
+void stencil(const int nx, const int ny, const int width, const int height, const int right, const int left, float* restrict image, float* restrict tmp_image){
+    MPI_Status status;
+    //halo exchange
+     //send left, receive right
+    MPI_Sendrecv(image+width, width, MPI_FLOAT, left, 6,
+		 image+((height-1)*width), width, MPI_FLOAT, right, 6,
+		 MPI_COMM_WORLD, &status);
+
+    //send right, receive left
+    MPI_Sendrecv(image+((height-2)*width), width, MPI_FLOAT, right, 9,
+		 image, width, MPI_FLOAT, left, 9,
+		 MPI_COMM_WORLD, &status);
+
     for (int j = 1; j < ny + 1; ++j) {
       for (int i = 1; i < nx + 1; ++i) {
         tmp_image[i+j*width]= 0.6f*image[i+j*width] + 0.1f*(image[i+(j-1)*width] + image[i+(j+1)*width] + image[(i-1)+j*width] + image[(i+1)+j*width]);
@@ -125,16 +142,33 @@ void stencil(const int nx, const int ny, const int width, float* restrict image,
     }
 }
 
-void halo_exchange(const int nx, const int ny, const int width, const int height, const int right, const int left, float* image, float* tmp_image) {
-  MPI_Status status;
-  //halo exchange
-   //send on the left recieve on the right
-  MPI_Sendrecv(&image[width], width, MPI_FLOAT, left, 0, &image[(height-1)*width], width, MPI_FLOAT, right, 0, MPI_COMM_WORLD, &status);
-
-  //send on the right and recieve on the left
-  MPI_Sendrecv(&image[(height-2)*width], width, MPI_FLOAT, right, 0, &image[0], width, MPI_FLOAT, left, 0, MPI_COMM_WORLD, &status);
-
- }
+// void halo_exchange(const int width, const int height, const int right, const int left, float* restrict image, float* restrict tmp_image) {
+//   MPI_Status status;
+//   // for(ii=0; ii < local_nrows; ii++) {
+//   //   sendbuf[ii] = subgrid[ii * (local_ncols + 2) + 1];
+//   // MPI_Sendrecv(sendbuf, local_nrows, MPI_FLOAT, left, tag, recvbuf, local_nrows, MPI_FLOAT, right, tag, MPI_COMM_WORLD, &status);
+//   // }
+//   // for(ii=0; ii < local_nrows; ii++){
+//   //   subgrid[ii * (local_ncols + 2) + local_ncols + 1] = recvbuf[ii];
+//   // }
+//   // /* send to the right, receive from left */
+//   // for(ii=0; ii < local_nrows; ii++){
+//   //   sendbuf[ii] = subgrid[ii * (local_ncols + 2) + local_ncols];
+//   // MPI_Sendrecv(sendbuf, local_nrows, MPI_FLOAT, right, tag, recvbuf, local_nrows, MPI_FLOAT, left, tag, MPI_COMM_WORLD, &status);
+//   // }
+//   // for(ii=0; ii < local_nrows; ii++){
+//   //   subgrid[ii * (local_ncols + 2)] = recvbuf[ii];
+//   //}
+//   MPI_Sendrecv(image+width, width, MPI_FLOAT, left, 4,
+//    image+((height-1)*width), width, MPI_FLOAT, right, 4,
+//    MPI_COMM_WORLD, &status);
+//
+//   //send right, receive left
+//   MPI_Sendrecv(image+((height-2)*width), width, MPI_FLOAT, right, 20,
+//    image, width, MPI_FLOAT, left, 20,
+//    MPI_COMM_WORLD, &status);
+//
+// }
 
 // Create the input image
 void init_image(const int nx, const int ny, const int width, const int height,
@@ -207,14 +241,14 @@ gettimeofday(&tv, NULL);
 return tv.tv_sec + tv.tv_usec * 1e-6;
 }
 
-int calc_nocols(int ny, int rank, int size)
+int calc_ny_from_rank(int ny, int rank, int size)
 {
   int local_nrows;
 
-  local_nrows = ny / size;
-  if ((ny % size) != 0) {
+  local_nrows = ny / size;       /* integer division */
+  if ((ny % size) != 0) {  /* if there is a remainder */
     if (rank == size - 1)
-      local_nrows += ny % size;
+      local_nrows += ny % size;  /* add remainder to last rank */
   }
 
   return local_nrows;

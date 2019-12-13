@@ -82,7 +82,7 @@ int main(int argc, char* argv[])
     displs[i] = i * subgrid_width * local_nrows;
   }
 
-  MPI_Scatterv(image+width, sendcounts, displs, MPI_FLOAT, subgrid + subgrid_width, subgrid_width*local_nrows, MPI_FLOAT, 0, MPI_COMM_WORLD);
+  MPI_Scatterv(&image[width], sendcounts, displs, MPI_FLOAT, &subgrid[subgrid_width], subgrid_width*local_nrows, MPI_FLOAT, 0, MPI_COMM_WORLD);
 
 
     // Call the stencil kernel
@@ -93,16 +93,21 @@ int main(int argc, char* argv[])
       halo_exchange(local_ncols, local_nrows, subgrid_width, subgrid_height, right, left, tmp_subgrid, subgrid);
       stencil(local_ncols, local_nrows, subgrid_width, tmp_subgrid, subgrid);
     }
-    double toc = wtime() - tic;
-    double time;
+    double toc = wtime();
 
-    MPI_Gatherv(subgrid+subgrid_width, subgrid_width*local_nrows, MPI_FLOAT, image+width, sendcounts, displs, MPI_FLOAT, 0, MPI_COMM_WORLD);
-    MPI_Reduce(&toc, &time, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
+    MPI_Gatherv(&subgrid[subgrid_width], subgrid_width*local_nrows, MPI_FLOAT, &image[width], sendcounts, displs, MPI_FLOAT, 0, MPI_COMM_WORLD);
+    // MPI_Reduce(&toc, &time, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
 
     if (rank == MASTER){
+      maxTime = toc-tic;
+      double rTime = 0;
+      for (int r = 1; r < size; r++) {
+          MPI_Recv(&rTime, size, MPI_DOUBLE, r, tag, MPI_COMM_WORLD, &status);
+          if (rTime > maxTime) maxTime = rTime;
+      }
     // Output
     printf("------------------------------------\n");
-    printf(" runtime: %lf s\n", time);
+    printf(" runtime: %lf s\n", maxTime);
     printf("------------------------------------\n");
 
     output_image(OUTPUT_FILE, nx, ny, width, height, image);

@@ -1,7 +1,6 @@
 #!/bin/bash
 
-#SBATCH --nodes 2
-#SBATCH --ntasks-per-node 28
+#SBATCH --nodes 1
 #SBATCH --partition veryshort
 #SBATCH --reservation COMS30005
 #SBATCH --account COMS30005
@@ -26,4 +25,17 @@ export OMP_NUM_THREADS=1
 export OMP_PROC_BIND=close
 # Run the executable
 
-mpirun -n 56 ./stencil 8000 8000 100
+
+for i in {1,2,4,8,12,16,20,24,28}
+do
+   echo "$i"
+   for j in {1..5}
+   do
+      mpirun -n $i ./stencil 8000 8000 100
+   done
+done
+
+echo "timings done"
+
+
+

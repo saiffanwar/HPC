@@ -1,260 +1,3 @@
-git merge 19-10
-git merge 18-10
-#1571646476
-ls
-#1571646484
-vim stencil.c
-#1571646570
-nano ~/.viminfo
-#1571646618
-vim stencil.c
-#1571646634
-nano ~/.viminfo
-#1571646704
-vim stencil.c
-#1571646729
-rm ~/.viminfo
-#1571646730
-ls
-#1571646732
-rm ~/.viminfo
-#1571646738
-vim stencil.c
-#1571647615
-make -B
-#1571647624
-module load icc/2017.1.132-GCC-5.4.0-2.26 
-#1571647629
-make -B
-#1571647690
-less ipo_out.optrpt 
-#1571647739
-sbatch stencil.job
-#1571647751
-less stencil.out
-#1571647945
-less ipo_out.optrpt 
-#1571648055
-vim stencil.c
-#1571843466
-module load icc/2017.1.132-GCC-5.4.0-2.26 
-#1571843471
-less Makefile 
-#1571843533
-make -B
-#1571843541
-sbatch stencil.job
-#1571843546
-less stencil.out
-#1571843556
-less ipo_out.optrpt 
-#1571843615
-vim
-#1571843629
-vim stencil.c
-#1571843644
-make -B
-#1571843649
-sbatch stencil.job
-#1571843653
-less stencil.out
-#1571843677
-vim Makefile 
-#1571843689
-make -B
-#1571843692
-sbatch stencil.job
-#1571843694
-less stencil.out
-#1571843709
-git add .
-#1571843719
-git commit -m 'its getting slow'
-#1571843728
-git push origin 23-10
-#1571843777
-vim stencil.c
-#1571843838
-make -B
-#1571843846
-nano Makefile 
-#1571843866
-make -B
-#1571843871
-sbatch stencil.job
-#1571843874
-less stencil.out
-#1571843888
-vim stencil.c
-#1571843900
-make -B
-#1571843903
-sbatch stencil.job
-#1571843906
-less stencil.out
-#1571843929
-vim Makefile 
-#1571843949
-make -B
-#1571843954
-sbatch stencil.job
-#1571843957
-less stencil.out
-#1571843962
-git add .
-#1571843971
-git commit -m 'back to faster'
-#1571843976
-git push origin 23-10
-#1571844018
-less ipo_out.optrpt 
-#1571844246
-git pull origin 23-10
-#1571844254
-make -B
-#1571844267
-vim stencil.c
-#1571844279
-make -B
-#1571844284
-sbatch stencil.job
-#1571844288
-less stencil.out
-#1571844303
-less ipo_out.optrpt 
-#1571844347
-vim stencil.c
-#1571844396
-make -V
-#1571844398
-make -B
-#1571844402
-sbatch stencil.job
-#1571844411
-less stencil.out
-#1571844428
-less ipo_out.optrpt 
-#1571844447
-vim stencil.c
-#1571844475
-make -B
-#1571844478
-sbatch stencil.job
-#1571844481
-less stencil.out
-#1571844496
-vim stencil.c
-#1571844532
-make -B
-#1571844536
-sbatch stencil.job
-#1571844538
-less stencil.,out
-#1571844541
-less stencil.out
-#1571844613
-git add .
-#1571844618
-git commit -m 'huh'
-#1571844626
-git push origin 23-10
-#1571844961
-git pull origin 23-10
-#1571844972
-make -B
-#1571844976
-sbatch stencil.job
-#1571844980
-less stencil.out
-#1571844991
-less ipo_out.optrpt 
-#1571845070
-vim stencil.c
-#1571845078
-make -B
-#1571845081
-sbatch stencil.job
-#1571845085
-less stencil.out
-#1571845093
-less ipo_out.optrpt 
-#1571846148
-make -B
-#1571846153
-sbatch stencil.job
-#1571846156
-less stencil.out
-#1571846163
-stencil.out
-#1571846168
-less stencil.out
-#1571846383
-git status
-#1571846391
-git add .
-#1571846396
-git commit -m 'new'
-#1571846403
-git push origin 23-10
-#1571846646
-git pull origin 23-10
-#1571846656
-make -B
-#1571846681
-nano Makefile 
-#1571846706
-make -B
-#1571846710
-sbatch stencil.job
-#1571846714
-less stencil.out
-#1571846767
-less ipo_out.optrpt 
-#1571846837
-vim stencil.c
-#1571846846
-make -B
-#1571846849
-sbatch stencil.job
-#1571846852
-less stencil.out
-#1571846857
-less ipo_out.optrpt 
-#1571846917
-vim Makefile 
-#1571847086
-make -B
-#1571847091
-sbatch stencil.job
-#1571847097
-less stencil.out
-#1571847111
-vim stencil.c
-#1571847176
-git checkout 22-10
-#1571847185
-git status
-#1571847188
-git add .
-#1571847199
-git commit -m 'not good'
-#1571847205
-git push origin 23-10
-#1571847240
-git checkout 22-10
-#1571847245
-vim stencil.c
-#1571847280
-make -B
-#1571847286
-sbatch stencil.ljob
-#1571847293
-sbatch stencil.job
-#1571847300
-less stencil.out
-#1571847316
-less ipo_out.optrpt 
-#1571847345
 vim stencil.c
 #1571847367
 make -B
@@ -1690,3 +1433,187 @@ git pull origin 11012
 git pull origin 11-12
 #1576185394
 make -B
+ls
+git status
+module load tools/git
+module load languages/intel/2018-u3 
+make -B
+vim stencil.c
+make -B
+sbatch 1024.job
+less 1024.out
+sbatch 1024.job
+less 1024.out
+nano 1024.job
+make -B
+sbatch 1024.job
+less 1024.out
+sbatch 1024.job
+less 1024.out
+python check.py --ref-stencil-file stencil_1024_1024_100.pgm --stencil-file stencil.pgm
+git add .
+git commit -m 'openmp working! i think'
+git push origin 11-12
+nano 4096.job
+sbatch 4096.job
+squeue -u sa17826
+less 4096.out
+sbatch 4096.job
+less 4096.out
+sbatch 4096.job
+less 4096.out
+nano 8000.job
+sbatch 8000.job
+squeue -u sa17826
+less 8000.out
+git add .
+git commit -m 'BALLPARK TIMES ACHIEVED'
+git push origin 11-12
+git pull origin 11-12
+make -B
+git pull origin 11-12
+make -B
+sbatch 1024.job
+less 1024.out
+git pull origin 11-12
+make -B
+sbatch 1024.out
+sbatch 1024.job
+less 1024.out
+git pull origin 11-12
+make -B
+vim stencil.c
+make -B
+git pull origin 11-12
+gti checkout --f
+git checkout --f
+git pull origin 11-12
+make -B
+sbatch 1024.job
+less 1024.out
+vim stencil.c
+nano 1024..job
+nano 1024.job
+sbatch 1024.job 2 28
+nano 1024.job
+sbatch 1024.job 2 28
+less 1024.out
+squeue -u sa17826
+less 1024.out
+squeue -u sa17826
+less 1024.out
+nano 1024.job
+sbatch 1024.job
+less 1024.out
+sbatch 1024.job --np=1
+less 1024.out
+#1576192534
+ls
+#1576192567
+less 1024.job
+#1576192627
+sbatch 1024.job --node=1 --np=28
+#1576192660
+squeue -u sa17826
+#1576192666
+less 1024.out
+#1576192691
+nano 1024.job
+#1576192927
+sbatch 1024.job --nodes=1 -n=28
+#1576192937
+squeue -u sa17826
+#1576192943
+less 1024.out
+#1576192952
+sbatch 1024.job
+#1576192961
+squeue -u sa17826
+#1576192972
+less 1024.out
+#1576192978
+make -B
+#1576193040
+module languages/intel/2018-u3
+#1576193052
+module load languages/intel/2018-u3 
+#1576193086
+sbatch 1024.job --nodes=1 -np=28
+#1576193090
+squeue -u sa17826
+#1576193094
+less 1024.out
+#1576193123
+sbatch 1024.job
+#1576193128
+less 1024.out
+#1576193314
+nano 1024.job
+#1576193392
+sbatch 1024.job --export=x=1 --export=y=1 --export=z=1
+#1576193468
+sbatch 1024.job --export=x='1' --export=y='1' --export=z='1'
+#1576193478
+nano 1024.job
+#1576193501
+sbatch 1024.job --export=x='1' --export=y='1' --export=z='1'
+#1576193689
+nano 1024.job
+#1576193770
+sbatch 1024.job --export=n='1' --export=nodes='1' --export=nodes='1'
+#1576193789
+sbatch 1024.job --export=n='1' --export=--ntasks-per-node='1' --export=nodes='1'
+#1576193807
+sbatch 1024.job --export=n='1' --export=ntasks-per-node='1' --export=nodes='1'
+#1576193814
+nano 1024.job
+#1576193843
+sbatch 1024.job --export=n='1' --export=ntasks-per-node=1 --export=nodes='1'
+#1576193854
+sbatch 1024.job --export=n='1' --export=ntasks-per-node=1 --export=nodes=1
+#1576193861
+nano 1024.job
+#1576194002
+vim stencil.c
+#1576194033
+nano 1024.job
+#1576194646
+sbatch 1024.job
+#1576194648
+nano 1024.job
+#1576194664
+squeue -u sa17826
+#1576194668
+less 1024.out
+#1576194690
+nano 1024.job
+#1576194755
+sbatch 1024.job
+#1576194759
+squeue -u sa17826
+#1576194765
+less 1024.out
+#1576194793
+nano 1024.job
+#1576194817
+less 1024.out
+#1576194903
+sbatch 1024.job
+#1576194906
+squeue -u sa17826
+#1576194909
+less 1024.out
+#1576194954
+nano 1024.job
+#1576195002
+sbatch 1024.job
+#1576195004
+squeue -u sa17826
+#1576195007
+less 1024.out
+#1576195172
+nano 1024.job
+#1576195250
+sbatch 1024.job
+#1576195261
+less 1024.out

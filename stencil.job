@@ -1,0 +1,29 @@
+#!/bin/bash
+
+#SBATCH --nodes 2
+#SBATCH --ntasks-per-node 28
+#SBATCH --partition veryshort
+#SBATCH --reservation COMS30005
+#SBATCH --account COMS30005
+#SBATCH --job-name stencil
+#SBATCH --time 00:15:00
+#SBATCH --output stencil.out
+#SBATCH --exclusive
+
+# Print some information about the job
+echo "Running on host $(hostname)"
+echo "Time is $(date)"
+echo "Directory is $(pwd)"
+echo "Slurm job ID is $SLURM_JOB_ID"
+echo
+echo "This job runs on the following machines:"
+echo "$SLURM_JOB_NODELIST" | uniq
+echo
+
+# Enable using `srun` with Intel MPI
+unset I_MPI_PMI_LIBRARY
+export OMP_NUM_THREADS=1
+export OMP_PROC_BIND=close
+# Run the executable
+
+mpirun -n 56 ./stencil 1024 1024 100

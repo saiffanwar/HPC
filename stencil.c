@@ -13,11 +13,8 @@ void stencil(const int nx, const int ny, const int width, float* image, float* t
 void init_image(const int nx, const int ny, const int width, const int height, float* image);
 void output_image(const char* file_name, const int nx, const int ny, const int width, const int height, float* image);
 void halo_exchange(const int nx, const int ny, const int width, const int height, const int right, const int left, float* image, float* tmp_image);
-int calc_ny_from_rank(int ny, int rank, int size);
-
+int calc_nocols(int ny, int rank, int size);
 double wtime(void);
-
-
 
 int main(int argc, char* argv[])
 {
@@ -34,7 +31,6 @@ int main(int argc, char* argv[])
   float *tmp_subgrid;
   float* image;
   int var_nx;
-
 
   MPI_Init(&argc, &argv);
   MPI_Comm_size(MPI_COMM_WORLD, &size);
@@ -59,26 +55,21 @@ int main(int argc, char* argv[])
   if(rank==0) left = MPI_PROC_NULL;
   if(rank==size-1) right = MPI_PROC_NULL;
 
-  local_nrows = calc_ny_from_rank(ny, rank, size);
+  local_nrows = calc_nocols(ny, rank, size);
   local_ncols = nx;
 
-  int local_height=local_nrows+2;
-  int local_width = local_ncols+2;
+  int subgrid_height=local_nrows+2;
+  int subgrid_width = local_ncols+2;
 
-  // check if too many is
   if (local_nrows < 1) {
     fprintf(stderr,"Error: too many processes:- local_ncols < 1\n");
     MPI_Abort(MPI_COMM_WORLD, EXIT_FAILURE);
   }
 
+  subgrid = (float*)malloc(sizeof(float) * subgrid_height * subgrid_width);
+  tmp_subgrid = (float*)malloc(sizeof(float) * subgrid_height * subgrid_width);
 
-  // Allocate the image at following, of sizes including extra space for halo regions
-  subgrid = (float*)malloc(sizeof(float) * local_height * local_width);
-  tmp_subgrid = (float*)malloc(sizeof(float) * local_height * local_width);
-
-  // Master
   if(rank==MASTER){
-    //init full image
     image = malloc(sizeof(float) * (width * height));
     init_image(nx, ny, width, height, image);
   }
@@ -86,26 +77,26 @@ int main(int argc, char* argv[])
   int sendcounts[size];
   int displs[size];
   for(int i = 0; i<size; i++){
-    var_nx = calc_ny_from_rank(ny, i, size);
-    sendcounts[i] = local_width * var_nx;
-    displs[i] = i * local_width * local_nrows;
+    var_nx = calc_nocols(ny, i, size);
+    sendcounts[i] = subgrid_width * var_nx;
+    displs[i] = i * subgrid_width * local_nrows;
   }
 
-  MPI_Scatterv(image+width, sendcounts, displs, MPI_FLOAT, subgrid + local_width, local_width*local_nrows, MPI_FLOAT, 0, MPI_COMM_WORLD);
+  MPI_Scatterv(image+width, sendcounts, displs, MPI_FLOAT, subgrid + subgrid_width, subgrid_width*local_nrows, MPI_FLOAT, 0, MPI_COMM_WORLD);
 
 
     // Call the stencil kernel
     double tic = wtime();
     for (int t = 0; t < niters; ++t) {
-      halo_exchange(local_ncols, local_nrows, local_width, local_height, right, left, subgrid, tmp_subgrid);
-      stencil(local_ncols, local_nrows, local_width, subgrid, tmp_subgrid);
-      halo_exchange(local_ncols, local_nrows, local_width, local_height, right, left, tmp_subgrid, subgrid);
-      stencil(local_ncols, local_nrows, local_width, tmp_subgrid, subgrid);
+      halo_exchange(local_ncols, local_nrows, subgrid_width, subgrid_height, right, left, subgrid, tmp_subgrid);
+      stencil(local_ncols, local_nrows, subgrid_width, subgrid, tmp_subgrid);
+      halo_exchange(local_ncols, local_nrows, subgrid_width, subgrid_height, right, left, tmp_subgrid, subgrid);
+      stencil(local_ncols, local_nrows, subgrid_width, tmp_subgrid, subgrid);
     }
     double toc = wtime() - tic;
     double time;
 
-    MPI_Gatherv(subgrid+local_width, local_width*local_nrows, MPI_FLOAT, image+width, sendcounts, displs, MPI_FLOAT, 0, MPI_COMM_WORLD);
+    MPI_Gatherv(subgrid+subgrid_width, subgrid_width*local_nrows, MPI_FLOAT, image+width, sendcounts, displs, MPI_FLOAT, 0, MPI_COMM_WORLD);
     MPI_Reduce(&toc, &time, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
 
     if (rank == MASTER){
@@ -133,14 +124,10 @@ void halo_exchange(const int nx, const int ny, const int width, const int height
   MPI_Status status;
   //halo exchange
    //send on the left recieve on the right
-  MPI_Sendrecv(image+width, width, MPI_FLOAT, left, 6,
-   image+((height-1)*width), width, MPI_FLOAT, right, 6,
-   MPI_COMM_WORLD, &status);
+  MPI_Sendrecv(image+width, width, MPI_FLOAT, left, 0, image+((height-1)*width), width, MPI_FLOAT, right, 0, MPI_COMM_WORLD, &status);
 
   //send on the right and recieve on the left
-  MPI_Sendrecv(image+((height-2)*width), width, MPI_FLOAT, right, 9,
-   image, width, MPI_FLOAT, left, 9,
-   MPI_COMM_WORLD, &status);
+  MPI_Sendrecv(image+((height-2)*width), width, MPI_FLOAT, right, 0, image, width, MPI_FLOAT, left, 0, MPI_COMM_WORLD, &status);
 
  }
 
@@ -215,7 +202,7 @@ gettimeofday(&tv, NULL);
 return tv.tv_sec + tv.tv_usec * 1e-6;
 }
 
-int calc_ny_from_rank(int ny, int rank, int size)
+int calc_nocols(int ny, int rank, int size)
 {
   int local_nrows;
 

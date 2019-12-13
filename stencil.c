@@ -93,7 +93,7 @@ int main(int argc, char* argv[])
     double toc = wtime();
 
     MPI_Gatherv(&subgrid[subgrid_width], subgrid_width*local_nrows, MPI_FLOAT, &image[width], sendcounts, displs, MPI_FLOAT, 0, MPI_COMM_WORLD);
-
+    double maxTime = 0;
     if (rank == MASTER){
       maxTime = toc-tic;
       double rTime = 0;
@@ -101,6 +101,7 @@ int main(int argc, char* argv[])
           MPI_Recv(&rTime, size, MPI_DOUBLE, r, tag, MPI_COMM_WORLD, &status);
           if (rTime > maxTime) maxTime = rTime;
       }
+
     // Output
     printf("------------------------------------\n");
     printf(" runtime: %lf s\n", maxTime);
